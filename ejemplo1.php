@@ -20,6 +20,15 @@ http://localhost:8080/EJEMPLOSPHP/ejemplo1.php
         echo 'Trabajos: $tipo1 | ' . $tipo2 . '</br>';
     ?>
 
+    <!--
+        Variable global POST que me recoge lo del name 
+     -->
+
+    
+    Hola <?php echo $_POST['nombre']; ?>
+    Usted tiene <?php echo $_POST['edad']; ?>
+    años de edad, aparenta muchísimos menos.
+
     
 </body>
 </html>
