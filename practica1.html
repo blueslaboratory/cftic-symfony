@@ -1,0 +1,79 @@
+<!-- 
+21-06-2022    
+http://localhost:8080/EJEMPLOSPHP/practica4.html
+
+
+COMENTAR EN VSCODE:
+Windows: [CTRL] + K (Vscode queda a la espera). Después pulsa [CTRL] + C para comentar y [CTRL] + U
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .table{
+            margin-top: 25%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+        select{
+            width: 100%;
+        }
+        th{
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="practica1.php" method="GET">
+        
+        
+        <table class="table" border="0">
+            <tr>
+                <th>COLOR DE FONDO</th>
+                <td>
+                    <select name="colors">
+                        <option value="red">Rojo</option>
+                        <option value="green">Verde</option>
+                        <option value="blue">Azul</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>TIPO DE LETRA</th>
+                <td>
+                    <select name="font">
+                        <option value="Arial">Arial</option>
+                        <option value="Sans MS">Sans MS</option>
+                        <option value="Courier">Courier</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>TEXTO</th>
+                <td>
+                    <!--
+                    <input type="text" name="texto" placeholder="Escribe algo por favor..." value="Default Text"/>
+                    -->
+                    <textarea type="text" name="texto" placeholder="Escribe algo por favor...">Default Text</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Enviar" />
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+
+</body>
+</html>
