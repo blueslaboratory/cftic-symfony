@@ -1,0 +1,59 @@
+<!-- 
+21-06-2022    
+http://localhost:8080/EJEMPLOSPHP/practica2.html
+
+
+COMENTAR EN VSCODE:
+Windows: [CTRL] + K (Vscode queda a la espera). Después pulsa [CTRL] + C para comentar y [CTRL] + U
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    
+    <form action="practica2.php" method="POST">
+
+        <!-- Es importante poner fruta[] para que Symfony lo coja como array -->
+        <table border="1">
+            <tr>
+                <th>
+                    <input type="checkbox" name="fruta[]" value="Coco" /> Coco <br />
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="checkbox" name="fruta[]" value="Mandarina" /> Mandarina <br />
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="checkbox" name="fruta[]" value="Platano" /> Platano <br />
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="checkbox" name="fruta[]" value="Papaya" /> Papaya <br />
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="submit" value="Enviar">
+                </th>
+            </tr>
+        </table>        
+
+    </form>
+</body>
+</html>
