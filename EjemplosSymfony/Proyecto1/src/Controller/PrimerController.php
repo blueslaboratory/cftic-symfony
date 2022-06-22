@@ -88,6 +88,7 @@ class PrimerController extends AbstractController
     public function vista()
     {
         // $this hace referencia a la instancia de mi propia clase, vete a la funcion render de mi clase (heredada de AbstractController)
+        // la carpeta por defecto desde donde buscamos es templates
         return $this->render('Deportes/inicio.html.twig');
     }
 }

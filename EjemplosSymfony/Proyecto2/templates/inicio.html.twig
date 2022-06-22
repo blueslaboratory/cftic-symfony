@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <!--
+        Esto no funciona:
+        <li><a href="/lenguajes/java.html.twig">Java</a></li>
+        <li><a href="/lenguajes/php.html.twig">PHP</a></li>
+        <li><a href="/lenguajes/python.html.twig">Python</a></li>
+        -->
+
+        <!--
+            Llamamos al controlador y la ruta que hemos puesto:
+        -->
+        
+        <p>A continuación algunos hipervínculos con información de estos lenguajes: </p>
+
+        <li><a href="http://localhost:8000/java">Java</a></li>
+        <li>&#9749; <a href= {{ path('java') }}>Java</a></li>
+        <br>
+        <li><a href="http://localhost:8000/php">PHP</a></li>
+        <li>&#127932; <a href= {{ path('php') }}>PHP</a></li>
+        <br>
+        <li><a href="http://localhost:8000/python">Python</a></li>
+        <li>&#128013; <a href= {{ path('python') }}>Python</a></li>
+        <br>
+
+        <p>&#128512;</p>
+
+    </ul>
+</body>
+</html>
