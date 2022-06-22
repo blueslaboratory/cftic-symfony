@@ -23,15 +23,15 @@ http://localhost:8080/EJEMPLOSPHP/practica1.php
     <!--
         Ver código fuente en el navegador para ver lo que está llegando:
         Sin el echo lo procesaría pero no te lo muestra, no se lo devuelve al cliente
+
+        Si no pones pegadas las cosas en la etiqueta pre, te va a añadir unwanted spaces
      -->
 
     <pre style="background-color: <?php echo $fondo ?>; 
               font-family: <?php echo $letra ?>;
               font-size: 4em;
               text-align: center;
-              padding-top: 100px;">
-              
-        <?php echo $texto; ?> </br>
+              padding-top: 100px;"><?php echo $texto; ?> </br>
     </pre>
     
 

@@ -32,7 +32,7 @@ SHIFT + ALT + F
     if (!empty($_POST['sex'])) {
         echo "Sexo: " . $_POST["sex"] . "</br>";
     } else {
-        echo "Valor no seleccionado";
+        echo "Sexo: Valor no seleccionado" . "</br>";
     }
 
     echo "Sistema Operativo: ";
