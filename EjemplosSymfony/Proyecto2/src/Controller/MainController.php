@@ -46,4 +46,10 @@ class MainController extends AbstractController
     {
         return $this->render('lenguajes/python.html.twig');
     }
+
+    #[Route('/thanks', name: 'thanks')]
+    public function vistaThankYou()
+    {
+        return $this->render('thanks.html.twig');
+    }
 }
