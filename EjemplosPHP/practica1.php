@@ -1,6 +1,6 @@
 <!-- 
 21-06-2022    
-http://localhost:8080/EJEMPLOSPHP/practica1.php
+http://localhost:8080/CFTIC/EJEMPLOSPHP/practica1.php
 -->
 
 <!DOCTYPE html>

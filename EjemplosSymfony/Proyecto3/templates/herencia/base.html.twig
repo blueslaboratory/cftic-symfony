@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% block cabecera %}
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>{% block titulo %}{% endblock %} - Proyecto </title>
+    {% endblock %}
+</head>
+
+<body>
+    <div id="content">{% block contenido %}{% endblock %}</div>
+    <div id="footer">
+        {% block pie %}
+        2022 MundoSurf | Todos los derechos reservados
+        {% endblock %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{% extends "herencia/base.html.twig" %}
+
+{% block titulo %}Pagina 1{% endblock %}
+
+{% block cabecera %}
+{{ parent() }}
+<style type="text/css">
+    .colorido {
+        color: blue;
+    }
+</style>
+{% endblock %}
+
+{% block contenido %}
+<h1>MUCHOSURF</h1>
+<p class="colorido">
+    Web de referencia sobre contenido de surf
+</p>
+{% endblock %}

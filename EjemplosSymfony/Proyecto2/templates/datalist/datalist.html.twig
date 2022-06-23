@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        fieldset{
+            width: 300px;
+        } 
+        
+        input{
+            background-color: aquamarine;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <h1>Probando un DataList dinámico</h1>
+    <form>
+        <fieldset>
+            <legend>Probando los datalist</legend>
+            <label>Busca en la agenda:
+                <input type="text" name="agenda" list="agenda" autofocus/>
+                <datalist id="agenda">
+                    {% for nombre in nombres %}
+                        <option value="{{ nombre }}"></option>
+                    {% endfor %}
+                </datalist>
+            </label>
+        </fieldset>
+    </form>
+</body>
+</html>

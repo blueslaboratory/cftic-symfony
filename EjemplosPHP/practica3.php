@@ -1,6 +1,6 @@
 <!-- 
 21-06-2022    
-http://localhost:8080/EJEMPLOSPHP/practica3.php
+http://localhost:8080/CFTIC/EJEMPLOSPHP/practica3.php
 
 
 COMENTAR EN VSCODE:

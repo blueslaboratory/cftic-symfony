@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            /* border-collapse: collapse; */
+        }
+        img{
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <th>Titulo</th>
+            <th>Carátula</th>
+        </tr>
+
+        {#         
+        <tr>
+            <td>{{ pelis[0].titulo }}</td>
+            <td> <img src="{{ pelis[0].imagen }}" alt="Imagen no disponible"></td>
+        </tr>
+         #}
+        
+
+        {% for peli in pelis %}
+        <tr>
+            <td>{{ peli.titulo }}</td>
+            <td><img src="{{ peli.imagen }}" alt="Imagen no disponible"></td>
+        </tr>
+        {% endfor %}
+
+        <tr>
+            <td colspan="2" style="background-color: green;">CON SCANDIR BONITO</td>
+        </tr>
+
+        {% for i in 2..(length-1) %}
+        <tr>
+            <td>{{ titulos[i] }}</td>
+            <td><img src="peliculas/{{dirImagenes[i]}}" alt="Imagen no disponible"></td>
+        </tr>
+        {% endfor %} 
+
+        {#         
+        <tr>
+            <td colspan="2">CON SCANDIR DIRECTORIOS</td>
+        </tr>
+
+        {% for dir in dirImagenes %}
+        <tr>
+            <td>{{ dir }}</td>
+            <td><img src="peliculas/{{dir}}" alt="Imagen no disponible"></td>
+        </tr>
+        {% endfor %}  
+        #}
+
+    </table>
+</body>
+</html>
