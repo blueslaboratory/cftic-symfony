@@ -1,0 +1,59 @@
+{#
+24/06/2022
+#}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    {% block cabecera %}
+    <link rel="stylesheet" href="css/vinos.css" />
+    <title>Vinos - {% block titulo %}{% endblock %}</title>
+    {% endblock %}
+</head>
+
+<body>
+
+    <h2>Bienvenido a la Vinoteca de la Ribera del Duero</h2>
+
+
+    {% block menu %}
+    {{ include('vinos/menu.html.twig') }}
+    {% endblock %}
+
+
+    <br><br>
+    <hr>
+    <div class="imgVino">
+        {% block imgVino %}
+        <img class="vino" src="vinos/Vino.jpg" alt="Img vino generica">
+        {% endblock %}
+    </div>
+    
+    <div class="descVino">
+        {% block mensaje %}
+        <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Error excepturi nostrum voluptas quaerat sunt
+        consectetur rerum. Asperiores, ipsum architecto maiores consectetur tenetur officia nesciunt voluptatibus
+        libero? Provident laborum id animi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Error excepturi nostrum voluptas quaerat sunt
+        consectetur rerum. Asperiores, ipsum architecto maiores consectetur tenetur officia nesciunt voluptatibus
+        libero? Provident laborum id animi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Error excepturi nostrum voluptas quaerat sunt
+        consectetur rerum. Asperiores, ipsum architecto maiores consectetur tenetur officia nesciunt voluptatibus
+        libero? Provident laborum id animi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Error excepturi nostrum voluptas quaerat sunt
+        consectetur rerum. Asperiores, ipsum architecto maiores consectetur tenetur officia nesciunt voluptatibus
+        libero? Provident laborum id animi.
+        </p>
+        {% endblock %}
+    </div>
+    
+    <hr>
+    {% block pie %}
+    {{ include('vinos/footer.html.twig') }}
+    {% endblock %}
+</body>
+
+</html>

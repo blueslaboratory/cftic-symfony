@@ -122,8 +122,11 @@ class MainController extends AbstractController
         $countImages = count($dirImagenes);
 
         for ($i=0; $i < $countImages ; $i++) { 
-            $titulos[$i] = str_replace('.jpg', '', strtolower($dirImagenes[$i]));
-            $titulos[$i] = ucwords(str_replace('_', ' ', $titulos[$i]));
+            // offset -1 para que se vaya al final
+            if(substr(($titulos[$i]), -1)!= '.'){
+                $titulos[$i] = str_replace('.jpg', '', strtolower($dirImagenes[$i]));
+                $titulos[$i] = ucwords(str_replace('_', ' ', $titulos[$i]));
+            }            
         }
 
         

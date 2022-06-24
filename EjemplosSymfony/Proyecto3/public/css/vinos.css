@@ -1,0 +1,65 @@
+body{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+h2{
+    padding-top: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#menu{
+    display: inline;
+    list-style-type: none;
+}
+
+header{
+    padding-top: 50px;
+}
+
+ul{
+    padding-left: 0px;
+
+}
+
+.liMenu{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+
+.imgVino{
+    /* border: 1px solid slateblue; */
+    width: 30%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.vino {
+    height: 250px;
+}
+
+figcaption{
+    margin-top: 30px;
+}
+
+.descVino{
+    /* border: 1px solid slateblue; */
+    width: 150px;
+    margin: 0 auto;
+    padding: 50px;
+    position: relative;
+    text-align: center;
+}
+
+footer{
+    padding-top: 100px;
+    display: block;
+    font-style: italic;
+/*
+    position: fixed; 
+    bottom: 0;
+*/
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}¡MundoSurf!{% endblock %}</title>
+
+    <link rel="stylesheet" href="css/stylesPlantillas.css">
+    {% block stylesheets %}
+
+    {% endblock %}
+
+    {% block javascripts_headers %}
+
+    {% endblock %}
+</head>
+
+<body>
+
+    <div class="container">
+
+        {{ include('plantillas/menu.html.twig') }}
+
+        {% block body %}
+
+        {% endblock %}
+
+    </div>
+
+    {% block javascripts_footer %}
+
+    {% endblock %}
+</body>
+
+</html>
