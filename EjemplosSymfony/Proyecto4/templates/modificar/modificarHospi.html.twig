@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modificar departamentos{% endblock %}
+{% block body %}
+<h1>Formulario Modificación Departamentos</h1>
+
+<form method="POST" action="{{ path('ModifyH') }}">
+    <div>
+        <label class="form-label">
+            Id
+        </label>
+        <input type="text" name="txtId" class="form-control" id="txtId">
+    </div>
+    <div>
+        <label class="form-label">
+            Nuevo Nombre
+        </label>
+        <input type="text" name="txtNombre" class="form-control" id="txtNombre">
+    </div>
+    <div>
+        <label class="form-label">
+            Nueva Dirección
+        </label>
+        <input type="text" name="txtDireccion" class="form-control" id="txtDireccion">
+    </div>
+    <div>
+        <label class="form-label">
+            Nuevo Teléfono
+        </label>
+        <input type="text" name="txtTelefono" class="form-control" id="txtTelefono">
+    </div>
+    <div>
+        <label class="form-label">
+            Nuevo Número de camas
+        </label>
+        <input type="number" name="numCama" class="form-control" id="numCama">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">
+        Modificar hospital
+    </button>
+</form>
+{% endblock %}

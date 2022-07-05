@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Alta hospital{% endblock %}
+{% block body %}
+<h1>Formulario Alta Hospital</h1>
+
+<form method="POST" action="{{ path('insertarHospital') }}">
+
+    <div>
+        <label class="form-label">
+            Nombre
+        </label>
+        <input type="text" name="txtNombre" class="form-control" id="txtNombre">
+    </div>
+    <div>
+        <label class="form-label">
+            Dirección
+        </label>
+        <input type="text" name="txtDireccion" class="form-control" id="txtDireccion">
+    </div>
+    <div>
+        <label class="form-label">
+            Teléfono
+        </label>
+        <input type="text" name="txtTelefono" class="form-control" id="txtTelefono">
+    </div>
+    <div>
+        <label class="form-label">
+            Número de camas
+        </label>
+        <input type="number" name="numCama" class="form-control" id="numCama">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">
+        Alta Hospital
+    </button>
+</form>
+{% endblock %}
