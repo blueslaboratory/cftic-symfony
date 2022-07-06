@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Departamentos</title>
+</head>
+
+<body>
+    Departamento:
+    <form name="formulario" method="POST" 
+    {# action="{{ path('buscar') }}" #}
+    >
+        <select name="cmbDepart" id="" onchange='formulario.submit()'>
+            {% for Departamento in datosDepts %}
+
+            <option value="{{Departamento.id}}">{{Departamento.dnombre}}</option>
+
+            {#
+            en estos framework la forma de acceder a la propiedad es
+            poniendo el nombre de la propiedad, en realidad estas accediendo
+            a través de un get.
+            Si la varible es $num_cama y el get es getNumCama
+            se pone numCama
+            #}
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if value != null %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Localidad</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for Dept in datosDepts %}
+            <tr>
+                <td>{{ Dept.id }}</td>
+                <td>{{ Dept.dnombre }}</td>
+                <td>{{ Dept.loc }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    {% endif %}
+
+</body>
+
+</html>

@@ -41,7 +41,9 @@ li{
 a{
     text-decoration: none;
 }
-
+a:visited{
+    color: black;
+}
 
 .content {
     width: 80%;
@@ -90,8 +92,16 @@ a{
     font-weight: 800;
     text-decoration: solid;
 }
-button{
+.button{
+    width: 50%;
     padding: 10px 25px;
+    border: 2px solid black;
+    text-align: center;
+    color: black;
+}
+.button:hover, .button:hover a{
+    color: white;
+    background-color: black;
 }
 
 
