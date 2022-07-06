@@ -1,19 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Hospital</title>
-    <style>
-        
-    </style>
-</head>
-<body>
-    <ul>
-        <li><a href="{{path('nuevoHospi')}}">Nuevo Hospital</a></li>
-        <li><a href="{{path('modifiHospi')}}">Modificar Hospital</a></li>
-        <li><a href="{{path('borrarHospi')}}">Borrar Hospital</a></li>
-    </ul>
-</body>
-</html>
+{% extends 'base.html.twig' %}
+
+
+{% block title %} Alta departamentos{% endblock %}
+{% block style %}
+<style>
+    /*
+    *{
+        border: 1px solid red;
+    }
+    */
+    header{
+        margin: 0 20%;
+        /* padding-bottom: 10px; */
+        display: flex;
+        text-align: center;
+        background-color: dodgerblue;
+        color: aliceblue;
+    }
+    header img{
+        width: 35%;
+        height: 100%;
+    }
+    h2{
+        margin: 0 auto;
+        padding-top: 8%;
+    }
+
+    .content{
+        display: flex;
+        margin: 0 20%;
+        height: 75vh;
+    }
+    nav{
+        padding: 5%;
+        width: 35%;
+        background-color: aquamarine;
+    }
+    aside{
+        width: 65%;
+        padding: 6%;
+        background-color: aqua;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    <header>
+        <img src="/images/hospi.jpg" alt="hospi.jpg">
+        <h2>Mantenimiento Hospital</h2>
+    </header>
+    <div class="content">
+        <nav>
+            <ul>
+                <li><a href="{{path('nuevoHospi')}}">Nuevo Hospital</a></li>
+                <li><a href="{{path('modifiHospi')}}">Modificar Hospital</a></li>
+                <li><a href="{{path('borrarHospi')}}">Borrar Hospital</a></li>
+                <li><a href="{{path('mostrarHospis')}}">Ver Hospitales</a></li>
+            </ul>
+        </nav>
+        <aside>
+            {% block aside %}{% endblock %}
+        </aside>
+    </div>
+{% endblock %}

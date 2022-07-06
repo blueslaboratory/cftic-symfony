@@ -1,9 +1,10 @@
-{% extends 'borrado/baseEliminar.html.twig' %}
+{% extends 'indexHospi.html.twig' %}
 
 {% block title %}Eliminar Hospital{% endblock %}
-{% block body %}
-<h1>Eliminar Hospital</h1>
-
+{% block aside %}
+<br>
+<h3>Eliminar Hospital</h3>
+<br><br>
 <form method="POST" action="{{ path('eliminarHospi') }}">
 
     <div>
@@ -12,7 +13,7 @@
         </label>
         <input type="text" name="txtId" class="form-control" id="txtId">
     </div>
-
+    <br><br>
     <button type="submit" class="btn btn-primary">
         Eliminar hospital
     </button>

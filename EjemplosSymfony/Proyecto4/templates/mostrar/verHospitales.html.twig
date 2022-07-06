@@ -1,0 +1,37 @@
+{% extends 'indexHospi.html.twig' %}
+
+{% block title %} Ver Hospitales{% endblock %}
+
+{% block aside %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Número de camas</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for Hospital in datosHospis %}
+        <tr>
+            {# 
+                en estos framework la forma de acceder a la propiedad es 
+                poniendo el nombre de la propiedad, en realidad estas accediendo
+                a través de un get.
+                Si la varible es $num_cama y el get es getNumCama
+                se pone numCama
+            #}
+            <td>{{ Hospital.id }}</td>
+            <td>{{ Hospital.nombre }}</td>
+            <td>{{ Hospital.direccion }}</td>
+            <td>{{ Hospital.telefono }}</td>
+            <td>{{ Hospital.numcama }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}

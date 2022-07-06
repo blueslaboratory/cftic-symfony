@@ -1,9 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'indexHospi.html.twig' %}
 
-{% block title %} Modificar departamentos{% endblock %}
-{% block body %}
-<h1>Formulario Modificación Departamentos</h1>
-
+{% block title %} Modificar hospital{% endblock %}
+{% block aside %}
+<br>
+<h3>Formulario Modificar Hospital</h3>
+<br><br>
 <form method="POST" action="{{ path('ModifyH') }}">
     <div>
         <label class="form-label">
@@ -35,7 +36,7 @@
         </label>
         <input type="number" name="numCama" class="form-control" id="numCama">
     </div>
-    
+    <br><br>
     <button type="submit" class="btn btn-primary">
         Modificar hospital
     </button>
