@@ -10,26 +10,24 @@
 
 <body>
     Departamento:
-    <form name="formulario" method="POST" 
-    {# action="{{ path('buscar') }}" #}
-    >
+    <form name="formulario" method="POST" action="{{ path('buscar') }}">
         <select name="cmbDepart" id="" onchange='formulario.submit()'>
+            {# no hay botón, en el onchange se hace el submit de formulario #}
             {% for Departamento in datosDepts %}
-
-            <option value="{{Departamento.id}}">{{Departamento.dnombre}}</option>
-
-            {#
-            en estos framework la forma de acceder a la propiedad es
-            poniendo el nombre de la propiedad, en realidad estas accediendo
-            a través de un get.
-            Si la varible es $num_cama y el get es getNumCama
-            se pone numCama
-            #}
+                {% if seleccionado is defined and Departamento.id == seleccionado %}
+                    <option value="{{Departamento.id}}" selected>{{Departamento.dnombre}}</option>
+                    {# en estos framework la forma de acceder a la propiedad es
+                    poniendo el nombre de la propiedad, en realidad estas accediendo
+                    a través de un get.
+                    Si la varible es $num_cama y el get es getNumCama se pone numCama #}
+                {% else %}
+                    <option value="{{ Departamento.id }}">{{ Departamento.dnombre }}</option>
+                {% endif %}
             {% endfor %}
         </select>
     </form>
 
-    {% if value != null %}
+    {% if datosDeptf is defined %}
     <table class="table">
         <thead>
             <tr>
@@ -39,16 +37,13 @@
             </tr>
         </thead>
 
-        <tbody>
-            {% for Dept in datosDepts %}
+        <tbody> 
             <tr>
-                <td>{{ Dept.id }}</td>
-                <td>{{ Dept.dnombre }}</td>
-                <td>{{ Dept.loc }}</td>
+                <td>{{ datosDeptf.id }}</td>
+                <td>{{ datosDeptf.dnombre }}</td>
+                <td>{{ datosDeptf.loc }}</td>
             </tr>
-            {% endfor %}
         </tbody>
-
     </table>
     {% endif %}
 

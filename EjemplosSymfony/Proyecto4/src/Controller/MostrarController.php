@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MostrarController extends AbstractController
 {
     // localhost:8000/verDept
-    #[Route('/verDept', name:'mostrarDept')]
+    #[Route('/verDept', name: 'mostrarDept')]
     public function mostrarDept(Request $request, EntityManagerInterface $em)
     {
         $datos = $em->getRepository(Dept::class)->findAll();
@@ -26,6 +26,29 @@ class MostrarController extends AbstractController
             'datosDepts' => $datos
         ]);
     }
+
+
+    // localhost:8000/buscarDept
+    #[Route('/buscarDept', name: 'buscar')]
+    public function buscar(Request $request, EntityManagerInterface $em)
+    {
+        // Al hacer submit los datos los has perdido y hay que recuperarlos: findAll
+        $datos = $em->getRepository(Dept::class)->findAll();
+
+        // Al hacer un formulario y darle al submit directamente se me crea un objeto 
+        // request y puedo recoger todos los datos
+        $identificador = $request->request->get('cmbDepart');
+        dump($identificador);
+        $datosf = $em->getRepository(Dept::class)->find($identificador);
+        dump($datosf);
+
+        return $this->render('mostrar/verDepartamentos.html.twig', [
+            'datosDepts' => $datos,
+            'datosDeptf' => $datosf,
+            'seleccionado' => $identificador
+        ]);
+    }
+
 
     // localhost:8000/mostrarHospis
     #[Route('/verHospi', name: 'mostrarHospis')]
@@ -38,5 +61,3 @@ class MostrarController extends AbstractController
         ]);
     }
 }
-
-?>
