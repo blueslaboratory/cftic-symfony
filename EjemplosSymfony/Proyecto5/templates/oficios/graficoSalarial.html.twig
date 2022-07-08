@@ -21,15 +21,7 @@
     <form name="salario" method="post" action="{{ path('buscarOficios') }}">
         <select name="selectOficio" id="">
             {% for oficio in arrayEmpleados %}
-            {% if seleccionado is defined and oficio.id == seleccionado %}
-            <option value="{{oficio.oficio}}" selected>{{oficio.oficio}}</option>
-            {# en estos framework la forma de acceder a la propiedad es
-            poniendo el nombre de la propiedad, en realidad estas accediendo
-            a través de un get.
-            Si la varible es $num_cama y el get es getNumCama se pone numCama #}
-            {% else %}
-            <option value="{{ oficio.oficio }}">{{ oficio.oficio }}</option>
-            {% endif %}
+                <option value="{{ oficio.oficio }}">{{ oficio.oficio }}</option>
             {% endfor %}
         </select>
 
@@ -39,25 +31,26 @@
     
     <h2>GRAFICO SALARIAL</h2>
     {% if datosOficio is defined %}
-    {% for emple in datosOficio %}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>OFICIO</th>
-                    <th>APELLIDO</th>
-                    <th>SALARIO</th>
-                </tr>
-            </thead>
+        {% for emple in datosOficio %}
+        {% set longitud =  emple.salario /1000 %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>OFICIO</th>
+                        <th>APELLIDO</th>
+                        <th>SALARIO</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <tr>
-                    <td>{{ emple.oficio|upper }}</td>
-                    <td>{{ emple.apellido|upper }}</td>
-                    <td class="barrita" style="width: {{ emple.salario /1000 }}px;">{{ emple.salario }}</td>
-                </tr>
-            </tbody>
-        </table>
-    {% endfor %}
+                <tbody>
+                    <tr>
+                        <td>{{ emple.oficio|upper }}</td>
+                        <td>{{ emple.apellido|upper }}</td>
+                        <td class="barrita" style="width: {{ longitud }}px;">{{ emple.salario }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endfor %}
     {% endif %}
     
 </body>

@@ -99,6 +99,9 @@ a:visited{
     text-align: center;
     color: black;
 }
+.button a{
+    color: black;
+}
 .button:hover, .button:hover a{
     color: white;
     background-color: black;

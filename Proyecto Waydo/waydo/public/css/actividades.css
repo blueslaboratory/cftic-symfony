@@ -1,0 +1,63 @@
+/* 
+*{
+    border: 1px solid aqua;
+}
+*/
+
+body{
+    margin: 0 20%;
+}
+
+h1{
+    margin: 50px auto;
+    text-align: center;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.actividad{
+    display: flex;
+    margin: 0 auto;
+    height: 150px;
+    width: 90%;
+
+    border: 3px solid salmon;
+    /* border-radius: 50% / 100% 0 100% 0; */
+    /* border-radius: 125px 0px 0px 125px; */
+    border-radius: 125px;
+}
+
+.imgActividad{
+    height: 100%;
+    border-radius: 50%;
+}
+
+.actividadBloque{
+    margin-left: 5%;
+}
+
+h3{
+    height: 20px;
+    width: 150px;
+    font-family: Garamond, serif;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.descActividad{
+    height: 55px;
+    width: 92.5%;
+    overflow: hidden;
+    font-family: Garamond, serif;
+}
+
+.masInfo a:link, .masInfo a:visited, .masInfo a:hover, .masInfo a:active {
+    width: 80%;
+    /* color: rgb(237, 93, 77); */
+    color: gray;
+    font-weight: 500;
+}
+
+.separador{
+    height:30px;
+}

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Emp;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,7 +34,22 @@ class OficiosController extends AbstractController
     // localhost:8000/buscarOficios
     #[Route('/buscarOficios', name: 'buscarOficios')]
     public function buscarOficios(Request $request, EntityManagerInterface $em)
-    {
+    {        
+        /*
+        $qb = $em->createQueryBuilder();
+        $qb ->select('DISTINCT oficio')
+            ->from('emp', 'e');
+            // ->orderBy('oficio');    
+        $query = $qb->getQuery();
+        $result = $query->getResult();
+
+        //echo dump($result);
+        $query = $em->createQuery('SELECT DISTINCT OFICIO FROM EMP E');
+        
+        $result = $query->getResult();
+        echo dump($result);
+        */
+
         // Al hacer submit los datos los has perdido y hay que recuperarlos: findAll
         $datos = $em->getRepository(Emp::class)->findAll();
 
