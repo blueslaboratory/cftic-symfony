@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        h1{
+            text-align: center;
+            color: blue;
+        }
+
+        body{
+            margin: 0 20%;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th{
+            background-color: aqua;
+        }
+
+        td{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    
+    {% if mensajeHospital is defined %}
+    <h1>{{ mensajeHospital }}</h1>
+    {% else %}
+
+    <h1>HOSPITALES</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Hospital</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Filtro</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for dato in datosHospi %}
+            <tr>
+                <td>{{ dato.nombre }}</td>
+                <td>{{ dato.direccion }}</td>
+                <td>{{ dato.telefono }}</td>
+                <td><a href="{{ path('mostrarPlantilla', {id: dato.HospitalCod}) }}">Mostrar Plantilla {{dato.HospitalCod}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br><br>
+
+        {% if mensajePlantilla is defined %}
+        <h1>{{ mensajePlantilla }}</h1>
+        {% else %}
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Apellido</th>
+                    <th>Salario</th>
+                    <th>Hospital</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dato in datosPlantilla %}
+                <tr>
+                    <td>{{ dato.apellido }}</td>
+                    <td>{{ dato.salario }}</td>
+                    <td>{{ dato.HospitalCod }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% endif %}
+
+    {% endif %}
+
+</body>
+
+</html>

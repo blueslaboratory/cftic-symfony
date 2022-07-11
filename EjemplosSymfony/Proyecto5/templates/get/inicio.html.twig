@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div style="background-color:yellow; width:300px; height:600%; float:left">
+    {# no hay etiqueta form, al enviar al controlador es get #}
+        <ul>
+            <li>
+                <a href="{{ path('ver_datos', {id: 1}) }}">SEVILLA</a>
+            </li><br />
+            <li>
+                <a href="{{ path('ver_datos', {id: 2}) }}">MADRID</a>
+            </li><br />
+            <li>
+                <a href="{{ path('ver_datos', {id: 3}) }}">BARCELONA</a>
+            </li><br />
+            <li>
+                <a href="{{ path('ver_datos', {id: 4}) }}">BILBAO</a>
+            </li><br />
+        </ul>
+    </div>
+
+</body>
+
+</html>

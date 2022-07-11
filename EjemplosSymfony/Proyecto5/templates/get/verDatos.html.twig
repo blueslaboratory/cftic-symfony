@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    {% if mensaje is defined %}
+    <h1 style="color:blue;">DEPARTAMENTO NO ENCONTRADO</h1>
+    {% else %}
+
+    <h1 style="color:blue;">DEPARTAMENTOS</h1>
+
+    <table border="1" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Localidad</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for dato in datosDept %}
+
+            <tr>
+                <td>{{ dato.id }}</td>
+                <td>{{ dato.dnombre }}</td>
+                <td>{{ dato.loc }}</td>
+
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+    <br /><br /><br />
+    {% endif %}
+
+    <div style="background-color:yellow;float:left">
+        <a href="javascript:history.back()">VOLVER</a>
+
+    </div>
+
+</body>
+
+</html>
