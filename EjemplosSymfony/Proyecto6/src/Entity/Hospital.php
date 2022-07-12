@@ -16,43 +16,43 @@ class Hospital
     /**
      * @var int
      *
-     * @ORM\Column(name="HOSPITAL_COD", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $hospitalCod;
+    private $id;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="NOMBRE", type="string", length=40, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="nombre", type="string", length=50, nullable=true, options={"default"="NULL"})
      */
     private $nombre = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="DIRECCION", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="direccion", type="string", length=50, nullable=true, options={"default"="NULL"})
      */
     private $direccion = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="TELEFONO", type="string", length=9, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="telefono", type="string", length=14, nullable=true, options={"default"="NULL"})
      */
     private $telefono = 'NULL';
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="NUM_CAMA", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="num_cama", type="integer", nullable=true, options={"default"="NULL"})
      */
     private $numCama = NULL;
 
-    public function getHospitalCod(): ?int
+    public function getId(): ?int
     {
-        return $this->hospitalCod;
+        return $this->id;
     }
 
     public function getNombre(): ?string

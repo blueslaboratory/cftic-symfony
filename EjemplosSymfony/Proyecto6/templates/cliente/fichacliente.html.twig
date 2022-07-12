@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .table{
+            margin-top: 10%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            background-color: aquamarine;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .titulo{
+            text-align: center;
+            background-color: aqua;
+            border: 1px solid black;
+        }
+        th{
+            text-align: left;
+        }
+        td{
+            width: 150px;
+        }
+        select{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="POST" action="{{ path('insertarCliente') }}">
+        <table border="0" class="table">
+            <tr class="titulo">
+                <th colspan="4" class="titulo"><h2>FICHA DE CLIENTE</h2></th>
+            </tr>
+            <tr>
+                <th>Nombre: </th>
+                <td><input type="text" name="nombre" /></td>
+            </tr>
+            <tr>
+                <th>Primer Apellido: </th>
+                <td><input type="text" name="apellido1" /></td>
+            </tr>
+            <tr>
+                <th>Segundo Apellido: </th>
+                <td><input type="text" name="apellido2" /></td>
+            </tr>
+            <tr>
+                <th>Domicilio: </th>
+                <td><input type="text" name="domicilio" /></td>
+            </tr>
+            <tr>
+                <th>Ciudad: </th>
+                <td>
+                    <select name="ciudad">
+                        <option value="Segovia">Segovia</option>
+                        <option value="Madrid">Madrid</option>
+                        <option value="Barcelona">Barcelona</option>
+                        <option value="Valencia">Valencia</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Sexo: </th>
+                <td>
+                    <input type="radio" id="sex" name="sex" value="Hombre">
+                    <label for="sex">Hombre</label>
+                </td>
+                <td>
+                    <input type="radio" id="sex" name="sex" value="Mujer">
+                    <label for="sex">Mujer</label>
+                </td>
+            </tr>
+            <tr>
+                <th>Sistema Operativo</th>
+                <td><input type="checkbox" name="so[]" value="Linux" />Linux</td>
+                <td><input type="checkbox" name="so[]" value="Windows" /> Windows </td>
+                <td><input type="checkbox" name="so[]" value="Mac" /> Mac </td>
+            </tr>
+            <tr>
+                <th>Introduzca sus comentarios:</th>
+                <td colspan="3"><textarea name="comentarios" rows="10" cols="65">Texto por defecto...</textarea></td>
+            </tr>
+            <tr>
+                <th>Pulse aceptar para continuar:</th>
+                <td><input type="submit" value="Aceptar"></td>
+                <td><input type="reset" value="Borrar"></td>
+            </tr>
+        </table>
+        
+    </form>
+</body>
+
+</html>

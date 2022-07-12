@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuidoras</title>
+    <style>
+        body{
+            background-color:rgb(63, 6, 6);
+            margin: 0 30%;
+        }
+        a{
+            text-decoration: underline;
+            color: white;
+        }
+        .distribuidora{
+            width: 50%;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div style="width:100%;" align="center">
+
+        <h3 style="color:rgb(255, 255, 255);">Principales distribuidoras</h3>
+            
+        {% for d in datosDistribuidoras %}
+        <div class="distribuidora" align="center">
+            <br>
+            <img src="img/distribuidoras/{{ d.imagen }}" width="55">
+            <br>
+            <a href="{{ d.internet }}" target="_blank" rel="noopener noreferrer"> {{ d.distribuidora }}</a>
+            {# 
+                rel="noopener noreferrer"
+                Es un atributo de HTML que nos ayuda a estar protegidos de cualquier vulnerabilidad que se produzca al colocar un enlace externo dentro de nuestra página web.
+            #}
+            <br>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>

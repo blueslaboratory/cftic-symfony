@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Departamentos Multiple</title>
+</head>
+
+<body>
+    <form method="post" action="{{ path('deptMultiples') }}">
+        <h1>Departamentos</h1>
+        <div>
+            Número:
+            <input type="text" name="numero" />
+        </div>
+        <div>
+            Nombre:
+            <input type="text" name="nombre" />
+        </div>
+        <div>
+            Localidad:
+            <input type="text" name="localidad" />
+        </div>
+        <div>
+            <button type="submit" name="operacion" value="insertar">
+                Insertar
+            </button>
+            <button type="submit" name="operacion" value="modificar">
+                Modificar
+            </button>
+            <button type="submit" name="operacion" value="eliminar">
+                Eliminar
+            </button>
+        </div>
+    </form>
+    {% if resultado is defined %}
+    <h3 style='color:red'>La {{operacion}} de los números es: {{resultado}} </h3>
+    {% endif %}
+
+</body>
+
+</html>

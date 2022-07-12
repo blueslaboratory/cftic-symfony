@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <form method="post" action="{{ path('multiples') }}">
+
+        <div>
+            Número 1:
+            <input type="text" name="numero1" />
+        </div>
+        <div>
+            Número 2:
+            <input type="text" name="numero2" />
+        </div>
+        <div>
+            <button type="submit" name="operacion" value="sumarNumeros">
+                Sumar números
+            </button>
+            <button type="submit" name="operacion" value="multiplicarNumeros">
+                Multiplicar números
+            </button>
+        </div>
+    </form>
+    {% if resultado is defined %}
+    <h3 style='color:red'>La {{operacion}} de los números es: {{resultado}} </h3>
+    {% endif %}
+
+</body>
+
+</html>
