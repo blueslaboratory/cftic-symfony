@@ -1,0 +1,7 @@
+Para que funcionen en casa hay que tener PHP 8 en el wamp y en la variable de entorno y después ejecutar:
+
+It will Skips execution of scripts defined in composer.json file:
+C:\Users\W10Alex\Desktop\CFTIC\EjemplosSymfony\Proyecto5> composer update --no-scripts
+
+It will update your dependencies as they are specified in composer.json file:
+C:\Users\W10Alex\Desktop\CFTIC\EjemplosSymfony\Proyecto5> composer update
