@@ -3,15 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Dept;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\BrowserKit\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DepartamentosController extends AbstractController
 {
+
+    // localhost:8000/deptInicio
+    #[Route('/deptInicio', name: 'deptInicio')]
+    public function deptInicio()
+    {
+        return $this->render('departamentos/departamentos.html.twig');
+    }
+
     // localhost:8000/deptMultiples
     #[Route('/deptMultiples', name: 'deptMultiples')]
     public function deptMultiples(Request $request, EntityManagerInterface $em)
@@ -19,38 +25,59 @@ class DepartamentosController extends AbstractController
         // Podemos obtener el EntityManager a través de inyección de dependencias con el argumento EntityManagerInterface $em
         // 1) recibir datos del formulario    
         $boton = $request->request->get('operacion');
-        $numero = $request->request->get('numero');
+        $id = $request->request->get('id');
         $nombre = $request->request->get('nombre');
         $localidad = $request->request->get('localidad');
 
-        if ($boton == 'insertar') {
-            
+       if ($boton == 'insertar') {
             // 2) dar de alta en bbdd 
             $departamento = new Dept();
             $departamento->setDnombre($nombre);
-            $departamento->setLoc($loc);
-            // Informamos a Doctrine de que queremos guardar el Grado (todavía no se ejecuta ninguna query)
+            $departamento->setLoc($localidad);
 
+            // Informamos a Doctrine de que queremos guardar
             $em->persist($departamento);
-            // Para ejecutar las queries pendientes, se utiliza flush().
 
+            // Para ejecutar las queries pendientes, se utiliza flush().
             $em->flush();
 
-            // 3) redirigir al formulario. Coincide con eln nombre de la ruta del método anterior: name: 'nuevoDepart
-            return $this->redirectToRoute("nuevoDepart");
+            // 3) redirigir 
+            //return $this->redirectToRoute("deptInicio");
+            return $this->render('departamentos/departamentos.html.twig',[
+                'message' => 'Departamento ' . $departamento->getDnombre() . ' creado'
+            ]);
+
         } elseif ($boton == 'modificar') {
+            // este find solo funciona cuando $id es clave principal
+            $departamento = $em->getRepository(Dept::class)->find($id);
+            $nombreAntiguo = $departamento->getDnombre();
+            $departamento->setDnombre($nombre);
+            $departamento->setLoc($localidad);
+
+            // Informamos a Doctrine de que queremos guardar
+            $em->persist($departamento);
+
+            // Para ejecutar las queries pendientes, se utiliza flush().
+            $em->flush();
+
+            // 3) redirigir 
+            //return $this->redirectToRoute("deptInicio");
+            return $this->render('departamentos/departamentos.html.twig',[
+                'message' => 'El departamento ' . $nombreAntiguo . ' ha sido modificado: <br>' . 
+                              ' - Nuevo nombre: ' . $departamento->getDnombre() . '<br>' .
+                              ' - Nueva Localidad: ' . $departamento->getLoc()  
+            ]);
 
         } else {
-            
+            // este find solo funciona cuando $id es clave principal
+            $departamento = $em->getRepository(Dept::class)->find($id);
+            $em->remove($departamento);
+            $em->flush();
+
+            //return $this->redirectToRoute("deptInicio");
+            return $this->render('departamentos/departamentos.html.twig',[
+                'message' => 'Departamento ' . $departamento->getDnombre() . ' eliminado'
+            ]);
         }
-
-        return $this->render('calculadora/index.html.twig', [
-            'operacion' => $operacion,
-            'resultado' => $resultado
-        ]);
-
-        return $this->render('departamentos/departamentos.html.twig', [
-            'controller_name' => 'DepartamentosController',
-        ]);
     }
 }
