@@ -38,4 +38,5 @@ class GetController extends AbstractController
             ]);
         }
     }
+
 }

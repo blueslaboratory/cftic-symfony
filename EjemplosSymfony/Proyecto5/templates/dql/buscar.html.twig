@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            width: 300px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="{{ path('buscarOficiosDQL') }}">
+        <label for="oficio">Oficio</label>
+        <input type="text" name="oficio">
+        <br>
+        <input type="submit" value="BUSCAR">
+        <br><br>
+    </form>
+    
+    {% if apellidos is defined %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Apellido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for a in apellidos %}
+                        <td>{{ a.apellido }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
+    
+</body>
+</html>
