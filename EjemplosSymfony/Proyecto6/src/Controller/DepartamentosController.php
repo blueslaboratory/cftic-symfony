@@ -63,7 +63,7 @@ class DepartamentosController extends AbstractController
             // 3) redirigir 
             //return $this->redirectToRoute("deptInicio");
             return $this->render('departamentos/departamentos.html.twig',[
-                'message' => 'El departamento ' . $nombreAntiguo . ' ha sido modificado: <br>' . 
+                'message' => "El departamento $nombreAntiguo ha sido modificado: <br>" . 
                               ' - Nuevo nombre: ' . $departamento->getDnombre() . '<br>' .
                               ' - Nueva Localidad: ' . $departamento->getLoc()  
             ]);
