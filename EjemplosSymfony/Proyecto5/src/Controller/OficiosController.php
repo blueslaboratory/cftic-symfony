@@ -34,7 +34,7 @@ class OficiosController extends AbstractController
     // localhost:8000/buscarOficios
     #[Route('/buscarOficios', name: 'buscarOficios')]
     public function buscarOficios(Request $request, EntityManagerInterface $em)
-    {        
+    {
         /*
         $qb = $em->createQueryBuilder();
         $qb ->select('DISTINCT oficio')
@@ -62,6 +62,32 @@ class OficiosController extends AbstractController
         );
         dump($datosOficio);
 
+        return $this->render('oficios/graficoSalarial.html.twig', [
+            'arrayEmpleados' => $datos,
+            'datosOficio' => $datosOficio,
+            'oficio' => $oficio
+        ]);
+    }
+
+
+    // 49 LENGUAJE DQL
+    // localhost:8000/buscarOficios1
+    #[Route('/buscarOficios1', name: 'buscarOficios1')]
+    public function buscarOficios1(Request $request, EntityManagerInterface $em)
+    {
+        $query = $em->createQuery('SELECT DISTINCT(e.oficio) AS oficio FROM App\Entity\Emp e');
+        $datos = $query->getResult();
+
+        // Al hacer un formulario y darle al submit directamente se me crea un objeto 
+        // request y puedo recoger todos los datos
+        $oficio = $request->request->get('selectOficio');
+        
+        
+        $datosOficio = $em->getRepository(Emp::class)->findBy(
+            ['oficio' => $oficio],
+        );
+        dump($datosOficio);
+        
         return $this->render('oficios/graficoSalarial.html.twig', [
             'arrayEmpleados' => $datos,
             'datosOficio' => $datosOficio,

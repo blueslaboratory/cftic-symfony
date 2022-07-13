@@ -18,7 +18,7 @@
 
 <body>
     <h2>OFICIO</h2>
-    <form name="salario" method="post" action="{{ path('buscarOficios') }}">
+    <form name="salario" method="post" action="{{ path('buscarOficios1') }}">
         <select name="selectOficio" id="">
             {% for oficio in arrayEmpleados %}
                 <option value="{{ oficio.oficio }}">{{ oficio.oficio }}</option>

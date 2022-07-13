@@ -29,7 +29,7 @@ class DepartamentosController extends AbstractController
         $nombre = $request->request->get('nombre');
         $localidad = $request->request->get('localidad');
 
-       if ($boton == 'insertar') {
+        if ($boton == 'insertar') {
             // 2) dar de alta en bbdd 
             $departamento = new Dept();
             $departamento->setDnombre($nombre);
@@ -43,10 +43,9 @@ class DepartamentosController extends AbstractController
 
             // 3) redirigir 
             //return $this->redirectToRoute("deptInicio");
-            return $this->render('departamentos/departamentos.html.twig',[
+            return $this->render('departamentos/departamentos.html.twig', [
                 'message' => 'Departamento ' . $departamento->getDnombre() . ' creado'
             ]);
-
         } elseif ($boton == 'modificar') {
             // este find solo funciona cuando $id es clave principal
             $departamento = $em->getRepository(Dept::class)->find($id);
@@ -62,12 +61,11 @@ class DepartamentosController extends AbstractController
 
             // 3) redirigir 
             //return $this->redirectToRoute("deptInicio");
-            return $this->render('departamentos/departamentos.html.twig',[
-                'message' => "El departamento $nombreAntiguo ha sido modificado: <br>" . 
-                              ' - Nuevo nombre: ' . $departamento->getDnombre() . '<br>' .
-                              ' - Nueva Localidad: ' . $departamento->getLoc()  
+            return $this->render('departamentos/departamentos.html.twig', [
+                'message' => "El departamento $nombreAntiguo ha sido modificado: <br>" .
+                    ' - Nuevo nombre: ' . $departamento->getDnombre() . '<br>' .
+                    ' - Nueva Localidad: ' . $departamento->getLoc()
             ]);
-
         } else {
             // este find solo funciona cuando $id es clave principal
             $departamento = $em->getRepository(Dept::class)->find($id);
@@ -75,9 +73,29 @@ class DepartamentosController extends AbstractController
             $em->flush();
 
             //return $this->redirectToRoute("deptInicio");
-            return $this->render('departamentos/departamentos.html.twig',[
+            return $this->render('departamentos/departamentos.html.twig', [
                 'message' => 'Departamento ' . $departamento->getDnombre() . ' eliminado'
             ]);
         }
+    }
+
+
+    // FILTROS: 49 - LENGUAJE DQL
+    // localhost:8000/filtros
+    #[Route('/filtros', name: 'ver_datos')]
+
+    public function ver_datos(Request $request, EntityManagerInterface $em)
+    {
+        // Cuando trabajamos con DQL, no trabajamos con tablas y campos de las tablas sino con entidades y con propiedades de las entidades.
+        // App\Entity\Dept: Namespace del modelo. 
+        // Incluimos la ruta completa de la clase Dept.php predeciendolo de su namespace "namespace App\Entity";
+        $query = $em->createQuery('SELECT u FROM App\Entity\Dept u WHERE u.id > 1');
+        // SELECT * FROM Dept WHERE id > 1
+
+        $datos = $query->getResult();
+
+        return $this->render('departamentos/verDatos.html.twig', [
+            'datosDept' => $datos,
+        ]);
     }
 }
