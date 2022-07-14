@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Doctor</title>
+    <style>
+        label{
+            display: inline-block;
+            width: 130px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="{{ path('altaDoctor') }}">
+
+        <label for="hospital_cod">Código de Hospital</label>
+        <input type="number" name="hospital_cod">
+        <br>
+
+        <label for="especialidad">Especialidad</label>
+        <input type="text" name="especialidad">
+        <br>
+
+        <label for="apellido">Apellido</label>
+        <input type="text" name="apellido">
+        <br>
+
+        <label for="salario">Salario</label>
+        <input type="number" name="salario">
+        <br><br>
+
+        <label for=""></label>
+        <input type="submit" value="ALTA">
+    </form>
+</body>
+</html>

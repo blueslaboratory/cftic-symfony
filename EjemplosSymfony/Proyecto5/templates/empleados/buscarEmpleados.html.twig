@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="{{ path('buscarEmpleados') }}">
+        <h1>Búsqueda de Empleados con AJAX</h1>
+        <h4>FILTRO DE EMPLEADOS</h4>
+        <label for="apellido">Introduzca una letra del apellido</label>
+        <input type="text" name="apellido">
+        <br>
+        <input type="submit" value="Buscar Empleados">
+    </form>
+    <br><br>
+
+    {% if datosEmpleados is defined %}
+        <h4>HAY {{count}} EMPLEADOS CUYO APELLIDO CONTIENE LA LETRA {{ parametroBusqueda }}</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Apellido</th>
+                    <th>Oficio</th>
+                    <th>Salario</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in datosEmpleados %}
+                <tr>
+                    <td>{{ d.apellido }}</td>
+                    <td>{{ d.oficio }}</td>
+                    <td>{{ d.salario }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Empleado no encontrado</p>
+    {% endif %}
+</body>
+</html>

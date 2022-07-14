@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Application</title>
+    <style>
+        .pagination{
+            display: flex;
+        }
+        /* sacas los nombres de las clases de inspeccionar*/
+        .first, .previous, .current, .page, .next, .last{
+            display: inline-block;
+            width: 80px;
+            height: 20px;
+            border: 4px solid blanchedalmond;
+            background-color: salmon;
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table border="1" style="background-color: #DDDDDD; width: 500px;">
+
+        <tr>
+            <th colspan="3"> LISTADO DE EMPLEADOS </th>
+        </tr>
+        <tr>
+            <th style="width: 50px;"> Num. </th>
+            <th style="width: 225px;"> Apellido </th>
+            <th style="width: 225px;"> Puesto </th>
+        </tr>
+        {% for fila in datosP %}
+        <tr>
+            <td> {{ fila.empNo }} </td>
+            <td> {{ fila.apellido }} </td>
+            <td> {{ fila.oficio }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <br><br>
+    <div>
+        {{ knp_pagination_render(datosP) }}
+    </div>
+</body>
+
+</html>
