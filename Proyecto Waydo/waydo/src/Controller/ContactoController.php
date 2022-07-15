@@ -12,7 +12,7 @@ class ContactoController extends AbstractController
     #[Route('/contacto', name: 'contacto')]
     public function contacto(): Response
     {
-        return $this->render('contacto.html.twig', [
+        return $this->render('contacto/contacto.html.twig', [
             // 'controller_name' => 'PruebaController',
         ]);
     }

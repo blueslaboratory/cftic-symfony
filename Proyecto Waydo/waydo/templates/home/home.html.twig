@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/home.css">
     <title>¡Bienvenido a WAYDO!</title>
 </head>
 
@@ -16,9 +16,9 @@
         </div>
         <nav>
             <ul>
-                <li><a href="">Home</a></li>|
+                <li><a href="{{ path('home') }}">Home</a></li>|
                 <li><a href="">Iniciar Sesión</a></li>|
-                <li><a href="">Contacto</a></li>
+                <li><a href="{{ path('contacto') }}">Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -41,7 +41,7 @@
             </div>
             <br><br>
             <div class="button">
-                <a href="actividades.html" style="text-decoration: none;">VER ACTIVIDADES</a>
+                <a href="{{ path('actividades') }}" style="text-decoration: none;">VER ACTIVIDADES</a>
             </div>
         </div>
         <div class="col-lg-6 col-sm-12 right">

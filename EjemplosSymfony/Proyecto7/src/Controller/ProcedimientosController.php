@@ -60,7 +60,7 @@ class ProcedimientosController extends AbstractController
 
         $resultado = $statement->executeStatement();
 
-        return $this->render('procedimientos/altaDoctor.html.twig', [
+        return $this->render('procedimientos/insertarDoctor.html.twig', [
             'afectados' => $resultado,
         ]);
     }
