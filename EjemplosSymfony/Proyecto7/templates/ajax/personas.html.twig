@@ -1,0 +1,26 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for datos in mispersonas %}
+            <tr>
+                <td>{{ datos.nombre }}</td>
+                <td>{{ datos.apellido }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

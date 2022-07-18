@@ -40,8 +40,9 @@
                 No nos mires 👀... <span class="bold"><a href="">únete</a></span>
             </div>
             <br><br>
-            <div class="button">
-                <a href="{{ path('actividades') }}" style="text-decoration: none;">VER ACTIVIDADES</a>
+            {# haciendo el div clickable #}
+            <div class="button" onclick="location.href='{{ path('actividades') }}';" style="cursor: pointer;">
+                VER ACTIVIDADES
             </div>
         </div>
         <div class="col-lg-6 col-sm-12 right">

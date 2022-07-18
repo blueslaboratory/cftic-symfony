@@ -16,9 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Actividades
 {
     /**
-     * @var string|null
+     * @var int
      *
-     * @ORM\Column(name="CODACTIVIDAD", type="string", length=10, nullable=false)
+     * @ORM\Column(name="CODACTIVIDAD", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -27,7 +27,7 @@ class Actividades
     /**
      * @var string|null
      *
-     * @ORM\Column(name="NOMBRE", type="string", length=20, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="NOMBRE", type="string", length=50, nullable=true, options={"default"="NULL"})
      */
     private $nombre = 'NULL';
 
@@ -37,6 +37,13 @@ class Actividades
      * @ORM\Column(name="PRECIO", type="decimal", precision=5, scale=2, nullable=true, options={"default"="NULL"})
      */
     private $precio = 'NULL';
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="CUPO", type="integer", nullable=true, options={"default"="NULL"})
+     */
+    private $cupo = NULL;
 
     /**
      * @var \DateTime|null
@@ -58,6 +65,13 @@ class Actividades
      * @ORM\Column(name="EDICION", type="integer", nullable=true, options={"default"="NULL"})
      */
     private $edicion = NULL;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="DESCRIPCION", type="text", length=16777215, nullable=true, options={"default"="NULL"})
+     */
+    private $descripcion = 'NULL';
 
     /**
      * @var \Localizacion|null
@@ -102,7 +116,7 @@ class Actividades
         $this->nickSa = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function getCodactividad(): ?string
+    public function getCodactividad(): ?int
     {
         return $this->codactividad;
     }
@@ -127,6 +141,18 @@ class Actividades
     public function setPrecio(?string $precio): self
     {
         $this->precio = $precio;
+
+        return $this;
+    }
+
+    public function getCupo(): ?int
+    {
+        return $this->cupo;
+    }
+
+    public function setCupo(?int $cupo): self
+    {
+        $this->cupo = $cupo;
 
         return $this;
     }
@@ -163,6 +189,18 @@ class Actividades
     public function setEdicion(?int $edicion): self
     {
         $this->edicion = $edicion;
+
+        return $this;
+    }
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(?string $descripcion): self
+    {
+        $this->descripcion = $descripcion;
 
         return $this;
     }

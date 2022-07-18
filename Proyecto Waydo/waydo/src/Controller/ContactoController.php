@@ -13,7 +13,6 @@ class ContactoController extends AbstractController
     public function contacto(): Response
     {
         return $this->render('contacto/contacto.html.twig', [
-            // 'controller_name' => 'PruebaController',
         ]);
     }
 }

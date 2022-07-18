@@ -67,6 +67,13 @@ class Pupilos
     private $fnac = 'NULL';
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="DESCRIPCION", type="text", length=16777215, nullable=true, options={"default"="NULL"})
+     */
+    private $descripcion = 'NULL';
+
+    /**
      * @var \Localizacion|null
      *
      * @ORM\ManyToOne(targetEntity="Localizacion")
@@ -172,6 +179,18 @@ class Pupilos
     public function setFnac(?\DateTimeInterface $fnac): self
     {
         $this->fnac = $fnac;
+
+        return $this;
+    }
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(?string $descripcion): self
+    {
+        $this->descripcion = $descripcion;
 
         return $this;
     }

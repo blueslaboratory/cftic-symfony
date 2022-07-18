@@ -13,7 +13,6 @@ class ActividadesController extends AbstractController
     public function actividades(): Response
     {
         return $this->render('actividades/actividades.html.twig', [
-            // 'controller_name' => 'PruebaController',
         ]);
     }
 }

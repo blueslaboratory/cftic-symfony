@@ -23,23 +23,25 @@ class Localizacion
     /**
      * @var string|null
      *
-     * @ORM\Column(name="COMUNIDAD", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="COMUNIDAD", type="string", length=50, nullable=true, options={"default"="NULL"})
      */
     private $comunidad = 'NULL';
 
     /**
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(name="MUNICIPIO", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="MUNICIPIO", type="string", length=50, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $municipio = 'NULL';
+    private $municipio;
 
     /**
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(name="DISTRITO", type="string", length=30, nullable=false)
+     * @ORM\Column(name="DISTRITO", type="string", length=50, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $distrito;
 
@@ -70,13 +72,6 @@ class Localizacion
     public function getMunicipio(): ?string
     {
         return $this->municipio;
-    }
-
-    public function setMunicipio(?string $municipio): self
-    {
-        $this->municipio = $municipio;
-
-        return $this;
     }
 
     public function getDistrito(): ?string

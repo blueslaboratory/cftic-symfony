@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="senseis", indexes={@ORM\Index(name="DISTRITO", columns={"DISTRITO"})})
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\ActividadesSenseis")
+ * @ORM\Entity(repositoryClass="App\Repository\SenseisRepository")
  */
 class Senseis
 {
@@ -69,9 +69,9 @@ class Senseis
     /**
      * @var string|null
      *
-     * @ORM\Column(name="OBSERVACIONES", type="text", length=16777215, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DESCRIPCION", type="text", length=16777215, nullable=true, options={"default"="NULL"})
      */
-    private $observaciones = 'NULL';
+    private $descripcion = 'NULL';
 
     /**
      * @var \Localizacion|null
@@ -183,14 +183,14 @@ class Senseis
         return $this;
     }
 
-    public function getObservaciones(): ?string
+    public function getDescripcion(): ?string
     {
-        return $this->observaciones;
+        return $this->descripcion;
     }
 
-    public function setObservaciones(?string $observaciones): self
+    public function setDescripcion(?string $descripcion): self
     {
-        $this->observaciones = $observaciones;
+        $this->descripcion = $descripcion;
 
         return $this;
     }

@@ -1,0 +1,38 @@
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>HOSPITAL_COD</th>
+                <th>SALA_COD</th>
+                <th>EMPLEADO_NO</th>
+                <th>APELLIDO</th>
+                <th>FUNCION</th>
+                <th>TURNO</th>
+                <th>SALARIO</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for datos in datosPlantilla %}
+            <tr>
+                <td>{{ datos.hospitalcod }}</td>
+                <td>{{ datos.salacod }}</td>
+                <td>{{ datos.empleadono }}</td>
+                <td>{{ datos.apellido }}</td>
+                <td>{{ datos.funcion }}</td>
+                <td>{{ datos.turno }}</td>
+                <td>{{ datos.salario }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+
+</html>

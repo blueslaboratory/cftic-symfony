@@ -7,16 +7,16 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Transacciones
  *
- * @ORM\Table(name="transacciones", indexes={@ORM\Index(name="RECEPTOR", columns={"RECEPTOR"}), @ORM\Index(name="CODACTIVIDAD", columns={"CODACTIVIDAD"}), @ORM\Index(name="EMISOR", columns={"EMISOR"})})
+ * @ORM\Table(name="transacciones", indexes={@ORM\Index(name="CODACTIVIDAD", columns={"CODACTIVIDAD"}), @ORM\Index(name="EMISOR", columns={"EMISOR"}), @ORM\Index(name="RECEPTOR", columns={"RECEPTOR"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\TransaccionesRepository")
  */
 class Transacciones
 {
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="CODTRANSACCION", type="string", length=10, nullable=false)
+     * @ORM\Column(name="CODTRANSACCION", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -66,7 +66,7 @@ class Transacciones
      */
     private $emisor;
 
-    public function getCodtransaccion(): ?string
+    public function getCodtransaccion(): ?int
     {
         return $this->codtransaccion;
     }

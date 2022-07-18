@@ -11,6 +11,8 @@ body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+
+/* HEADER */
 header{
     width: 80%;
     margin: 0 auto;
@@ -40,11 +42,14 @@ li{
 }
 a{
     text-decoration: none;
+    color: black;
 }
 a:visited{
     color: black;
 }
 
+
+/* CONTENT */
 .content {
     width: 80%;
     margin: 3% auto;
@@ -99,15 +104,13 @@ a:visited{
     text-align: center;
     color: black;
 }
-.button a{
-    color: black;
-}
-.button:hover, .button:hover a{
+.button:hover{
     color: white;
     background-color: black;
 }
 
 
+/* FOOTER */
 footer {
     display: flex;
     justify-content: center;

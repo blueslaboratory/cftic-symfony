@@ -1,0 +1,54 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script src="/jquery-3.2.1.min.js" type="text/javascript"></script>
+
+    <h2>PÁGINA PRINCIPAL DE DETALLES:</h2>
+    <ol class="round">
+        <li class="hospitales">
+            <h5>HOSPITALES</h5>
+            <button type="button" id="btnhospitales">Hospitales</button>
+            <div id="detallehospitales" style="display: none"></div>
+            {# id se usa en JS #}
+        </li>
+
+        <li class="doctores">
+            <h5>DOCTORES</h5>
+            <button type="button" id="btndoctores">Doctores</button>
+            <div id="detalledoctores" style="display: none"></div>
+        </li>
+
+        <li class="plantilla">
+            <h5>PLANTILLA</h5>
+            <button type="button" id="btnplantilla">Plantilla</button>
+            <div id="detalleplantilla" style="display: none"></div>
+        </li>
+    </ol>
+
+    <script>
+        $(document).ready(function () {
+            // cuando pique en el boton con id #btnpersonas, haz que la llamada que voy a hacer con AJAX se cargue en el id #detallepersonas
+            // El efecto .toggle() solo te permite alternar entre dos acciones: mostrar u ocultar
+            $("#btnhospitales").click(function () {
+                $("#detallehospitales").toggle("fast");
+                $("#detallehospitales").load("{{ path('ajaxHospitales')}}");
+            });
+            $("#btndoctores").click(function () {
+                $("#detalledoctores").toggle("slow");
+                $("#detalledoctores").load("{{ path('ajaxDoctores')}}");
+            });
+            $("#btnplantilla").click(function () {
+                $("#detalleplantilla").toggle("fast");
+                $("#detalleplantilla").load("{{ path('ajaxPlantilla')}}");
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
