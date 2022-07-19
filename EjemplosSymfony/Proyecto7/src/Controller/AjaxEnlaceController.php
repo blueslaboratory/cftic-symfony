@@ -12,7 +12,7 @@ class AjaxEnlaceController extends AbstractController
     //57 - AJAX CON ENLACE
     // localhost:8000/indexAjaxEnlace
     #[Route('/indexAjaxEnlace', name: 'indexAjaxEnlace')]
-    public function inicio()
+    public function indexAjaxEnlace()
     {
         return $this->render('ajaxEnlace/indexAjaxEnlace.html.twig');
     }

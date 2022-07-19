@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe</title>
+</head>
+<body>
+    <h2>Informe de empleados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>APELLIDO</th>
+                <th>OFICIO</th>
+                <th>INFORME</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emp in datosEmp %}
+            <tr>
+                <td>{{emp.apellido}}</td>
+                <td>{{emp.oficio}}</td>
+                <td><a href="{{ path('generarPdfEmp', {id:emp.empno}) }}">Mostrar informe</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

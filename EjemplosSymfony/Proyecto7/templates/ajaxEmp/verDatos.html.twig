@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        th{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>APELLIDO</th>
+                <th>EMPLEO</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emp in datosEmpOficio %}
+            <tr>
+                <th>{{ emp.apellido }}</th>
+                <th>{{ emp.oficio }}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

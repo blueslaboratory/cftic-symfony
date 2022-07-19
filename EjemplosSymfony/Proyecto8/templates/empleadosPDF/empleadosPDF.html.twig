@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <title>INFORME</title>
+</head>
+
+<body>
+
+    <p>Informe del empleado</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>APELLIDO</th>
+                <th>OFICIO</th>
+                <th>FECHA DE ALTA</th>
+                <th>SALARIO</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in datosEmp %}
+            <tr>
+                <td>{{e.apellido}}</td>
+                <td>{{e.oficio}}</td>
+                {# <td>{{e.fechaAlt}}</td>  #}
+                <td>{{e.salario}}</td>
+            </tr>    
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+
+</html>
