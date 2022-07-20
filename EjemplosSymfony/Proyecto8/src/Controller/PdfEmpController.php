@@ -32,34 +32,31 @@ class PdfEmpController extends AbstractController
 
 
     // localhost:8000/genererarPdfEmp
-    #[Route('/gPdfEmp', name: 'generarPdfEmp')]
-    public function genererarPdfEmp(Request $request, EntityManagerInterface $em)
+    #[Route('/generarPdfEmp', name: 'generarPdfEmp')]
+    public function generarPdfEmp(Request $request, EntityManagerInterface $em)
     {
-        $datoget = $request->query->get('id');
-
-
-        dump( $datoget);
 
         // Existen muchas configuraciones para Dompdf. Incluimos una de las muchas que tiene
         // por ejemplo asignar el tipo de letra
-        /*$pdfOptions = new Options();
+        $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
 
         // Crea una instancia de Dompdf con nuestras opciones
         $dompdf = new Dompdf($pdfOptions);
 
         // Coger los datos del empleado
-        $datoget = $request->query->get('id');
-        dump("sfsdfsdf");
-        $datosEmp = $em->getRepository(Emp::class)->findByEmpNo($datoget);
         // hay que convertir el dato a entero porque lo pasa como cadena y empno es un number, castear
+        $datoget = intval($request->query->get('id'));
+        dump($datoget);
+        $datosEmp = $em->getRepository(Emp::class)->findByEmpNo($datoget);
+        dump($datosEmp);
 
 
         // new DateTime()
 
         // Preparamos la página HTML para generar PDF
         $html = $this->renderView('empleadosPDF/empleadosPDF.html.twig', [
-            'datosEmp' => "ggggggg",
+            'datosEmp' => $datosEmp,
         ]);
 
         // Ahora se carga la página HTML en Dompdf
@@ -76,7 +73,7 @@ class PdfEmpController extends AbstractController
             // "Attachment" => true
             // al ponerlo a false no hay descarga forzada
             "Attachment" => true
-        ]);*/
+        ]);
 
         return $this->render('empleadosPDF/empleados.html.twig');
     }

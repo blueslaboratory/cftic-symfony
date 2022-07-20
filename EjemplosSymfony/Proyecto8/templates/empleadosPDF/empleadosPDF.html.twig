@@ -6,7 +6,7 @@
 
 <body>
 
-    <p>Informe del empleado</p>
+    <p>Informe del empleado {{datosEmp[0].apellido}}</p>
 
     <table>
         <thead>
@@ -22,7 +22,7 @@
             <tr>
                 <td>{{e.apellido}}</td>
                 <td>{{e.oficio}}</td>
-                {# <td>{{e.fechaAlt}}</td>  #}
+                <td>{{e.fechaAlt|date('Y-m-d H:i:s')}}</td>  
                 <td>{{e.salario}}</td>
             </tr>    
             {% endfor %}
