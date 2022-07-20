@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso de Pacientes</title>
+    <style>
+        body{
+            background-color: lightgreen;
+            margin: 0 auto;
+            padding-left: 35%;
+        }
+        label, input{
+            display: inline-block;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>FORMULARIO DE INSCRIPCION</h1>
+    <form method="POST" action="{{ path('insertarPaciente') }}">
+        <label for="numSS">NÚMERO SS</label>
+        <input name="numSS" type="number" readonly value="{{numSS}}">
+        <br>
+        <label for="inscripcion">INSCRIPCION</label>
+        <input name="inscripcion" type="number">
+        <br>
+        <label for="apellido">APELLIDO</label>
+        <input name="apellido" type="text">
+        <br>
+        <label for="direccion">DIRECCION</label>
+        <input name="direccion" type="text">
+        <br>
+        <label for="fnac">FECHA DE NACIMIENTO</label>
+        <input name="fnac" type="date">
+        <br>
+        <label for="sexo">SEXO</label>
+        <input name="sexo" type="text">
+        <br>
+        <br>
+        <label for=""></label>
+        <input name="" type="submit" value="INGRESAR" style="width: auto;">
+        <br>
+    </form>
+</body>
+</html>

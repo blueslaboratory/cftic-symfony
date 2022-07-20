@@ -45,20 +45,21 @@ CREATE TABLE PUPILOS(
     NOMBRE VARCHAR(20),
     APELLIDOS VARCHAR(20),
     FNAC DATE,
+    MUNICIPIO VARCHAR(50),
     DISTRITO VARCHAR(50),
     DESCRIPCION MEDIUMTEXT,
     
     PRIMARY KEY (NICK),
-    FOREIGN KEY (DISTRITO) REFERENCES LOCALIZACION(DISTRITO)
+    FOREIGN KEY (DISTRITO, MUNICIPIO) REFERENCES LOCALIZACION(DISTRITO, MUNICIPIO)
 )ENGINE=InnoDB;
 
 DELETE FROM PUPILOS WHERE NICK='';
-INSERT INTO PUPILOS VALUES('pupilo0', 'pupilo0@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1991-01-01', 'ARGANZUELA', '');
-INSERT INTO PUPILOS VALUES('pupilo1', 'pupilo1@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1992-02-02', 'CHAMBERÍ', '');
-INSERT INTO PUPILOS VALUES('pupilo2', 'pupilo2@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1993-03-03', 'FUENCARRAL - EL PARDO', '');
-INSERT INTO PUPILOS VALUES('pupilo3', 'pupilo3@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1994-04-04', 'MONCLOA - ARAVACA', '');
-INSERT INTO PUPILOS VALUES('pupilo4', 'pupilo4@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1995-05-05', 'RETIRO', '');
-INSERT INTO PUPILOS VALUES('pupilo5', 'pupilo5@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1996-06-06', 'USERA', '');
+INSERT INTO PUPILOS VALUES('pupilo0', 'pupilo0@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1991-01-01', 'MADRID', 'ARGANZUELA', '');
+INSERT INTO PUPILOS VALUES('pupilo1', 'pupilo1@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1992-02-02', 'MADRID', 'CHAMBERÍ', '');
+INSERT INTO PUPILOS VALUES('pupilo2', 'pupilo2@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1993-03-03', 'MADRID', 'FUENCARRAL - EL PARDO', '');
+INSERT INTO PUPILOS VALUES('pupilo3', 'pupilo3@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1994-04-04', 'MADRID', 'MONCLOA - ARAVACA', '');
+INSERT INTO PUPILOS VALUES('pupilo4', 'pupilo4@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1995-05-05', 'MADRID', 'RETIRO', '');
+INSERT INTO PUPILOS VALUES('pupilo5', 'pupilo5@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1996-06-06', 'MADRID', 'USERA', '');
 
 
 DROP TABLE SENSEIS;
@@ -70,26 +71,28 @@ CREATE TABLE SENSEIS(
     NOMBRE VARCHAR(20),
     APELLIDOS VARCHAR(20),
     FNAC DATE,
+    MUNICIPIO VARCHAR(50),
     DISTRITO VARCHAR(50),
     DESCRIPCION MEDIUMTEXT,
     
     PRIMARY KEY (NICK),
-    FOREIGN KEY (DISTRITO) REFERENCES LOCALIZACION(DISTRITO)
+    FOREIGN KEY (DISTRITO, MUNICIPIO) REFERENCES LOCALIZACION(DISTRITO, MUNICIPIO)
 )ENGINE=InnoDB;
 
 DELETE FROM PUPILOS WHERE NICK='sensei5';
-INSERT INTO SENSEIS VALUES('sensei0', 'sensei0@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1991-01-01', 'ARGANZUELA', '');
-INSERT INTO SENSEIS VALUES('sensei1', 'sensei1@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1992-02-02', 'CENTRO', '');
-INSERT INTO SENSEIS VALUES('sensei2', 'sensei2@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1993-03-03', 'CHAMBERÍ', '');
-INSERT INTO SENSEIS VALUES('sensei3', 'sensei3@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1994-04-04', 'FUENCARRAL - EL PARDO', '');
-INSERT INTO SENSEIS VALUES('sensei4', 'sensei4@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1995-05-05', 'RETIRO', '');
-INSERT INTO SENSEIS VALUES('sensei5', 'sensei5@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1996-06-06', 'RETIRO', '');
+INSERT INTO SENSEIS VALUES('sensei0', 'sensei0@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1991-01-01', 'MADRID', 'ARGANZUELA', '');
+INSERT INTO SENSEIS VALUES('sensei1', 'sensei1@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1992-02-02', 'MADRID', 'CENTRO', '');
+INSERT INTO SENSEIS VALUES('sensei2', 'sensei2@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1993-03-03', 'MADRID', 'CHAMBERÍ', '');
+INSERT INTO SENSEIS VALUES('sensei3', 'sensei3@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1994-04-04', 'MADRID', 'FUENCARRAL - EL PARDO', '');
+INSERT INTO SENSEIS VALUES('sensei4', 'sensei4@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1995-05-05', 'MADRID', 'RETIRO', '');
+INSERT INTO SENSEIS VALUES('sensei5', 'sensei5@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1996-06-06', 'MADRID', 'RETIRO', '');
 
 
 DROP TABLE ACTIVIDADES;
 CREATE TABLE ACTIVIDADES(
 	CODACTIVIDAD INT AUTO_INCREMENT,
     NOMBRE VARCHAR(50),
+    MUNICIPIO VARCHAR(50),
     DISTRITO VARCHAR(50),
     SENSEI VARCHAR(20),
     PRECIO DECIMAL(5,2),
@@ -100,22 +103,22 @@ CREATE TABLE ACTIVIDADES(
     DESCRIPCION MEDIUMTEXT,
     
     PRIMARY KEY (CODACTIVIDAD),
-    FOREIGN KEY (DISTRITO) REFERENCES LOCALIZACION(DISTRITO),
+    FOREIGN KEY (DISTRITO, MUNICIPIO) REFERENCES LOCALIZACION(DISTRITO, MUNICIPIO),
     FOREIGN KEY (SENSEI) REFERENCES SENSEIS(NICK)
 )ENGINE=InnoDB;
 
-INSERT INTO ACTIVIDADES(NOMBRE, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('TALLER DE ESCRITURA', 'ARGANZUELA', 'sensei0', 2.5, 15, '2022-08-01 16:00:00', '2022-08-01 18:00:00', 'Escribir es la representación de conceptos o ideas sobre una superficie a través de símbolos o códigos designados por la forma escrita de un lenguaje. Escribir deriva del latín scribire que a su vez tiene una raíz indoeuropea que indicaba la ación de trazar o rayar.');
-INSERT INTO ACTIVIDADES(NOMBRE, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('GO', 'CENTRO', 'sensei1', 3.25, 20, '2022-09-01 16:00:00', '2022-09-01 18:00:00', 'El go es un juego de tablero de estrategia para dos personas. Se originó en China hace más de 2500 años.​​​ Fue considerado una de las cuatro artes esenciales de la antigüedad china. Los textos más antiguos que hacen referencia al go son las analectas de Confucio.');
-INSERT INTO ACTIVIDADES(NOMBRE, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('FÚTBOL 11', 'CHAMBERÍ', 'sensei2', 12, 14, '2022-10-01 16:00:00', '2022-10-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
-INSERT INTO ACTIVIDADES(NOMBRE, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('FÚTBOL 11', 'FUENCARRAL - EL PARDO', 'sensei3', 7, 14, '2022-11-01 16:00:00', '2022-11-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
-INSERT INTO ACTIVIDADES(NOMBRE, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('AJEDREZ', 'RETIRO', 'sensei4', 0, 8, '2022-12-01 16:00:00', '2022-12-01 18:00:00', 'Juego de mesa en el que se enfrentan dos jugadores, cada uno de los cuales tiene 16 piezas de valores diversos que puede mover, según ciertas reglas, sobre un tablero dividido en 64 cuadros alternativamente blancos y negros; gana el jugador que consigue dar mate al rey de su contrincante.');
-INSERT INTO ACTIVIDADES(NOMBRE, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('PADEL', 'RETIRO', 'sensei5', 12.50, 4, '2022-12-01 19:00:00', '2022-08-01 20:00:00', 'Juego entre dos parejas, muy parecido al tenis, pero que se juega entre cuatro paredes y en el que la pelota se golpea con una pala de mango corto.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('TALLER DE ESCRITURA', 'MADRID', 'ARGANZUELA', 'sensei0', 2.5, 15, '2022-08-01 16:00:00', '2022-08-01 18:00:00', 'Escribir es la representación de conceptos o ideas sobre una superficie a través de símbolos o códigos designados por la forma escrita de un lenguaje. Escribir deriva del latín scribire que a su vez tiene una raíz indoeuropea que indicaba la ación de trazar o rayar.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('GO', 'MADRID', 'CENTRO', 'sensei1', 3.25, 20, '2022-09-01 16:00:00', '2022-09-01 18:00:00', 'El go es un juego de tablero de estrategia para dos personas. Se originó en China hace más de 2500 años.​​​ Fue considerado una de las cuatro artes esenciales de la antigüedad china. Los textos más antiguos que hacen referencia al go son las analectas de Confucio.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('FÚTBOL 11', 'MADRID', 'CHAMBERÍ', 'sensei2', 12, 14, '2022-10-01 16:00:00', '2022-10-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('FÚTBOL 11', 'MADRID', 'FUENCARRAL - EL PARDO', 'sensei3', 7, 14, '2022-11-01 16:00:00', '2022-11-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('AJEDREZ', 'MADRID', 'RETIRO', 'sensei4', 0, 8, '2022-12-01 16:00:00', '2022-12-01 18:00:00', 'Juego de mesa en el que se enfrentan dos jugadores, cada uno de los cuales tiene 16 piezas de valores diversos que puede mover, según ciertas reglas, sobre un tablero dividido en 64 cuadros alternativamente blancos y negros; gana el jugador que consigue dar mate al rey de su contrincante.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('PADEL', 'MADRID', 'RETIRO', 'sensei5', 12.50, 4, '2022-12-01 19:00:00', '2022-08-01 20:00:00', 'Juego entre dos parejas, muy parecido al tenis, pero que se juega entre cuatro paredes y en el que la pelota se golpea con una pala de mango corto.');
 
 
 /* 

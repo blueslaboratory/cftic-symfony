@@ -37,6 +37,16 @@ class Transacciones
     private $estado = 'NULL';
 
     /**
+     * @var \Pupilos|null
+     *
+     * @ORM\ManyToOne(targetEntity="Pupilos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="EMISOR", referencedColumnName="NICK")
+     * })
+     */
+    private $emisor;
+
+    /**
      * @var \Actividades|null
      *
      * @ORM\ManyToOne(targetEntity="Actividades")
@@ -55,16 +65,6 @@ class Transacciones
      * })
      */
     private $receptor;
-
-    /**
-     * @var \Pupilos|null
-     *
-     * @ORM\ManyToOne(targetEntity="Pupilos")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="EMISOR", referencedColumnName="NICK")
-     * })
-     */
-    private $emisor;
 
     public function getCodtransaccion(): ?int
     {
@@ -95,6 +95,18 @@ class Transacciones
         return $this;
     }
 
+    public function getEmisor(): ?Pupilos
+    {
+        return $this->emisor;
+    }
+
+    public function setEmisor(?Pupilos $emisor): self
+    {
+        $this->emisor = $emisor;
+
+        return $this;
+    }
+
     public function getCodactividad(): ?Actividades
     {
         return $this->codactividad;
@@ -115,18 +127,6 @@ class Transacciones
     public function setReceptor(?Senseis $receptor): self
     {
         $this->receptor = $receptor;
-
-        return $this;
-    }
-
-    public function getEmisor(): ?Pupilos
-    {
-        return $this->emisor;
-    }
-
-    public function setEmisor(?Pupilos $emisor): self
-    {
-        $this->emisor = $emisor;
 
         return $this;
     }

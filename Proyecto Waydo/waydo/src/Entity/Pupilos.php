@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Pupilos
  *
- * @ORM\Table(name="pupilos", indexes={@ORM\Index(name="DISTRITO", columns={"DISTRITO"})})
+ * @ORM\Table(name="pupilos", indexes={@ORM\Index(name="DISTRITO", columns={"DISTRITO", "MUNICIPIO"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\PupilosRepository")
  */
@@ -78,7 +78,8 @@ class Pupilos
      *
      * @ORM\ManyToOne(targetEntity="Localizacion")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="DISTRITO", referencedColumnName="DISTRITO")
+     *   @ORM\JoinColumn(name="DISTRITO", referencedColumnName="DISTRITO"),
+     *   @ORM\JoinColumn(name="MUNICIPIO", referencedColumnName="MUNICIPIO")
      * })
      */
     private $distrito;

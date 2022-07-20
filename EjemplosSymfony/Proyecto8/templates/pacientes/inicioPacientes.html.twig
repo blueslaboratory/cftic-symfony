@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Pacientes</title>
+    <style>
+        body {
+            margin: 0 auto;
+            text-align: center;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>BÚSQUEDA DE PACIENTES</h1>
+    <br>
+    {% if mensaje is defined %}
+    <strong>{{ mensaje }}</strong>
+    {% endif %}
+    <br>
+    <br>
+    <form method="POST" action="{{ path('ingresoPaciente') }}">
+        <label for="numSS">Número de la Seguridad Social</label>
+        <input name="numSS" id="numSS" type="text">
+        <br><br>
+        <input type="submit" value="Aceptar">
+    </form>
+</body>
+
+</html>

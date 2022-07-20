@@ -23,7 +23,7 @@
             font-weight: 100;
         }
 
-        .distrito{
+        .distrito {
             text-align: center;
         }
 
@@ -84,94 +84,50 @@
 <body>
     <h1>ACTIVIDADES DISTRITO</h1>
 
+
+    {# del proyecto4 templates/mostrar/verDepartamentos.html.twig #}
     <div class="distrito">
-        <label for="distrito"></label>
-        <select name="distrito" id="distrito">
-            {% for d in distritos %}
-                <option value="{{d.distrito}}">{{d.distrito}}</option>
-            {% endfor %}
-        </select>
+        <form name="formDistrito" method="POST" action="{{ path('actividadesDistrito') }}"> 
+            <label for="distrito"></label>
+            {# con el onchange manda el formulario automaticamente, es javascript #}
+            <select name="distrito" id="distrito" onchange='formDistrito.submit()'>
+                {% for d in distritos %}
+                    {% if seleccionado is defined and d.distrito == seleccionado %}
+                        <option value="{{d.distrito}}" selected>{{d.distrito}}</option>
+                        {# en estos framework la forma de acceder a la propiedad es
+                        poniendo el nombre de la propiedad, en realidad estas accediendo
+                        a través de un get.
+                        Si la varible es $num_cama y el get es getNumCama se pone numCama #}
+                    {% else %}
+                        <option value="{{d.distrito}}">{{d.distrito}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </form>
     </div>
 
 
+    
     <div class="actividades">
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2>Front Side</h2>
-                    <img src="" alt="">
-                </div>
-                <div class="flip-box-back">
-                    <h2>Back Side</h2>
-                    <p class="descActividad"></p>
-                </div>
-            </div>
-        </div>
+        {% for actividad in actividades %}
 
         <div class="flip-box">
             <div class="flip-box-inner">
                 <div class="flip-box-front">
-                    <h2>Front Side</h2>
+                    <h2>{{actividad.nombre}}</h2>
                     <img src="" alt="">
                 </div>
                 <div class="flip-box-back">
-                    <h2>Back Side</h2>
-                    <p class="descActividad"></p>
+                    <h2>{{actividad.nombre}}</h2>
+                    <p class="descActividad">
+                        {{actividad.descripcion}}
+                    </p>
                 </div>
             </div>
         </div>
 
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2>Front Side</h2>
-                    <img src="" alt="">
-                </div>
-                <div class="flip-box-back">
-                    <h2>Back Side</h2>
-                    <p class="descActividad"></p>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
 
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2>Front Side</h2>
-                    <img src="" alt="">
-                </div>
-                <div class="flip-box-back">
-                    <h2>Back Side</h2>
-                    <p class="descActividad"></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2>Front Side</h2>
-                    <img src="" alt="">
-                </div>
-                <div class="flip-box-back">
-                    <h2>Back Side</h2>
-                    <p class="descActividad"></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2>Front Side</h2>
-                    <img src="" alt="">
-                </div>
-                <div class="flip-box-back">
-                    <h2>Back Side</h2>
-                    <p class="descActividad"></p>
-                </div>
-            </div>
-        </div>
     </div>
 
 
