@@ -69,10 +69,10 @@ class PdfEmpController extends AbstractController
         $dompdf->render();
 
         // Envíe el PDF generado al navegador. ¡DESCARGA FORZADA!
-        $dompdf->stream("empleados.pdf", [
+        $dompdf->stream(($datosEmp[0]->getApellido()) . "empleado.pdf", [
             // "Attachment" => true
             // al ponerlo a false no hay descarga forzada
-            "Attachment" => true
+            "Attachment" => false
         ]);
 
         return $this->render('empleadosPDF/empleados.html.twig');
