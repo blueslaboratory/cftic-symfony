@@ -27,7 +27,6 @@ class OficiosController extends AbstractController
     #[Route('/buscarOficios', name: 'buscarOficios')]
     public function buscarOficios(Request $request, EntityManagerInterface $em)
     {
-  
         // Al hacer submit los datos los has perdido y hay que recuperarlos: findAll
         $datos = $em->getRepository(Emp::class)->findAll();
 

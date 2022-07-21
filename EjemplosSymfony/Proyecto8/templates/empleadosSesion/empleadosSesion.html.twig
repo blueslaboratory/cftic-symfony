@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almacenar Empleados con Session</title>
+    <style>
+        span{
+            color: blue;
+        }
+        img{
+            height: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Almacenar Empleados con Session</h1>
+    <ul>
+        {% for e in empleados %}
+        <li>{{ e.apellido|upper }} 
+            {% if app.session.has(e.empno) %}
+            <img src="empleadosSesion/check.jpg" alt="check">
+            {% else %}
+            <a href="{{ path('almacenarEmpleado', {id:e.empno}) }}">Almacenar</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <span>
+        <strong>
+            Número de empleados almacenados: 
+            {{ app.session|length }}
+        </strong>
+    </span>
+    <br>
+    <br>
+    <a href="{{ path('resumenEmpleado')}}">Resumen de empleados</a>
+    <br>
+    <a href="{{ path('borrarEmpleadosSesion')}}">Borrar sesion</a>
+</body>
+</html>

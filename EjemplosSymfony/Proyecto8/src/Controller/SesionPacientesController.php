@@ -63,7 +63,8 @@ class SesionPacientesController extends AbstractController
 
         $connection = $em->getConnection();
         $statement = $connection->prepare("CALL InsertarPaciente(:inscripcion, :apellido, :direccion, :fecha_nac, :sexo, :nss)");
-        
+        // aqui le puedo meter cualquier instruccion nativa de la base de datos
+
         // parece que llegan como string pero automáticamente los castea 
         // dump($numSS, $inscripcion, $apellido, $direccion, $fnac, $sexo);
 

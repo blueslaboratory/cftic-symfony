@@ -61,9 +61,18 @@ class ActividadesController extends AbstractController
         $distrito = $request->request->get('distrito');
         dump($distrito);
         
-        //esto me da error y no sé por qué aún:
+        
         $actividades = $em->getRepository(Actividades::class)->findAll();
-        //$actividades = $em->getRepository(Actividades::class)->findByDistrito($distrito);
+        // TODO esto me da error y no sé por qué aún:
+        // $actividades = $em->getRepository(Actividades::class)->findByDistrito($distrito);
+        // $actividades = $em->getRepository(Actividades::class)->findBy(
+        //     ['distrito' => $distrito],
+        // );
+        // $query = $em->createQuery('SELECT a AS actividad FROM App\Entity\Actividades a 
+        //                            WHERE a.distrito = :d');
+        // $query->setParameter('d', $distrito);
+        // dump($query);
+        // $actividades = $query->getResult();
         dump($actividades);
         
 
