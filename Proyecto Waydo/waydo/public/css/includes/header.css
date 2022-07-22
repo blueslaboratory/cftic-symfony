@@ -1,0 +1,34 @@
+header{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+header .logo{
+    width: 50%;
+}
+header .logo img{
+    /*para centrar la imagen dentro del div*/
+    /*
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    */
+}
+header nav{
+    width: 50%;
+    margin-top: 60px;
+}
+header ul, header li{
+    display: flex;
+}
+header li{
+    padding: 0 20px 0 20px;
+}
+header a{
+    text-decoration: none;
+    color: black;
+}
+header a:visited{
+    color: black;
+}

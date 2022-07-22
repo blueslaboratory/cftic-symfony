@@ -39,7 +39,8 @@
             box-sizing: border-box;
             justify-content: center;
             background-color: transparent;
-            width: 400px;
+            width: 400px; 
+            /* 600px da a 4 actividades por pagina */
             height: 300px;
             margin: 15px;
             /* border: 1px solid #f1f1f1; */
@@ -121,6 +122,10 @@
                     <h2>{{actividad.nombre}}</h2>
                     <p class="descActividad">
                         {{actividad.descripcion}}
+                        
+                        <div class="button" onclick="location.href='{{ path('actividadDetalle', {cod:actividad.codactividad}) }}';" style="cursor: pointer;">
+                            MÁS INFORMACIÓN
+                        </div>
                     </p>
                 </div>
             </div>

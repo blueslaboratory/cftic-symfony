@@ -63,7 +63,7 @@ class ActividadesController extends AbstractController
         
         
         $actividades = $em->getRepository(Actividades::class)->findAll();
-        // TODO esto me da error y no sé por qué aún:
+        //TODO esto me da error y no sé por qué aún:
         // $actividades = $em->getRepository(Actividades::class)->findByDistrito($distrito);
         // $actividades = $em->getRepository(Actividades::class)->findBy(
         //     ['distrito' => $distrito],
@@ -73,8 +73,19 @@ class ActividadesController extends AbstractController
         // $query->setParameter('d', $distrito);
         // dump($query);
         // $actividades = $query->getResult();
-        dump($actividades);
+        // dump($actividades);
         
+
+        // esta query ya funciona, lo otro no funciona porque hay objeto localizacion y tampoco voy a llenar
+        // las tablas de claves foraneas, porque habria que volver a tocar toda la DB
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT * FROM ACTIVIDADES WHERE DISTRITO=:dato");
+        $statement->bindValue('dato',   $distrito );
+        $resultado = $statement->executeQuery();    
+        $users = $resultado->fetchAllAssociative();
+
+        dump($users);
+
 
         return $this->render('actividades/actividadesFlipBox.html.twig', [
             'distritos' => $distritos,
@@ -83,4 +94,21 @@ class ActividadesController extends AbstractController
         ]);
     }
 
+     // localhost:8000/actividadDetalle
+     #[Route('/actividadDetalle', name: 'actividadDetalle')]
+     public function actividadDetalle(Request $request, EntityManagerInterface $em): Response
+     {
+        $datoget = intval($request->query->get('cod'));
+        // $actividad = $em->getRepository(Actividades::class)->findByCodActividad($datoget);
+        $query = $em->createQuery('SELECT a AS actividad FROM App\Entity\Actividades a 
+                                   WHERE a.codactividad = :c');
+        $query->setParameter('c', $datoget);
+        dump($query);
+        $actividad = $query->getResult();
+
+        return $this->render('actividades/actividadDetalle.html.twig', [
+            'cod' => $datoget,
+            'actividad' => $actividad
+        ]);
+    }
 }
