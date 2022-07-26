@@ -1,0 +1,17 @@
+mensajenombre: Name
+mensajeapellido: Last Name
+mensajeedad: Age
+
+legend: 個人情報
+cmnombre: 名前
+cmapellido: 苗字
+cmsapellido: 2番目の姓
+cmtelefono: 電話
+cmemail: Eメール
+cmconfirmaremail: Eメール確認
+y: はい
+n: いいえ
+p1: レアル・マドリードのメンバーシップはありますか？
+p2: あなたは18歳未満ですか？
+p3: あなたはスペイン国外に住んでいますか？
+submit: わかった

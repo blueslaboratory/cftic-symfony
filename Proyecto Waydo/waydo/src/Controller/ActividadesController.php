@@ -20,8 +20,7 @@ class ActividadesController extends AbstractController
     #[Route('/actividades', name: 'actividades')]
     public function actividades(): Response
     {
-        return $this->render('actividades/actividades.html.twig', [
-        ]);
+        return $this->render('actividades/actividades.html.twig', []);
     }
 
     // localhost:8000/actividadesFlipBox
@@ -60,10 +59,12 @@ class ActividadesController extends AbstractController
         // request y puedo recoger todos los datos
         $distrito = $request->request->get('distrito');
         dump($distrito);
-        
-        
-        $actividades = $em->getRepository(Actividades::class)->findAll();
-        //TODO esto me da error y no sé por qué aún:
+
+
+        //$actividades = $em->getRepository(Actividades::class)->findAll();
+        //dump($actividades);
+
+        // TODO esto me da error y no sé por qué aún:
         // $actividades = $em->getRepository(Actividades::class)->findByDistrito($distrito);
         // $actividades = $em->getRepository(Actividades::class)->findBy(
         //     ['distrito' => $distrito],
@@ -74,18 +75,17 @@ class ActividadesController extends AbstractController
         // dump($query);
         // $actividades = $query->getResult();
         // dump($actividades);
-        
+
 
         // esta query ya funciona, lo otro no funciona porque hay objeto localizacion y tampoco voy a llenar
         // las tablas de claves foraneas, porque habria que volver a tocar toda la DB
         $connection = $em->getConnection();
         $statement = $connection->prepare("SELECT * FROM ACTIVIDADES WHERE DISTRITO=:dato");
-        $statement->bindValue('dato',   $distrito );
-        $resultado = $statement->executeQuery();    
-        $users = $resultado->fetchAllAssociative();
+        $statement->bindValue('dato', $distrito);
+        $resultado = $statement->executeQuery();
+        $actividades = $resultado->fetchAllAssociative();
 
-        dump($users);
-
+        dump($actividades);
 
         return $this->render('actividades/actividadesFlipBox.html.twig', [
             'distritos' => $distritos,
@@ -94,10 +94,11 @@ class ActividadesController extends AbstractController
         ]);
     }
 
-     // localhost:8000/actividadDetalle
-     #[Route('/actividadDetalle', name: 'actividadDetalle')]
-     public function actividadDetalle(Request $request, EntityManagerInterface $em): Response
-     {
+
+    // localhost:8000/actividadDetalle
+    #[Route('/actividadDetalle', name: 'actividadDetalle')]
+    public function actividadDetalle(Request $request, EntityManagerInterface $em): Response
+    {
         $datoget = intval($request->query->get('cod'));
         // $actividad = $em->getRepository(Actividades::class)->findByCodActividad($datoget);
         $query = $em->createQuery('SELECT a AS actividad FROM App\Entity\Actividades a 

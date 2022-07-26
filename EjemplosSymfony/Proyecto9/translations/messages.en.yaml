@@ -1,0 +1,17 @@
+mensajenombre: Name
+mensajeapellido: Last Name
+mensajeedad: Age
+
+legend: Personal Information
+cmnombre: Name
+cmapellido: Last name 1
+cmsapellido: Last name 2
+cmtelefono: Phone
+cmemail: Email
+cmconfirmaremail: Confirm email
+y: Yes
+n: No
+p1: Do you have a Real Madrid Membership?
+p2: Are you under 18 years of age?
+p3: Do you live outside Spain?
+submit: Ok

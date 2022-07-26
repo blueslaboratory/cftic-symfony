@@ -1,0 +1,17 @@
+mensajenombre: Nombre
+mensajeapellido: Apellido
+mensajeedad: Edad
+
+legend: Información personal
+cmnombre: Nombre
+cmapellido: Primer apellido
+cmsapellido: Segundo apellido
+cmtelefono: Teléfono
+cmemail: Email
+cmconfirmaremail: Confirmar email
+y: Sí
+n: No
+p1: ¿Eres Socio del Real Madrid?
+p2: ¿Tienes menos de 18 años?
+p3: ¿Resides fuera de España?
+submit: Aceptar
