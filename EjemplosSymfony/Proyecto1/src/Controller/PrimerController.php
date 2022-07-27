@@ -3,7 +3,7 @@
 /*
 22/06/2022
 localhost:8000/ejer1
-localhost:8000/tabla
+localhost:8000/ejer2
 localhost:8000/vista1
 
 CTRL D -> selecciona las ocurrencias subrayadas por el raton para despues sustituirlas
@@ -23,7 +23,6 @@ class PrimerController extends AbstractController
 {
     // Anotacion o decoracion, se le suele dar un name para llamarla a traves de otra funcion
     #[Route('/ejer1', name: 'inicio')]
-
     public function inicio()
     {
         $response = new Response();
@@ -33,7 +32,6 @@ class PrimerController extends AbstractController
 
 
     #[Route('/ejer2', name: 'tabla')]
-
     public function tabla()
     {
         $response = new Response();

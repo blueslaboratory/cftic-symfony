@@ -120,6 +120,7 @@ class MainController extends AbstractController
         $dirImagenes = scandir("peliculas");
         $titulos = $dirImagenes;
         $countImages = count($dirImagenes);
+        dump($dirImagenes);
 
         for ($i=0; $i < $countImages ; $i++) { 
             // offset -1 para que se vaya al final
@@ -128,6 +129,7 @@ class MainController extends AbstractController
                 $titulos[$i] = ucwords(str_replace('_', ' ', $titulos[$i]));
             }            
         }
+        dump($titulos);
 
         
         $pelis = [
