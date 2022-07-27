@@ -44,7 +44,7 @@ class ActividadesController extends AbstractController
     }
 
 
-    // localhost:8000/actividadesFlipBox
+    // localhost:8000/actividadesDistrito
     #[Route('/actividadesDistrito', name: 'actividadesDistrito')]
     public function actividadesDistrito(Request $request, EntityManagerInterface $em): Response
     {
