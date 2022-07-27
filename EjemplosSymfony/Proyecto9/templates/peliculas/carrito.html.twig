@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de la compra</title>
+    <style>
+        /*peliculas*/
+        table,
+        td,
+        th {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: separate;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Titulo</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for arrayCompras in compras %}
+                <tr>
+                    <td>
+                        <img src="/images/CARTELES/{{arrayCompras.foto}}" alt="{{arrayCompras.foto}}">
+                    </td>
+                    <td>{{arrayCompras.titulo}}</td>
+                    <td>{{arrayCompras.precio}} €</td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="3">Precio de la compra: </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('peliculas') }}">Volver</a>
+</body>
+</html>

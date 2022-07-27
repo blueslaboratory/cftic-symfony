@@ -1,0 +1,8 @@
+<ul>
+    {% for arrayGenero in generos %}
+        <li>
+            <a href="{{ path('peliculas', {id:arrayGenero.idgenero}) }}">{{ arrayGenero.genero|upper }}</a>
+        </li>
+        <span>|</span>
+    {% endfor %}        
+</ul>

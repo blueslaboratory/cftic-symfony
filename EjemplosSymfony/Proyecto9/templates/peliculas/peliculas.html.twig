@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Compra por Género</title>
+    <style>
+
+
+        body{
+            margin: 0 auto;
+        }
+
+        /*generos*/ 
+        ul {
+            display: inline-block;
+            text-align: center;
+        }
+
+        li {
+            display: inline-block;
+            text-align: center;
+            width: 140px;
+        }
+
+        /*peliculas*/
+        table,
+        td,
+        th {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: separate;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'generos/cabecera.html.twig' %}
+
+    <br><br>
+
+    <form action="{{ path('carrito') }}" method="POST">
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Titulo</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for arrayPeliculas in peliculas %}
+                <tr>
+                    <td>
+                        <input type="checkbox" id="{{arrayPeliculas.Idpelicula}}" name="peliculas[]" value="{{arrayPeliculas.Idpelicula}}">
+                    </td>
+                    <td>{{arrayPeliculas.titulo}}</td>
+                    <td>{{arrayPeliculas.precio}} €</td>
+                </tr>
+                {% endfor %}
+
+                <tr>
+                    <td colspan="3">
+                        <input type="submit" name="submit" id="submit" value="Comprar Películas">
+                        <a href="{{ path('carrito') }}">Ver carrito compra</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </form>
+</body>
+
+</html>
