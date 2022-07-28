@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar departamento</title>
+</head>
+
+<body>
+
+    <h1>Formulario Editar departamentos</h1>
+
+    <form method="POST" action="{{ path('modificarDept') }}">
+        
+        <ul>
+            <label>
+                <li>Deptno</li>
+            </label>
+            <input type="text" name="txtId" id="txtId" value="{{departamento.id}}" readonly>
+
+            <label>
+                <li>Nombre</li>
+            </label>
+            <input type="text" name="txtNombre" id="txtNombre" value="{{departamento.dnombre}}">
+            
+            <label>
+                <li>Localización</li>
+            </label>
+            <input type="text" name="txtLoc" id="txtLoc" value="{{departamento.loc}}">
+        </ul>
+
+        <button type="submit">
+            Editar
+        </button>
+    </form>
+</body>
+
+</html>

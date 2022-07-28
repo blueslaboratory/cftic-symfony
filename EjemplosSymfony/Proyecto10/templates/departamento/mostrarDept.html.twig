@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Departamentos</title>
+    <style>
+        table,
+        tr,
+        th{
+            text-align: left;
+        }
+        
+        th, tr{
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Departamentos</h1>
+
+    {% if mensaje is defined %}
+        {{ mensaje }}
+    {% endif %}
+
+    <br>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>DeptNo</th>
+                <th>Nombre</th>
+                <th>Localización</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for arrayDepartamento in departamentos %}
+                <tr>
+                    <td>{{arrayDepartamento.id}}</td>
+                    <td>{{arrayDepartamento.dnombre}}</td>
+                    <td>{{arrayDepartamento.loc}}</td>
+                    <td>
+                        <a href="{{ path('borrarDept', {id:arrayDepartamento.id}) }}">Borrar</a>
+                        <a href="{{ path('editarDept', {id:arrayDepartamento.id}) }}">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+
+    <a href="{{ path('nuevoDept')}}">Nuevo</a>
+
+</body>
+
+</html>
