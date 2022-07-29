@@ -15,9 +15,23 @@
             text-align: center;
             width: 140px;
         }
+        form{
+            margin-left: 50%;
+        }
+
     </style>
 </head>
 <body>
     {% include 'generos/cabecera.html.twig' %}
+
+    {% if message is defined %}
+        {{message}}
+    {% endif %}
+
+    <br><br>
+    <form action="{{ path('verCarrito') }}" method="POST" name="formu" style="display: inline-block;">
+        <a href="javascript:formu.submit()">Ver carrito de la compra</a>
+        <input type="hidden" value="valor oculto" name="oculto">
+    </form> 
 </body>
 </html>

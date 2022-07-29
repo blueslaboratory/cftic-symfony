@@ -12,15 +12,18 @@
         th {
             border: 1px solid black;
         }
-
         table {
             border-collapse: separate;
             margin-left: auto;
             margin-right: auto;
         }
+        img{
+            height: 100px;
+        }
     </style>
 </head>
 <body>
+    <h1>Películas en el carrito</h1>
     <table>
         <thead>
             <tr>
@@ -31,23 +34,27 @@
         </thead>
         <tbody>
 
-            {% for arrayCompras in compras %}
+            {% for arrayPeliculas in cesta %}
                 <tr>
                     <td>
-                        <img src="/images/CARTELES/{{arrayCompras.foto}}" alt="{{arrayCompras.foto}}">
+                        <img src="/images/CARTELES/{{arrayPeliculas.pelicula.foto}}" alt="{{arrayPeliculas.pelicula.foto}}">
                     </td>
-                    <td>{{arrayCompras.titulo}}</td>
-                    <td>{{arrayCompras.precio}} €</td>
+                    <td>{{arrayPeliculas.pelicula.titulo}}</td>
+                    <td>{{arrayPeliculas.pelicula.precio}} €</td>
                 </tr>
             {% endfor %}
 
             <tr>
-                <td colspan="3">Precio de la compra: </td>
+                <td colspan="3"><strong>Precio de la compra: {{precioTotal}} €</strong></td>
             </tr>
 
+            <tr>
+                <td colspan="3"><a href="{{ path('peliculas') }}">Volver</a></td>
+            </tr>
+            
         </tbody>
     </table>
 
-    <a href="{{ path('peliculas') }}">Volver</a>
+    
 </body>
 </html>

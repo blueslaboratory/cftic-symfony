@@ -8,7 +8,6 @@
     <title>Página Compra por Género</title>
     <style>
 
-
         body{
             margin: 0 auto;
         }
@@ -37,6 +36,9 @@
             margin-left: auto;
             margin-right: auto;
         }
+        img{
+            height: 100px;
+        }
     </style>
 </head>
 
@@ -45,12 +47,13 @@
 
     <br><br>
 
-    <form action="{{ path('carrito') }}" method="POST">
+    <form action="{{ path('addPeliculaCarrito') }}" method="POST">
 
         <table>
             <thead>
                 <tr>
                     <th colspan="2">Titulo</th>
+                    <th>Foto</th>
                     <th>Precio</th>
                 </tr>
             </thead>
@@ -62,21 +65,39 @@
                         <input type="checkbox" id="{{arrayPeliculas.Idpelicula}}" name="peliculas[]" value="{{arrayPeliculas.Idpelicula}}">
                     </td>
                     <td>{{arrayPeliculas.titulo}}</td>
+                    <td><img src="/images/carteles/{{arrayPeliculas.foto}}" alt="{{arrayPeliculas.foto}}"> </td>
                     <td>{{arrayPeliculas.precio}} €</td>
                 </tr>
                 {% endfor %}
 
                 <tr>
-                    <td colspan="3">
+                    <td colspan="4">
                         <input type="submit" name="submit" id="submit" value="Comprar Películas">
-                        <a href="{{ path('carrito') }}">Ver carrito compra</a>
+                        
+                        {# 
+                            en un hipervinculo las peticiones siempre se hacen por defecto con get
+                            <a href="{{ path('carrito') }}">Ver carrito compra</a>
+                            
+                            La forma de enviarlo por POST seria:
+
+                            (NO PUEDE HABER UN FORM DENTRO DE OTRO FORM)
+                         #}
+    </form>
+
+                        &emsp;
+                        &emsp;
+
+                        <form action="{{ path('verCarrito') }}" method="POST" name="formu" style="display: inline-block;">
+                            <a href="javascript:formu.submit()">Ver carrito compra</a>
+                            <input type="hidden" value="valor oculto" name="oculto">
+                        </form> 
+                        
                     </td>
                 </tr>
 
             </tbody>
         </table>
-
-    </form>
+    {# </form> #}
 </body>
 
 </html>
