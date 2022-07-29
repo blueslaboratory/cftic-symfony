@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CarritoPelisController extends AbstractController
 {
+    //67 - Cesta Symfony
 
     //localhost:8000/limpiarSesion
     #[Route('/limpiarSesion', name: 'limpiarSesion')]
