@@ -1,5 +1,6 @@
 DROP DATABASE WAYDO;
-CREATE DATABASE WAYDO;
+CREATE DATABASE WAYDO CHARACTER SET utf8 COLLATE utf8_general_ci; 
+/* crearla desde phpmyadmin con utf8_general_ci*/
 USE WAYDO;
 
 
@@ -96,10 +97,10 @@ CREATE TABLE ACTIVIDADES(
     DISTRITO VARCHAR(50),
     SENSEI VARCHAR(20),
     PRECIO DECIMAL(5,2),
+    INSCRITOS INT,
     CUPO INT,
-    FECHA DATE, 
-    HORA_INICIO TIME,
-    HORA_FIN TIME,
+    FECHA_INICIO DATETIME, 
+    FECHA_FIN DATETIME, 
     EDICION INT(4),
     DESCRIPCION MEDIUMTEXT,
     
@@ -108,18 +109,18 @@ CREATE TABLE ACTIVIDADES(
     FOREIGN KEY (SENSEI) REFERENCES SENSEIS(NICK)
 )ENGINE=InnoDB;
 
-INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('TALLER DE ESCRITURA', 'MADRID', 'ARGANZUELA', 'sensei0', 2.5, 15, '2022-08-01 16:00:00', '2022-08-01 18:00:00', 'Escribir es la representación de conceptos o ideas sobre una superficie a través de símbolos o códigos designados por la forma escrita de un lenguaje. Escribir deriva del latín scribire que a su vez tiene una raíz indoeuropea que indicaba la ación de trazar o rayar.');
-INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('GO', 'MADRID', 'CENTRO', 'sensei1', 3.25, 20, '2022-09-01 16:00:00', '2022-09-01 18:00:00', 'El go es un juego de tablero de estrategia para dos personas. Se originó en China hace más de 2500 años.​​​ Fue considerado una de las cuatro artes esenciales de la antigüedad china. Los textos más antiguos que hacen referencia al go son las analectas de Confucio.');
-INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('FÚTBOL 11', 'MADRID', 'CHAMBERÍ', 'sensei2', 12, 14, '2022-10-01 16:00:00', '2022-10-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
-INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('FÚTBOL 11', 'MADRID', 'FUENCARRAL - EL PARDO', 'sensei3', 7, 14, '2022-11-01 16:00:00', '2022-11-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
-INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('AJEDREZ', 'MADRID', 'RETIRO', 'sensei4', 0, 8, '2022-12-01 16:00:00', '2022-12-01 18:00:00', 'Juego de mesa en el que se enfrentan dos jugadores, cada uno de los cuales tiene 16 piezas de valores diversos que puede mover, según ciertas reglas, sobre un tablero dividido en 64 cuadros alternativamente blancos y negros; gana el jugador que consigue dar mate al rey de su contrincante.');
-INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('PADEL', 'MADRID', 'RETIRO', 'sensei5', 12.50, 4, '2022-12-01 19:00:00', '2022-08-01 20:00:00', 'Juego entre dos parejas, muy parecido al tenis, pero que se juega entre cuatro paredes y en el que la pelota se golpea con una pala de mango corto.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('TALLER DE ESCRITURA', 'MADRID', 'ARGANZUELA', 'sensei0', 2.5, 10, 15, '2022-08-01 16:00:00', '2022-08-01 18:00:00', 'Escribir es la representación de conceptos o ideas sobre una superficie a través de símbolos o códigos designados por la forma escrita de un lenguaje. Escribir deriva del latín scribire que a su vez tiene una raíz indoeuropea que indicaba la ación de trazar o rayar.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('GO', 'MADRID', 'CENTRO', 'sensei1', 3.25, 14, 20, '2022-09-01 16:00:00', '2022-09-01 18:00:00', 'El go es un juego de tablero de estrategia para dos personas. Se originó en China hace más de 2500 años.​​​ Fue considerado una de las cuatro artes esenciales de la antigüedad china. Los textos más antiguos que hacen referencia al go son las analectas de Confucio.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('FÚTBOL 11', 'MADRID', 'CHAMBERÍ', 'sensei2', 12, 13, 14, '2022-10-01 16:00:00', '2022-10-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('FÚTBOL 11', 'MADRID', 'FUENCARRAL - EL PARDO', 'sensei3', 7, 14, 14, '2022-11-01 16:00:00', '2022-11-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('AJEDREZ', 'MADRID', 'RETIRO', 'sensei4', 0, 3, 8, '2022-12-01 16:00:00', '2022-12-01 18:00:00', 'Juego de mesa en el que se enfrentan dos jugadores, cada uno de los cuales tiene 16 piezas de valores diversos que puede mover, según ciertas reglas, sobre un tablero dividido en 64 cuadros alternativamente blancos y negros; gana el jugador que consigue dar mate al rey de su contrincante.');
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('PADEL', 'MADRID', 'RETIRO', 'sensei5', 12.50, 4, 4, '2022-12-01 19:00:00', '2022-08-01 20:00:00', 'Juego entre dos parejas, muy parecido al tenis, pero que se juega entre cuatro paredes y en el que la pelota se golpea con una pala de mango corto.');
 
 
 /* 

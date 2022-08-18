@@ -16,6 +16,7 @@ ____________
 Parche:
 Testear el port 3306 desde wamp, si esta mysql.exe,
 cargarse un proceso en windows para que el puerto de mysql.exe no coja el 3306
+(tambien te lo puedes cargar desde el administrador de tareas con el PID)
 
 1. Correr cmd.exe como admin y ejecutar:
 

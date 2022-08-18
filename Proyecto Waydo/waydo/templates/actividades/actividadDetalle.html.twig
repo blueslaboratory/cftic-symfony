@@ -40,21 +40,21 @@
             justify-content: center;
             align-items: center;
             height: 100%;
-            width: 65%;
+            width: 60%;
             margin: 2%;
         }
 
         .left img {
             height: 120%;
+            width: 100%;
         }
 
         .right {
             justify-content: center;
             align-items: center;
             height: 100%;
-            width: 35%;
+            width: 40%;
             margin: 2%;
-            background-color: orangered;
         }
 
         .right img {
@@ -146,7 +146,9 @@
             
         </div>
         <div class="right">
+            <h1>DISTRITO: {{actividad[0].actividad.distrito.distrito}}</h1>
             <img src="images/localizacion.jpg" alt="localizacion">
+            <p>Inscritos: {{actividad[0].actividad.inscritos}}/{{actividad[0].actividad.cupo}}</p>
         </div>
     </div>
 

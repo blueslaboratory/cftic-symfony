@@ -41,6 +41,13 @@ class Actividades
     /**
      * @var int|null
      *
+     * @ORM\Column(name="INSCRITOS", type="integer", nullable=true, options={"default"="NULL"})
+     */
+    private $inscritos = NULL;
+
+    /**
+     * @var int|null
+     *
      * @ORM\Column(name="CUPO", type="integer", nullable=true, options={"default"="NULL"})
      */
     private $cupo = NULL;
@@ -142,6 +149,18 @@ class Actividades
     public function setPrecio(?string $precio): self
     {
         $this->precio = $precio;
+
+        return $this;
+    }
+
+    public function getInscritos(): ?int
+    {
+        return $this->inscritos;
+    }
+
+    public function setInscritos(?int $inscritos): self
+    {
+        $this->inscritos = $inscritos;
 
         return $this;
     }
