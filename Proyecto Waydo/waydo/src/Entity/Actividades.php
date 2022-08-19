@@ -34,7 +34,7 @@ class Actividades
     /**
      * @var string|null
      *
-     * @ORM\Column(name="PRECIO", type="decimal", precision=5, scale=2, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="PRECIO", type="decimal", precision=5, scale=2, nullable=true, options={"default"=0})
      */
     private $precio = 'NULL';
 
@@ -55,14 +55,14 @@ class Actividades
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="FECHA_INICIO", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FECHA_INICIO", type="datetime", nullable=true, options={"default"="0001-01-01 00:00:00"})
      */
     private $fechaInicio = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="FECHA_FIN", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FECHA_FIN", type="datetime", nullable=true, options={"default"="0001-01-01 00:00:00"})
      */
     private $fechaFin = 'NULL';
 

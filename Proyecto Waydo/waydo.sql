@@ -39,10 +39,11 @@ INSERT INTO LOCALIZACION VALUES('ESPAÑA', 'MADRID', 'MADRID', 'VILLAVERDE');
 
 DROP TABLE PUPILOS;
 CREATE TABLE PUPILOS(
+	ID INT AUTO_INCREMENT,
 	NICK VARCHAR(20),
     EMAIL VARCHAR(40),
     TELEFONO INTEGER(13),
-    PASSWORD VARCHAR(20),
+    PASSWORD VARCHAR(128), /*tiene que ser larga para hashear*/
     NOMBRE VARCHAR(20),
     APELLIDOS VARCHAR(20),
     FNAC DATE,
@@ -50,25 +51,32 @@ CREATE TABLE PUPILOS(
     DISTRITO VARCHAR(50),
     DESCRIPCION MEDIUMTEXT,
     
-    PRIMARY KEY (NICK),
+    PRIMARY KEY (ID),
     FOREIGN KEY (DISTRITO, MUNICIPIO) REFERENCES LOCALIZACION(DISTRITO, MUNICIPIO)
 )ENGINE=InnoDB;
 
 DELETE FROM PUPILOS WHERE NICK='';
-INSERT INTO PUPILOS VALUES('pupilo0', 'pupilo0@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1991-01-01', 'MADRID', 'ARGANZUELA', '');
-INSERT INTO PUPILOS VALUES('pupilo1', 'pupilo1@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1992-02-02', 'MADRID', 'CHAMBERÍ', '');
-INSERT INTO PUPILOS VALUES('pupilo2', 'pupilo2@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1993-03-03', 'MADRID', 'FUENCARRAL - EL PARDO', '');
-INSERT INTO PUPILOS VALUES('pupilo3', 'pupilo3@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1994-04-04', 'MADRID', 'MONCLOA - ARAVACA', '');
-INSERT INTO PUPILOS VALUES('pupilo4', 'pupilo4@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1995-05-05', 'MADRID', 'RETIRO', '');
-INSERT INTO PUPILOS VALUES('pupilo5', 'pupilo5@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1996-06-06', 'MADRID', 'USERA', '');
+INSERT INTO PUPILOS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('pupilo0', 'pupilo0@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1991-01-01', 'MADRID', 'ARGANZUELA', '');
+INSERT INTO PUPILOS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('pupilo1', 'pupilo1@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1992-02-02', 'MADRID', 'CHAMBERÍ', '');
+INSERT INTO PUPILOS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('pupilo2', 'pupilo2@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1993-03-03', 'MADRID', 'FUENCARRAL - EL PARDO', '');
+INSERT INTO PUPILOS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('pupilo3', 'pupilo3@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1994-04-04', 'MADRID', 'MONCLOA - ARAVACA', '');
+INSERT INTO PUPILOS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('pupilo4', 'pupilo4@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1995-05-05', 'MADRID', 'RETIRO', '');
+INSERT INTO PUPILOS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('pupilo5', 'pupilo5@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1996-06-06', 'MADRID', 'USERA', '');
 
 
 DROP TABLE SENSEIS;
 CREATE TABLE SENSEIS(
+	ID INT AUTO_INCREMENT,
 	NICK VARCHAR(20),
     EMAIL VARCHAR(40),
     TELEFONO INTEGER(13),
-    PASSWORD VARCHAR(20),
+    PASSWORD VARCHAR(128),
     NOMBRE VARCHAR(20),
     APELLIDOS VARCHAR(20),
     FNAC DATE,
@@ -76,17 +84,23 @@ CREATE TABLE SENSEIS(
     DISTRITO VARCHAR(50),
     DESCRIPCION MEDIUMTEXT,
     
-    PRIMARY KEY (NICK),
+    PRIMARY KEY (ID),
     FOREIGN KEY (DISTRITO, MUNICIPIO) REFERENCES LOCALIZACION(DISTRITO, MUNICIPIO)
 )ENGINE=InnoDB;
 
 DELETE FROM PUPILOS WHERE NICK='sensei5';
-INSERT INTO SENSEIS VALUES('sensei0', 'sensei0@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1991-01-01', 'MADRID', 'ARGANZUELA', '');
-INSERT INTO SENSEIS VALUES('sensei1', 'sensei1@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1992-02-02', 'MADRID', 'CENTRO', '');
-INSERT INTO SENSEIS VALUES('sensei2', 'sensei2@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1993-03-03', 'MADRID', 'CHAMBERÍ', '');
-INSERT INTO SENSEIS VALUES('sensei3', 'sensei3@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1994-04-04', 'MADRID', 'FUENCARRAL - EL PARDO', '');
-INSERT INTO SENSEIS VALUES('sensei4', 'sensei4@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1995-05-05', 'MADRID', 'RETIRO', '');
-INSERT INTO SENSEIS VALUES('sensei5', 'sensei5@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1996-06-06', 'MADRID', 'RETIRO', '');
+INSERT INTO SENSEIS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('sensei0', 'sensei0@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1991-01-01', 'MADRID', 'ARGANZUELA', '');
+INSERT INTO SENSEIS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('sensei1', 'sensei1@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1992-02-02', 'MADRID', 'CENTRO', '');
+INSERT INTO SENSEIS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('sensei2', 'sensei2@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1993-03-03', 'MADRID', 'CHAMBERÍ', '');
+INSERT INTO SENSEIS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('sensei3', 'sensei3@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1994-04-04', 'MADRID', 'FUENCARRAL - EL PARDO', '');
+INSERT INTO SENSEIS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('sensei4', 'sensei4@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1995-05-05', 'MADRID', 'RETIRO', '');
+INSERT INTO SENSEIS(NICK, EMAIL, TELEFONO, PASSWORD, NOMBRE, APELLIDOS, FNAC, MUNICIPIO, DISTRITO, DESCRIPCION) 
+VALUES('sensei5', 'sensei5@waydo.com', '000000000', '1234', 'nombre', 'apellido', '1996-06-06', 'MADRID', 'RETIRO', '');
 
 
 DROP TABLE ACTIVIDADES;
@@ -95,7 +109,7 @@ CREATE TABLE ACTIVIDADES(
     NOMBRE VARCHAR(50),
     MUNICIPIO VARCHAR(50),
     DISTRITO VARCHAR(50),
-    SENSEI VARCHAR(20),
+    SENSEI INT,
     PRECIO DECIMAL(5,2),
     INSCRITOS INT,
     CUPO INT,
@@ -106,21 +120,24 @@ CREATE TABLE ACTIVIDADES(
     
     PRIMARY KEY (CODACTIVIDAD),
     FOREIGN KEY (DISTRITO, MUNICIPIO) REFERENCES LOCALIZACION(DISTRITO, MUNICIPIO),
-    FOREIGN KEY (SENSEI) REFERENCES SENSEIS(NICK)
+    FOREIGN KEY (SENSEI) REFERENCES SENSEIS(ID)
 )ENGINE=InnoDB;
 
 INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('TALLER DE ESCRITURA', 'MADRID', 'ARGANZUELA', 'sensei0', 2.5, 10, 15, '2022-08-01 16:00:00', '2022-08-01 18:00:00', 'Escribir es la representación de conceptos o ideas sobre una superficie a través de símbolos o códigos designados por la forma escrita de un lenguaje. Escribir deriva del latín scribire que a su vez tiene una raíz indoeuropea que indicaba la ación de trazar o rayar.');
+VALUES('TALLER DE ESCRITURA', 'MADRID', 'ARGANZUELA', 1, 2.5, 10, 15, '2022-08-01 16:00:00', '2022-08-01 18:00:00', 'Escribir es la representación de conceptos o ideas sobre una superficie a través de símbolos o códigos designados por la forma escrita de un lenguaje. Escribir deriva del latín scribire que a su vez tiene una raíz indoeuropea que indicaba la ación de trazar o rayar.');
 INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('GO', 'MADRID', 'CENTRO', 'sensei1', 3.25, 14, 20, '2022-09-01 16:00:00', '2022-09-01 18:00:00', 'El go es un juego de tablero de estrategia para dos personas. Se originó en China hace más de 2500 años.​​​ Fue considerado una de las cuatro artes esenciales de la antigüedad china. Los textos más antiguos que hacen referencia al go son las analectas de Confucio.');
+VALUES('GO', 'MADRID', 'CENTRO', 2, 3.25, 14, 20, '2022-09-01 16:00:00', '2022-09-01 18:00:00', 'El go es un juego de tablero de estrategia para dos personas. Se originó en China hace más de 2500 años.​​​ Fue considerado una de las cuatro artes esenciales de la antigüedad china. Los textos más antiguos que hacen referencia al go son las analectas de Confucio.');
 INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('FÚTBOL 11', 'MADRID', 'CHAMBERÍ', 'sensei2', 12, 13, 14, '2022-10-01 16:00:00', '2022-10-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
+VALUES('FÚTBOL 11', 'MADRID', 'CHAMBERÍ', 3, 12, 13, 14, '2022-10-01 16:00:00', '2022-10-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
 INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('FÚTBOL 11', 'MADRID', 'FUENCARRAL - EL PARDO', 'sensei3', 7, 14, 14, '2022-11-01 16:00:00', '2022-11-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
+VALUES('FÚTBOL 11', 'MADRID', 'FUENCARRAL - EL PARDO', 4, 7, 14, 14, '2022-11-01 16:00:00', '2022-11-01 18:00:00', 'Juego entre dos equipos de once jugadores cada uno, cuya finalidad es hacer entrar un balón por una portería conforme a reglas determinadas, de las que la más característica es que no puede ser tocado con las manos ni con los brazos.');
 INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('AJEDREZ', 'MADRID', 'RETIRO', 'sensei4', 0, 3, 8, '2022-12-01 16:00:00', '2022-12-01 18:00:00', 'Juego de mesa en el que se enfrentan dos jugadores, cada uno de los cuales tiene 16 piezas de valores diversos que puede mover, según ciertas reglas, sobre un tablero dividido en 64 cuadros alternativamente blancos y negros; gana el jugador que consigue dar mate al rey de su contrincante.');
+VALUES('AJEDREZ', 'MADRID', 'RETIRO', 5, 0, 3, 8, '2022-12-01 16:00:00', '2022-12-01 18:00:00', 'Juego de mesa en el que se enfrentan dos jugadores, cada uno de los cuales tiene 16 piezas de valores diversos que puede mover, según ciertas reglas, sobre un tablero dividido en 64 cuadros alternativamente blancos y negros; gana el jugador que consigue dar mate al rey de su contrincante.');
 INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
-VALUES('PADEL', 'MADRID', 'RETIRO', 'sensei5', 12.50, 4, 4, '2022-12-01 19:00:00', '2022-08-01 20:00:00', 'Juego entre dos parejas, muy parecido al tenis, pero que se juega entre cuatro paredes y en el que la pelota se golpea con una pala de mango corto.');
+VALUES('PADEL', 'MADRID', 'RETIRO', 6, 12.50, 4, 4, '2022-12-01 19:00:00', '2022-08-01 20:00:00', 'Juego entre dos parejas, muy parecido al tenis, pero que se juega entre cuatro paredes y en el que la pelota se golpea con una pala de mango corto.');
+
+INSERT INTO ACTIVIDADES(NOMBRE, MUNICIPIO, DISTRITO, SENSEI, PRECIO, INSCRITOS, CUPO, FECHA_INICIO, FECHA_FIN, DESCRIPCION) 
+VALUES('PADEL', 'MADRID', 'RETIRO', 6, 12.50, 4, 4, null, null, 'Juego entre dos parejas, muy parecido al tenis, pero que se juega entre cuatro paredes y en el que la pelota se golpea con una pala de mango corto.');
 
 
 /* 
@@ -132,62 +149,62 @@ Prueba 1:
 */
 DROP TABLE PUPILOS_ACTIVIDADES;
 CREATE TABLE PUPILOS_ACTIVIDADES(
-	NICK_PA VARCHAR(20),
+	NICK_PA INT,
 	CODACTIVIDAD_PA INT,
-    FOREIGN KEY (NICK_PA) REFERENCES PUPILOS(NICK),
+    FOREIGN KEY (NICK_PA) REFERENCES PUPILOS(ID),
     FOREIGN KEY (CODACTIVIDAD_PA) REFERENCES ACTIVIDADES(CODACTIVIDAD),
     PRIMARY KEY (NICK_PA, CODACTIVIDAD_PA)
 )ENGINE=InnoDB;
 
-INSERT INTO PUPILOS_ACTIVIDADES VALUES('pupilo0', 1);
-INSERT INTO PUPILOS_ACTIVIDADES VALUES('pupilo0', 2);
-INSERT INTO PUPILOS_ACTIVIDADES VALUES('pupilo1', 2);
-INSERT INTO PUPILOS_ACTIVIDADES VALUES('pupilo2', 3);
-INSERT INTO PUPILOS_ACTIVIDADES VALUES('pupilo3', 1);
-INSERT INTO PUPILOS_ACTIVIDADES VALUES('pupilo4', 4);
+INSERT INTO PUPILOS_ACTIVIDADES VALUES('1', 1);
+INSERT INTO PUPILOS_ACTIVIDADES VALUES('1', 2);
+INSERT INTO PUPILOS_ACTIVIDADES VALUES('2', 2);
+INSERT INTO PUPILOS_ACTIVIDADES VALUES('3', 3);
+INSERT INTO PUPILOS_ACTIVIDADES VALUES('4', 1);
+INSERT INTO PUPILOS_ACTIVIDADES VALUES('5', 4);
 
 
 DROP TABLE SENSEIS_ACTIVIDADES;
 CREATE TABLE SENSEIS_ACTIVIDADES(
-	NICK_SA VARCHAR(20),
+	NICK_SA INT,
 	CODACTIVIDAD_SA INT,
-    FOREIGN KEY (NICK_SA) REFERENCES SENSEIS(NICK),
+    FOREIGN KEY (NICK_SA) REFERENCES SENSEIS(ID),
     FOREIGN KEY (CODACTIVIDAD_SA) REFERENCES ACTIVIDADES(CODACTIVIDAD),
     PRIMARY KEY (NICK_SA, CODACTIVIDAD_SA)
 )ENGINE=InnoDB;
 
-INSERT INTO SENSEIS_ACTIVIDADES VALUES('sensei0', 1);
-INSERT INTO SENSEIS_ACTIVIDADES VALUES('sensei1', 2);
-INSERT INTO SENSEIS_ACTIVIDADES VALUES('sensei2', 3);
-INSERT INTO SENSEIS_ACTIVIDADES VALUES('sensei3', 4);
-INSERT INTO SENSEIS_ACTIVIDADES VALUES('sensei4', 5);
-INSERT INTO SENSEIS_ACTIVIDADES VALUES('sensei5', 6);
+INSERT INTO SENSEIS_ACTIVIDADES VALUES('1', 1);
+INSERT INTO SENSEIS_ACTIVIDADES VALUES('2', 2);
+INSERT INTO SENSEIS_ACTIVIDADES VALUES('3', 3);
+INSERT INTO SENSEIS_ACTIVIDADES VALUES('4', 4);
+INSERT INTO SENSEIS_ACTIVIDADES VALUES('5', 5);
+INSERT INTO SENSEIS_ACTIVIDADES VALUES('6', 6);
 
 
 DROP TABLE TRANSACCIONES;
 CREATE TABLE TRANSACCIONES(
 	CODTRANSACCION INT AUTO_INCREMENT,
     CODACTIVIDAD INT,
-    EMISOR VARCHAR(20),
-    RECEPTOR VARCHAR(20),
+    EMISOR INT,
+    RECEPTOR INT,
     CANTIDAD DECIMAL(5,2),
     ESTADO VARCHAR(15),
     
     PRIMARY KEY (CODTRANSACCION),
     FOREIGN KEY (CODACTIVIDAD) REFERENCES ACTIVIDADES(CODACTIVIDAD),
-    FOREIGN KEY (EMISOR) REFERENCES PUPILOS(NICK),
-    FOREIGN KEY (RECEPTOR) REFERENCES SENSEIS(NICK)
+    FOREIGN KEY (EMISOR) REFERENCES PUPILOS(ID),
+    FOREIGN KEY (RECEPTOR) REFERENCES SENSEIS(ID)
 )ENGINE=InnoDB;
 
 INSERT INTO TRANSACCIONES (CODACTIVIDAD, EMISOR, RECEPTOR, CANTIDAD, ESTADO) 
-VALUES(1, 'pupilo0', 'sensei0', 2.5, 'PAGADO');
+VALUES(1, '1', '1', 2.5, 'PAGADO');
 INSERT INTO TRANSACCIONES (CODACTIVIDAD, EMISOR, RECEPTOR, CANTIDAD, ESTADO) 
-VALUES(2, 'pupilo1', 'sensei1', 3.2, 'PAGADO');
+VALUES(2, '2', '2', 3.2, 'PAGADO');
 INSERT INTO TRANSACCIONES (CODACTIVIDAD, EMISOR, RECEPTOR, CANTIDAD, ESTADO) 
-VALUES(3, 'pupilo2', 'sensei2', 12, 'PAGADO');
+VALUES(3, '3', '3', 12, 'PAGADO');
 INSERT INTO TRANSACCIONES (CODACTIVIDAD, EMISOR, RECEPTOR, CANTIDAD, ESTADO) 
-VALUES(4, 'pupilo3', 'sensei3', 7, 'PAGADO');
+VALUES(4, '4', '4', 7, 'PAGADO');
 INSERT INTO TRANSACCIONES (CODACTIVIDAD, EMISOR, RECEPTOR, CANTIDAD, ESTADO) 
-VALUES(5, 'pupilo4', 'sensei4', 0, 'FREE');
+VALUES(5, '5', '5', 0, 'FREE');
 INSERT INTO TRANSACCIONES (CODACTIVIDAD, EMISOR, RECEPTOR, CANTIDAD, ESTADO) 
-VALUES(5, 'pupilo5', 'sensei5', 12.5, 'PAGADO');
+VALUES(5, '6', '6', 12.5, 'PAGADO');
