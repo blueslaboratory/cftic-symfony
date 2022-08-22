@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}¡Iniciar sesión!{% endblock %}
+{% block title %}Iniciar sesión{% endblock %}
 
 
 {% block stylesheets %}
     <style>
         *{
-            /* border: 2px solid blue;  */
+            /* border: 2px solid blue; */
         }
 
         body{
@@ -15,23 +15,46 @@
 
         form{
             margin-top: 50%;
-            /* border: 2px solid orange;  */
+            border: 4px solid orange;
+            padding: 1%;
+        }
+
+        .mb-3{
+            text-align: right;
         }
 
         .loginBox{
-            /* border: 1px solid red; */
-            /* text-align: center; */
+            border: 4px solid orangered;
+            text-align: center;
+            padding: 10%;
         }
 
+        .logo img{
+            object-fit: contain;
+            height: auto;
+            max-width: 100%;
+        }
+
+        /* 
         label{
             display: inline-block;
             width: 80px;
             text-align: left;
+        } 
+        */
+
+        input{
+            width: 180px;
         }
 
         button{
-            padding: 1% 20%;
+            width: 188px;
+            /* padding: 1% 20%; */
+            border: 2px solid orange;
+            background-color: orangered;
+            color: whitesmoke;
         }
+        
     </style>
 {% endblock %}
 
@@ -49,13 +72,16 @@
     {% endif %}
 
     <div class="loginBox">
-        <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
+        <div class="logo">
+            <img src="images/waydo-banner.jpg" alt="logo waydo">
+        </div>
+        <br><br>
 
-        <label for="inputNick">nick</label>
-        <input type="text" value="{{ last_username }}" name="nick" id="inputNick" class="form-control" autocomplete="username" required autofocus>
+        {# <label for="inputNick">nick </label> #}
+        <input type="text" value="{{ last_username }}" name="nick" id="inputNick" class="form-control" autocomplete="username" required autofocus placeholder="nick">
         <br>
-        <label for="inputPassword">contraseña</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        {# <label for="inputPassword">contraseña </label> #}
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="contraseña">
         <br><br>
         <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}"
@@ -76,7 +102,13 @@
             Iniciar sesión
         </button>
 
+        <br><br>
+        <p style="font-size: 0.9em;">¿No tienes una cuenta? <a href="{{ path('app_register') }}">Regístrate</a></p>
     </div>
     
 </form>
+{% endblock %}
+
+{% block footer %}
+
 {% endblock %}

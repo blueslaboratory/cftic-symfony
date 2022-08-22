@@ -2,16 +2,85 @@
 
 {% block title %}Register{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        *{
+            /* border: 2px solid blue; */
+        }
+
+        body{
+            margin: 0 40%;
+        }
+
+        form{
+            margin-top: 50%;
+            border: 4px solid orange;
+            padding: 1%;
+        }
+
+        .registerBox{
+            border: 4px solid orangered;
+            text-align: center;
+            padding: 10%;
+        }
+
+        .logo img{
+            object-fit: contain;
+            height: auto;
+            max-width: 100%;
+        }
+
+        h4{
+            margin-left: 3%;
+            text-align: left;
+            text-decoration: underline;
+        }
+
+        label {
+            display: inline-block;
+            text-align: left;
+            width: 70px;
+        }
+
+        input{
+            width: 140px;
+            margin-bottom: 1%;
+        }
+
+        button{
+            width: 188px;
+            /* padding: 1% 20%; */
+            border: 2px solid orange;
+            background-color: orangered;
+            color: whitesmoke;
+        }
+
+    </style>
+{% endblock %}
+
 {% block body %}
-    <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.nick) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="registerBox">
+            <div class="logo">
+                <img src="images/waydo-banner.jpg" alt="logo waydo">
+            </div>
+            <br>
 
-        <button type="submit" class="btn">Register</button>
+            <h4>Registro</h4>
+            {{ form_row(registrationForm.nick, {'attr': {'class': 'registrationField'}}) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password', 
+                'attr': {'class': 'registrationField'}
+            }) }}
+            <br>
+            {{ form_row(registrationForm.agreeTerms)}}
+
+            <br><br>
+            <button type="submit" class="btn">Registrarse</button>
+
+            <br><br>
+            <p style="font-size: 0.9em;">¿Tienes una cuenta? <a href="{{ path('app_login') }}">Entrar</a></p>
+        </div>
     {{ form_end(registrationForm) }}
 {% endblock %}
