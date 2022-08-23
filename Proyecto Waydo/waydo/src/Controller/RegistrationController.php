@@ -29,6 +29,18 @@ class RegistrationController extends AbstractController
                 $form->get('nick')->getData()
             );
 
+            $user->setEmail(
+                $form->get('email')->getData()
+            );
+
+            $user->setTelefono(
+                $form->get('telefono')->getData()
+            );
+/*
+            $user->setDistrito(
+                $form->get('distrito')->getData()
+            );
+*/
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

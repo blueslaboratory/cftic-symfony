@@ -45,7 +45,7 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @ORM\Column(name="EMAIL", type="string", length=40, nullable=true, options={"default"="NULL"})
      */
-    private $email = 'NULL';
+    private $email = NULL;
 
     /**
      * @var int|null

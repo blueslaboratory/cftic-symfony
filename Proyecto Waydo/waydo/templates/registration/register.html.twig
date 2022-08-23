@@ -39,12 +39,16 @@
         label {
             display: inline-block;
             text-align: left;
-            width: 70px;
+            width: 80px;
         }
 
         input{
             width: 140px;
             margin-bottom: 1%;
+        }
+
+        .agreeTermsCheckBox{
+            width: 50px;
         }
 
         button{
@@ -69,12 +73,17 @@
 
             <h4>Registro</h4>
             {{ form_row(registrationForm.nick, {'attr': {'class': 'registrationField'}}) }}
+            {{ form_row(registrationForm.email, {'attr': {'class': 'registrationField'}}) }}
+            {{ form_row(registrationForm.telefono, {'attr': {'class': 'registrationField'}}) }}
+            {# {{ form_row(registrationForm.distrito, {'attr': {'class': 'registrationField'}}) }} #}
             {{ form_row(registrationForm.plainPassword, {
                 label: 'Password', 
                 'attr': {'class': 'registrationField'}
             }) }}
             <br>
-            {{ form_row(registrationForm.agreeTerms)}}
+            {{ form_row(registrationForm.agreeTerms, {
+                'attr': {'class': 'agreeTermsCheckBox'}
+            }) }}
 
             <br><br>
             <button type="submit" class="btn">Registrarse</button>

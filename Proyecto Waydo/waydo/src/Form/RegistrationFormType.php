@@ -6,6 +6,8 @@ use App\Entity\Pupilos;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,14 +25,25 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'tu nick',
                 )
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
+            ->add('email', EmailType::class, [
+                'attr' => array(
+                    'placeholder' => 'tu email',
+                )
             ])
+            ->add('telefono', NumberType::class, [
+                'attr' => array(
+                    'placeholder' => 'tu telefono',
+                )
+            ])
+            /*
+            esto no funciona, distrito no es tipo text es tipo Localizacion pero
+            Could not load type "App\Entity\Localizacion": class does not implement "Symfony\Component\Form\FormTypeInterface".
+            ->add('distrito', TextType::class, [
+                'attr' => array(
+                    'placeholder' => 'tu distrito',
+                )
+            ])
+            */
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -48,6 +61,14 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Tu contraseña debe tener al menos {{ limit }} caracteres',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
+                    ]),
+                ],
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'Acepta nuestros términos.',
                     ]),
                 ],
             ])
