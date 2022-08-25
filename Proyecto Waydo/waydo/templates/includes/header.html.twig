@@ -8,7 +8,7 @@
             <li><a href="{{ path('contacto') }}">Contacto</a></li>|
             
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li><a href="{{ path('editRegister') }}"><strong class="user">{{app.user.nick}}</strong></a></li>
+                <li><a href="{{ path('editarRegistro') }}"><strong class="user">{{app.user.nick}}</strong></a></li>
             {% else %}
                 <li><a href="{{ path('app_login') }}">Iniciar Sesión</a></li>
             {% endif %}

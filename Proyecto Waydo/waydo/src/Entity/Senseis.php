@@ -101,6 +101,17 @@ class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
     private $distrito;
 
     /**
+     * @var \Localizacion|null
+     *
+     * @ORM\ManyToOne(targetEntity="Localizacion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="DISTRITO", referencedColumnName="DISTRITO"),
+     *   @ORM\JoinColumn(name="MUNICIPIO", referencedColumnName="MUNICIPIO")
+     * })
+     */
+    private $municipio;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Actividades", inversedBy="nickSa")
@@ -248,6 +259,18 @@ class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDistrito(?Localizacion $distrito): self
     {
         $this->distrito = $distrito;
+
+        return $this;
+    }
+
+    public function getMunicipio(): ?Localizacion
+    {
+        return $this->municipio;
+    }
+
+    public function setMunicipio(?Localizacion $municipio): self
+    {
+        $this->municipio = $municipio;
 
         return $this;
     }

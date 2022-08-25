@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+use Symfony\Component\Security\Core\Security;
+
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
@@ -65,10 +67,41 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    
-    #[Route('/editRegister', name: 'editRegister')]
-    public function editRegister(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    // localhost:8000/editarRegistro
+    #[Route('/editarRegistro', name: 'editarRegistro')]
+    public function editarRegistro(Request $request, EntityManagerInterface $em, Security $security)
     {
-        return $this->render('registration/editRegister.html.twig', []);
+        $pupilo = $security->getUser();
+        dump($pupilo);
+        return $this->render('registration/editarRegistro.html.twig', [
+            'pupilo' => $pupilo
+        ]);
     }
+    /*
+    // localhost:8000/modificarRegistro
+    #[Route('/modificarRegistro', name: 'modificarRegistro')]
+    public function modificarRegistro(Request $request, EntityManagerInterface $em)
+    {
+        // Podemos obtener el EntityManager a través de inyección de dependencias con el argumento EntityManagerInterface $em
+        // 1) recibir datos del formulario
+        $identificador = intval($request->request->get('txtId'));
+        dump($identificador);
+        $nombre = $request->request->get('txtNombre');
+        dump($nombre);
+        $loc = $request->request->get('txtLoc');
+        dump($loc);
+
+        $departamento = $em->getRepository(Dept::class)->find($identificador);
+
+        $departamento->setDnombre($nombre);
+        $departamento->setLoc($loc);
+
+        $em->persist($departamento);
+        // Para ejecutar las queries pendientes, se utiliza flush().
+
+        $em->flush();
+
+        return $this->redirectToRoute("editarRegistro");
+    }
+    */
 }

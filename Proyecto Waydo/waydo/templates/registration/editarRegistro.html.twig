@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Registro{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+<h1>Datos pupilo <em>{{app.user.nick}}</em></h1>
+
+    <form method="POST" action="{{ path('editarRegistro') }}">
+        
+        <ul>
+            <label>
+                <li>ID</li>
+            </label>
+            <input type="text" name="txtId" id="txtId" value="{{pupilo.id}}" readonly>
+
+            <label>
+                <li>Nick</li>
+            </label>
+            <input type="text" name="txtNick" id="txtNick" value="{{pupilo.nick}}">
+            
+            <label>
+                <li>Email</li>
+            </label>
+            <input type="email" name="txtEmail" id="txtEmail" value="{{pupilo.email}}">
+
+            <label>
+                <li>Telefono</li>
+            </label>
+            <input type="tel" name="txtPhone" id="txtPhone" value="{{pupilo.telefono}}">
+
+            <label>
+                <li>Contraseña</li>
+            </label>
+            <input type="password" name="txtPassword" id="txtPassword" value="{{pupilo.password}}">
+
+            <label>
+                <li>Nombre</li>
+            </label>
+            <input type="text" name="txtNombre" id="txtNombre" value="{{pupilo.nombre}}">
+
+            <label>
+                <li>Apellidos</li>
+            </label>
+            <input type="text" name="txtApellidos" id="txtApellidos" value="{{pupilo.apellidos}}">
+
+            <label>
+                <li>Fecha de Nacimiento</li>
+            </label>
+            <input type="date" name="txtFnac" id="txtFnac" value="{{pupilo.fnac}}">
+
+            <label>
+                <li>Municipio</li>
+            </label>
+            <input type="text" name="txtMunicipio" id="txtMunicipio" value="{{pupilo.municipio}}">
+
+            <label>
+                <li>Distrito</li>
+            </label>
+            <input type="text" name="txtDistrito" id="txtDistrito" value="{{pupilo.distrito}}">
+
+            <label>
+                <li>Descripcion</li>
+            </label>
+            <input type="text" name="txtDescripcion" id="txtDescripcion" value="{{pupilo.descripcion}}">
+        </ul>
+
+        <button type="submit">
+            Editar
+        </button>
+    </form>
+{% endblock %}
