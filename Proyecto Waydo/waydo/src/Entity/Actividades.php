@@ -96,7 +96,7 @@ class Actividades
      *
      * @ORM\ManyToOne(targetEntity="Senseis")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="SENSEI", referencedColumnName="NICK")
+     * @ORM\JoinColumn(name="SENSEI", referencedColumnName="id")
      * })
      */
     private $sensei;

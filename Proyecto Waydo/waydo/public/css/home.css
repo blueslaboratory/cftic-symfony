@@ -56,13 +56,7 @@ body{
     }
 }
 */
-.cursiva{
-    font-style: italic;
-}
-.bold{
-    font-weight: 800;
-    text-decoration: solid;
-}
+
 .button{
     width: 50%;
     padding: 10px 25px;

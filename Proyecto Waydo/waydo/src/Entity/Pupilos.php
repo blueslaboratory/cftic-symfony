@@ -106,7 +106,7 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\ManyToMany(targetEntity="Actividades", inversedBy="nickPa")
      * @ORM\JoinTable(name="pupilos_actividades",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="NICK_PA", referencedColumnName="NICK")
+     *     @ORM\JoinColumn(name="NICK_PA", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
      *     @ORM\JoinColumn(name="CODACTIVIDAD_PA", referencedColumnName="CODACTIVIDAD")

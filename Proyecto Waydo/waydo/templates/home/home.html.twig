@@ -21,18 +21,28 @@
             <p>
                 ¡Descubre los distintos distritos de Madrid y todo lo que tienen que ofrecerte!
             </p>
-            <p class="cursiva">
+            <p>
+                <em>
                 Elige una actividad, encuentra un sensei en tu distrito, conviértete en su pupilo,
                 compite con otros barrios y distritos, sube en el ranking y gana premios.
+                </em>
             </p>
             <p>
-                No nos mires 👀... <span class="bold"><a href="">únete</a></span>
+                No nos mires 👀... <strong><a href="">únete</a></strong>
             </p>
             <br><br>
+
             {# haciendo el div clickable #}
-            <div class="button" onclick="location.href='{{ path('actividades') }}';" style="cursor: pointer;">
-                VER ACTIVIDADES
-            </div>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div class="button" onclick="location.href='{{ path('actividadesFlipBox') }}';" style="cursor: pointer;">
+                    VER ACTIVIDADES
+                </div>
+            {% else %}
+                <div class="button" onclick="location.href='{{ path('actividades') }}';" style="cursor: pointer;">
+                    VER ACTIVIDADES
+                </div>
+            {% endif %}
+            
         </div>
         <div class="right">
             <img src="images/distritos-de-madrid.jpg" alt="distritos de Madrid">

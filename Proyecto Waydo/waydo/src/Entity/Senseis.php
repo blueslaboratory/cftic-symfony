@@ -24,7 +24,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
-
     /**
      * @var int
      *
@@ -107,7 +106,7 @@ class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\ManyToMany(targetEntity="Actividades", inversedBy="nickSa")
      * @ORM\JoinTable(name="senseis_actividades",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="NICK_SA", referencedColumnName="NICK")
+     *     @ORM\JoinColumn(name="NICK_SA", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
      *     @ORM\JoinColumn(name="CODACTIVIDAD_SA", referencedColumnName="CODACTIVIDAD")
@@ -125,6 +124,11 @@ class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->codactividadSa = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getNick(): ?string

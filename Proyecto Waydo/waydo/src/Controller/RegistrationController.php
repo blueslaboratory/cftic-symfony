@@ -64,4 +64,11 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+
+    
+    #[Route('/editRegister', name: 'editRegister')]
+    public function editRegister(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    {
+        return $this->render('registration/editRegister.html.twig', []);
+    }
 }
