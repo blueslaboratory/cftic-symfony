@@ -66,14 +66,14 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @ORM\Column(name="NOMBRE", type="string", length=20, nullable=true, options={"default"="NULL"})
      */
-    private $nombre = 'NULL';
+    private $nombre = NULL;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="APELLIDOS", type="string", length=20, nullable=true, options={"default"="NULL"})
      */
-    private $apellidos = 'NULL';
+    private $apellidos = NULL;
 
     /**
      * @var \DateTime|null
@@ -87,7 +87,7 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @ORM\Column(name="DESCRIPCION", type="text", length=16777215, nullable=true, options={"default"="NULL"})
      */
-    private $descripcion = 'NULL';
+    private $descripcion = NULL;
 
     /**
      * @var \Localizacion|null
@@ -228,12 +228,12 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFnac(): ?\DateTimeInterface
+    public function getFnac(): ?\DateTime
     {
         return $this->fnac;
     }
 
-    public function setFnac(?\DateTimeInterface $fnac): self
+    public function setFnac(?\DateTime $fnac): self
     {
         $this->fnac = $fnac;
 

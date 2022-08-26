@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use DateTime;
 
 use Symfony\Component\Security\Core\Security;
 
@@ -69,39 +69,80 @@ class RegistrationController extends AbstractController
 
     // localhost:8000/editarRegistro
     #[Route('/editarRegistro', name: 'editarRegistro')]
-    public function editarRegistro(Request $request, EntityManagerInterface $em, Security $security)
+    public function editarRegistro(Security $security)
     {
         $pupilo = $security->getUser();
         dump($pupilo);
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('registration/editarRegistro.html.twig', [
             'pupilo' => $pupilo
         ]);
     }
-    /*
+    
     // localhost:8000/modificarRegistro
     #[Route('/modificarRegistro', name: 'modificarRegistro')]
-    public function modificarRegistro(Request $request, EntityManagerInterface $em)
+    public function modificarRegistro(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $userPasswordHasher,)
     {
         // Podemos obtener el EntityManager a través de inyección de dependencias con el argumento EntityManagerInterface $em
         // 1) recibir datos del formulario
-        $identificador = intval($request->request->get('txtId'));
-        dump($identificador);
+        $id = intval($request->request->get('txtId'));
+        dump($id);
+        $nick = $request->request->get('txtNick');
+        dump($nick);
+        $email = $request->request->get('txtEmail');
+        dump($email);
+        $telefono = $request->request->get('txtPhone');
+        dump($telefono);
+        $password = $request->request->get('txtPassword');
+        dump($password);
         $nombre = $request->request->get('txtNombre');
         dump($nombre);
-        $loc = $request->request->get('txtLoc');
-        dump($loc);
+        $apellidos = $request->request->get('txtApellidos');
+        dump($apellidos);
 
-        $departamento = $em->getRepository(Dept::class)->find($identificador);
+        $fnac = $request->request->get('txtFnac');
+        dump($fnac);
+        $date = new DateTime($fnac);
+        dump($date);
 
-        $departamento->setDnombre($nombre);
-        $departamento->setLoc($loc);
+        $municipio = $request->request->get('txtMunicipio');
+        dump($municipio);
+        $distrito = $request->request->get('txtDistrito');
+        dump($distrito);
+        $descripcion = $request->request->get('txtDescripcion');
+        dump($descripcion);
 
-        $em->persist($departamento);
+        $pupilo = $em->getRepository(Pupilos::class)->find($id);
+
+        $pupilo->setNick($nick);
+        $pupilo->setEmail($email);
+        $pupilo->setTelefono($telefono);        
+        $pupilo->setPassword(
+            $userPasswordHasher->hashPassword(
+                $pupilo,
+                $password
+            )
+        );
+        $pupilo->setNombre($nombre);
+        $pupilo->setApellidos($apellidos);
+        $pupilo->setFnac($date);
+        
+        /*
+        $pupilo->setMunicipio($municipio);
+        $pupilo->setDistrito($distrito);
+        */
+        $pupilo->setDescripcion($descripcion);
+
+        $em->persist($pupilo);
         // Para ejecutar las queries pendientes, se utiliza flush().
 
         $em->flush();
 
-        return $this->redirectToRoute("editarRegistro");
+        //return $this->redirectToRoute("editarRegistro");
+        return $this->render('registration/editarRegistro.html.twig', [
+            'mensaje' => 'Edición realizada',
+            'pupilo' => $pupilo
+        ]);
     }
-    */
+    
 }

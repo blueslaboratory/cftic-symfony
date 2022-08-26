@@ -3,73 +3,111 @@
 {% block title %}Editar Registro{% endblock %}
 
 {% block stylesheets %}
+<style>
+    body {
+        margin: 0 30%;
+    }
+
+    form {
+        margin-top: 20%;
+        border: 4px solid orange;
+        padding: 1%;
+    }
+
+    .registerBox {
+        border: 4px solid orangered;
+        text-align: center;
+        padding: 10%;
+    }
+
+    .logo img {
+        object-fit: contain;
+        height: auto;
+        max-width: 100%;
+    }
+
+    h3 {
+        margin-left: 3%;
+        text-align: left;
+        text-decoration: underline;
+    }
+
+    label {
+        display: inline-block;
+        text-align: left;
+        width: 80px;
+    }
+
+    input {
+        width: 140px;
+        margin-bottom: 1%;
+    }
+
+    button {
+        width: 188px;
+        /* padding: 1% 20%; */
+        border: 2px solid orange;
+        background-color: orangered;
+        color: whitesmoke;
+    }
+</style>
+
 
 {% endblock %}
 
 {% block body %}
-<h1>Datos pupilo <em>{{app.user.nick}}</em></h1>
 
-    <form method="POST" action="{{ path('editarRegistro') }}">
+<form method="POST" action="{{ path('modificarRegistro') }}">
+
+    <div class="registerBox">
+        <div class="logo">
+            <img src="images/waydo-banner.jpg" alt="logo waydo">
+        </div>
+        <br>
+        {% if mensaje %}
+            <strong><em style="color: green;">{{mensaje}}</em></strong>
+        {% endif %}
         
-        <ul>
-            <label>
-                <li>ID</li>
-            </label>
-            <input type="text" name="txtId" id="txtId" value="{{pupilo.id}}" readonly>
+        <h3>Datos pupilo <em>{{app.user.nick}}</em></h3>
+ 
+        {# <label>ID</label> #}
+        <input type="hidden" name="txtId" id="txtId" value="{{pupilo.id}}" readonly>
 
-            <label>
-                <li>Nick</li>
-            </label>
-            <input type="text" name="txtNick" id="txtNick" value="{{pupilo.nick}}">
-            
-            <label>
-                <li>Email</li>
-            </label>
-            <input type="email" name="txtEmail" id="txtEmail" value="{{pupilo.email}}">
+        <label>Nick</label>
+        <input type="text" name="txtNick" id="txtNick" value="{{pupilo.nick}}">
 
-            <label>
-                <li>Telefono</li>
-            </label>
-            <input type="tel" name="txtPhone" id="txtPhone" value="{{pupilo.telefono}}">
+        <label>Email</label>
+        <input type="email" name="txtEmail" id="txtEmail" value="{{pupilo.email}}">
 
-            <label>
-                <li>Contraseña</li>
-            </label>
-            <input type="password" name="txtPassword" id="txtPassword" value="{{pupilo.password}}">
+        <label>Telefono</label>
+        <input type="tel" name="txtPhone" id="txtPhone" value="{{pupilo.telefono}}">
 
-            <label>
-                <li>Nombre</li>
-            </label>
-            <input type="text" name="txtNombre" id="txtNombre" value="{{pupilo.nombre}}">
+        <label>Contraseña</label>
+        <input type="text" name="txtPassword" id="txtPassword" value="{{pupilo.password}}">
 
-            <label>
-                <li>Apellidos</li>
-            </label>
-            <input type="text" name="txtApellidos" id="txtApellidos" value="{{pupilo.apellidos}}">
+        <label>Nombre</label>
+        <input type="text" name="txtNombre" id="txtNombre" value="{{pupilo.nombre}}">
 
-            <label>
-                <li>Fecha de Nacimiento</li>
-            </label>
-            <input type="date" name="txtFnac" id="txtFnac" value="{{pupilo.fnac}}">
+        <label>Apellidos</label>
+        <input type="text" name="txtApellidos" id="txtApellidos" value="{{pupilo.apellidos}}">
 
-            <label>
-                <li>Municipio</li>
-            </label>
-            <input type="text" name="txtMunicipio" id="txtMunicipio" value="{{pupilo.municipio}}">
+        <label>Fecha de Nacimiento</label>
+        <input type="date" name="txtFnac" id="txtFnac" value="{{pupilo.fnac|date('Y-m-d')}}">
 
-            <label>
-                <li>Distrito</li>
-            </label>
-            <input type="text" name="txtDistrito" id="txtDistrito" value="{{pupilo.distrito}}">
+        <label>Municipio</label>
+        <input type="text" name="txtMunicipio" id="txtMunicipio" value="{{pupilo.municipio}}">
 
-            <label>
-                <li>Descripcion</li>
-            </label>
-            <input type="text" name="txtDescripcion" id="txtDescripcion" value="{{pupilo.descripcion}}">
-        </ul>
+        <label>Distrito</label>
+        <input type="text" name="txtDistrito" id="txtDistrito" value="{{pupilo.distrito}}">
 
-        <button type="submit">
+        <label>Descripcion</label>
+        <input type="text" name="txtDescripcion" id="txtDescripcion" value="{{pupilo.descripcion}}">
+
+        <br><br>
+        <button class="btn btn-lg btn-primary" type="submit">
             Editar
         </button>
-    </form>
+
+    </div>
+</form>
 {% endblock %}
