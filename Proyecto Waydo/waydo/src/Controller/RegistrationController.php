@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Localizacion;
 use App\Entity\Pupilos;
 use App\Form\RegistrationFormType;
 use App\Security\AppCustomAuthenticator;
@@ -75,6 +76,7 @@ class RegistrationController extends AbstractController
         dump($pupilo);
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('registration/editarRegistro.html.twig', [
+            'mensaje' => null,
             'pupilo' => $pupilo
         ]);
     }
@@ -86,29 +88,35 @@ class RegistrationController extends AbstractController
         // Podemos obtener el EntityManager a través de inyección de dependencias con el argumento EntityManagerInterface $em
         // 1) recibir datos del formulario
         $id = intval($request->request->get('txtId'));
-        dump($id);
+        //dump($id);
         $nick = $request->request->get('txtNick');
-        dump($nick);
+        //dump($nick);
         $email = $request->request->get('txtEmail');
-        dump($email);
+        //dump($email);
         $telefono = $request->request->get('txtPhone');
-        dump($telefono);
+        //dump($telefono);
         $password = $request->request->get('txtPassword');
-        dump($password);
+        //dump($password);
         $nombre = $request->request->get('txtNombre');
-        dump($nombre);
+        //dump($nombre);
         $apellidos = $request->request->get('txtApellidos');
-        dump($apellidos);
+        //dump($apellidos);
 
         $fnac = $request->request->get('txtFnac');
-        dump($fnac);
+        //dump($fnac);
         $date = new DateTime($fnac);
-        dump($date);
+        //dump($date);
 
-        $municipio = $request->request->get('txtMunicipio');
-        dump($municipio);
-        $distrito = $request->request->get('txtDistrito');
-        dump($distrito);
+        $localizacion = new Localizacion();
+
+        $municipio_string = $request->request->get('txtMunicipio');
+        $localizacion->setMunicipio($municipio_string);
+        dump($localizacion);
+
+        $distrito_string = $request->request->get('txtDistrito');
+        $localizacion->setDistrito($distrito_string);
+        dump($localizacion);
+
         $descripcion = $request->request->get('txtDescripcion');
         dump($descripcion);
 
@@ -127,20 +135,24 @@ class RegistrationController extends AbstractController
         $pupilo->setApellidos($apellidos);
         $pupilo->setFnac($date);
         
-        /*
-        $pupilo->setMunicipio($municipio);
-        $pupilo->setDistrito($distrito);
-        */
+        
+        $pupilo->setMunicipio($localizacion);
+        $pupilo->setDistrito($localizacion);
+        
         $pupilo->setDescripcion($descripcion);
 
+        
+        $em->persist($localizacion);
         $em->persist($pupilo);
+        
+        
         // Para ejecutar las queries pendientes, se utiliza flush().
 
         $em->flush();
 
         //return $this->redirectToRoute("editarRegistro");
         return $this->render('registration/editarRegistro.html.twig', [
-            'mensaje' => 'Edición realizada',
+            'mensaje' => 'Datos editados correctamente',
             'pupilo' => $pupilo
         ]);
     }

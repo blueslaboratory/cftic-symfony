@@ -64,7 +64,7 @@
             <img src="images/waydo-banner.jpg" alt="logo waydo">
         </div>
         <br>
-        {% if mensaje %}
+        {% if mensaje != null %}
             <strong><em style="color: green;">{{mensaje}}</em></strong>
         {% endif %}
         
@@ -78,25 +78,29 @@
 
         <label>Email</label>
         <input type="email" name="txtEmail" id="txtEmail" value="{{pupilo.email}}">
+        <br>
 
         <label>Telefono</label>
         <input type="tel" name="txtPhone" id="txtPhone" value="{{pupilo.telefono}}">
 
         <label>Contraseña</label>
         <input type="text" name="txtPassword" id="txtPassword" value="{{pupilo.password}}">
+        <br>
 
         <label>Nombre</label>
         <input type="text" name="txtNombre" id="txtNombre" value="{{pupilo.nombre}}">
 
         <label>Apellidos</label>
         <input type="text" name="txtApellidos" id="txtApellidos" value="{{pupilo.apellidos}}">
+        <br>
 
         <label>Fecha de Nacimiento</label>
         <input type="date" name="txtFnac" id="txtFnac" value="{{pupilo.fnac|date('Y-m-d')}}">
 
         <label>Municipio</label>
         <input type="text" name="txtMunicipio" id="txtMunicipio" value="{{pupilo.municipio}}">
-
+        <br>
+        
         <label>Distrito</label>
         <input type="text" name="txtDistrito" id="txtDistrito" value="{{pupilo.distrito}}">
 
