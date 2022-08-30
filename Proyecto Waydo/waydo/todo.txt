@@ -1,0 +1,18 @@
+30/08/2022
+
+[X] 0. Añadir opcion de logout para cuando inicia sesion el usuario
+
+[] 1. Añadir una home page URL para despues del logout
+
+[] 2. En registro:
+    [] 2.1 Que se pueda poner municipio (Madrid) y distrito en un select (display)
+
+[] 3. En editar registro:
+    [] 3.1 Mostrar la password sin hashear en el recuadro
+    [] 3.2 Que funcione el select de distrito y el de municipio
+    [] 3.3 Como hacer para que no haya un persist porque no lo quiero meter en la tabla de localizacion
+    [] 3.4 La posibilidad de ser/no ser un sensei con un checkbox o con una select (yes/no)
+
+[] 4. Si eres sensei te sale la opcion de crear actividades en el home y rellenas un formulario y la puedes crear
+
+[] 5. La posibilidad de inscribirte en una actividad si has hecho el login

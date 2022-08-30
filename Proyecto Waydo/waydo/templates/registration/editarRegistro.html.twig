@@ -38,7 +38,7 @@
         width: 80px;
     }
 
-    input {
+    input, select {
         width: 140px;
         margin-bottom: 1%;
     }
@@ -84,7 +84,7 @@
         <input type="tel" name="txtPhone" id="txtPhone" value="{{pupilo.telefono}}">
 
         <label>Contraseña</label>
-        <input type="text" name="txtPassword" id="txtPassword" value="{{pupilo.password}}">
+        <input type="text" name="txtPassword" id="txtPassword" value="1234">
         <br>
 
         <label>Nombre</label>
@@ -98,11 +98,25 @@
         <input type="date" name="txtFnac" id="txtFnac" value="{{pupilo.fnac|date('Y-m-d')}}">
 
         <label>Municipio</label>
-        <input type="text" name="txtMunicipio" id="txtMunicipio" value="{{pupilo.municipio}}">
+        {# <input type="text" name="txtMunicipio" id="txtMunicipio" value="{{pupilo.municipio.municipio}}"> #}
+        <input type="text" name="txtMunicipio" id="txtMunicipio" value="MADRID" readonly>
         <br>
-        
+
         <label>Distrito</label>
-        <input type="text" name="txtDistrito" id="txtDistrito" value="{{pupilo.distrito}}">
+        {# <input type="text" name="txtDistrito" id="txtDistrito" value="{{pupilo.distrito.distrito}}"> #}
+        <select name="txtDistrito" id="txtDistrito">
+            {% for d in distritos %}
+                {% if seleccionado is defined and d.distrito == seleccionado %}
+                    <option value="{{d.distrito}}" selected>{{d.distrito}}</option>
+                    {# en estos framework la forma de acceder a la propiedad es
+                    poniendo el nombre de la propiedad, en realidad estas accediendo
+                    a través de un get.
+                    Si la varible es $num_cama y el get es getNumCama se pone numCama #}
+                {% else %}
+                    <option value="{{d.distrito}}">{{d.distrito}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
 
         <label>Descripcion</label>
         <input type="text" name="txtDescripcion" id="txtDescripcion" value="{{pupilo.descripcion}}">

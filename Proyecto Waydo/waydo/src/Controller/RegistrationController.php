@@ -70,13 +70,22 @@ class RegistrationController extends AbstractController
 
     // localhost:8000/editarRegistro
     #[Route('/editarRegistro', name: 'editarRegistro')]
-    public function editarRegistro(Security $security)
+    public function editarRegistro(Security $security, EntityManagerInterface $em)
     {
         $pupilo = $security->getUser();
         dump($pupilo);
+
+        $municipio = 'MADRID';
+        $query = $em->createQuery('SELECT DISTINCT(l.distrito) AS distrito FROM App\Entity\Localizacion l 
+                                   WHERE l.municipio = :m ORDER BY distrito ASC');
+        $query->setParameter('m', $municipio);
+        $distritos = $query->getResult();
+        // var_dump($distritos);
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('registration/editarRegistro.html.twig', [
             'mensaje' => null,
+            'distritos' => $distritos,
             'pupilo' => $pupilo
         ]);
     }
@@ -136,24 +145,35 @@ class RegistrationController extends AbstractController
         $pupilo->setFnac($date);
         
         
-        $pupilo->setMunicipio($localizacion);
-        $pupilo->setDistrito($localizacion);
+        //$pupilo->setMunicipio($localizacion);
+        //$pupilo->setDistrito($localizacion);
         
         $pupilo->setDescripcion($descripcion);
 
         
-        $em->persist($localizacion);
+        // persist lo mete en la DB de localizacion, no se puede hacer un persist de $localizacion 
+        //$em->persist($localizacion);
         $em->persist($pupilo);
         
         
         // Para ejecutar las queries pendientes, se utiliza flush().
-
         $em->flush();
 
+
+        // Coger los distritos:
+        $municipio = 'MADRID';
+        $query = $em->createQuery('SELECT DISTINCT(l.distrito) AS distrito FROM App\Entity\Localizacion l 
+                                   WHERE l.municipio = :m ORDER BY distrito ASC');
+        $query->setParameter('m', $municipio);
+        $distritos = $query->getResult();
+        
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         //return $this->redirectToRoute("editarRegistro");
         return $this->render('registration/editarRegistro.html.twig', [
             'mensaje' => 'Datos editados correctamente',
-            'pupilo' => $pupilo
+            'pupilo' => $pupilo,
+            'distritos' => $distritos
         ]);
     }
     
