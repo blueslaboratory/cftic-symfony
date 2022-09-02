@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        img {
+            height: 150px;
+        }
+        /* 
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+         */
+    </style>
+</head>
+
+<body>
+    <h1>BUSCADOR DE PELICULAS</h1>
+
+    {# 
+        cuando lo haces con GET habria que ponerle en el action el parametro al pasar
+    #}
+    <form method="POST" action="{{ path('apiBuscadorPeliculas') }}">
+        <label for="titulo">Titulo</label>
+        <input type="text" name="titulo">
+
+        <input type="submit" value="Buscar películas">
+    </form>
+
+    <table>
+        <tr>
+            <th>Foto</th>
+            <th>Titulo</th>
+            <th>Director</th>
+            <th>Argumento</th>
+            <th>Ver trailer</th>
+        </tr>
+
+        {% for p in peliculas %}
+        <tr>
+            <td><img src="{{p.foto}}" alt="imagen {{p.titulo}}"></td>
+            <td>{{p.titulo}}</td>
+            <td>{{p.director}}</td>
+            <td>{{p.argumento}}</td>
+            <td><iframe width="400" height="224" src="https://www.youtube.com/embed/{{p.youTube}}" title="Youtube trailer {{p.titulo}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>
