@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<H1>Empleados desde el Web API </H1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Apellido</th>
+            <th>Oficio</th>
+            <th>Salario</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in datosServicio %}
+        <tr>
+            <td>{{ e.apellido }}</td>
+            <td>{{ e.oficio }}</td>
+            <td>{{ e.salario }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+
+</html>
