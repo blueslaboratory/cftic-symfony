@@ -1,0 +1,14 @@
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\bin\Debug\netcoreapp2.1\ProyectoWebApi1.deps.json
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\bin\Debug\netcoreapp2.1\ProyectoWebApi1.runtimeconfig.json
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\bin\Debug\netcoreapp2.1\ProyectoWebApi1.runtimeconfig.dev.json
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\bin\Debug\netcoreapp2.1\ProyectoWebApi1.dll
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\bin\Debug\netcoreapp2.1\ProyectoWebApi1.pdb
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\obj\Debug\netcoreapp2.1\ProyectoWebApi1.csprojAssemblyReference.cache
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\obj\Debug\netcoreapp2.1\ProyectoWebApi1.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\obj\Debug\netcoreapp2.1\ProyectoWebApi1.RazorAssemblyInfo.cache
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\obj\Debug\netcoreapp2.1\ProyectoWebApi1.RazorAssemblyInfo.cs
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\obj\Debug\netcoreapp2.1\ProyectoWebApi1.AssemblyInfoInputs.cache
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\obj\Debug\netcoreapp2.1\ProyectoWebApi1.AssemblyInfo.cs
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\obj\Debug\netcoreapp2.1\ProyectoWebApi1.RazorTargetAssemblyInfo.cache
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\obj\Debug\netcoreapp2.1\ProyectoWebApi1.dll
+C:\xampp\htdocs\CFTIC\VisualStudio 2019\ProyectoWebApi1\ProyectoWebApi1\obj\Debug\netcoreapp2.1\ProyectoWebApi1.pdb
