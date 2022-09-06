@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="css/includes/footer.css">
     <title>Actividad</title>
     <style>
+        /* 
         * {
             border: 2px solid blue;
         }
+        */
 
         body {
             min-height: 100vh;
@@ -40,7 +42,7 @@
             justify-content: center;
             align-items: center;
             height: 100%;
-            width: 60%;
+            width: 50%;
             margin: 2%;
         }
 
@@ -53,7 +55,7 @@
             justify-content: center;
             align-items: center;
             height: 100%;
-            width: 40%;
+            width: 50%;
             margin: 2%;
         }
 
@@ -74,6 +76,12 @@
         }
         */
         
+        .inscripcion{
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
         .cursiva {
             font-style: italic;
         }
@@ -85,11 +93,11 @@
 
         .button {
             width: 30%;
+            margin: auto;
             padding: 10px 25px;
             border: 2px solid black;
             text-align: center;
             color: black;
-            float: right;
         }
 
         .button:hover {
@@ -106,12 +114,13 @@
 
 <body>
     
+    <!--
     <p>{{cod}}</p>
     <p>{{dump(actividad)}}</p>
     <p>{{dump(actividad[0])}}</p>
     <p>{{dump(actividad[0].actividad.distrito)}}</p>
     {{actividad[0].actividad.distrito.distrito}}
-    
+    -->
 
 
     {% include 'includes/header.html.twig' %}
@@ -123,33 +132,25 @@
             <img src="images/banner-detalle-actividad.jpg" alt="banner">
             <br><br><br>
             <p>
-                {# 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas voluptatem nihil, dolore id vitae vel
-                repellendus dolores officiis nobis quod atque eos nostrum ad velit sapiente beatae praesentium.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas voluptatem nihil, dolore id vitae vel
-                repellendus dolores officiis nobis quod atque eos nostrum ad velit sapiente beatae praesentium.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas voluptatem nihil, dolore id vitae vel
-                repellendus dolores officiis nobis quod atque eos nostrum ad velit sapiente beatae praesentium.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas voluptatem nihil, dolore id vitae vel
-                repellendus dolores officiis nobis quod atque eos nostrum ad velit sapiente beatae praesentium.
-                #}
                 {{actividad[0].actividad.descripcion}}
             </p>
             <br>
             {# haciendo el div clickable #}
-            <div class="button"
-                onclick="location.href='{{ path('actividadDetalle', {cod:actividad[0].actividad.codactividad}) }}';"
-                style="cursor: pointer;">
-                i n s c r i b i r m e
-            </div>
             
-            
-            
+
         </div>
         <div class="right">
             <h1>DISTRITO: {{actividad[0].actividad.distrito.distrito}}</h1>
             <img src="images/localizacion.jpg" alt="localizacion">
-            <p>Inscritos: {{actividad[0].actividad.inscritos}}/{{actividad[0].actividad.cupo}}</p>
+            
+            <br><br>
+            <div class="button" "inscripcion"
+                onclick="location.href='{{ path('inscripcion', {cod:actividad[0].actividad.codactividad}) }}';"
+                style="cursor: pointer;">
+                i n s c r i b i r m e
+            </div>
+
+            <p class="inscripcion">(Inscritos: {{actividad[0].actividad.inscritos}}/{{actividad[0].actividad.cupo}})</p>
         </div>
     </div>
 

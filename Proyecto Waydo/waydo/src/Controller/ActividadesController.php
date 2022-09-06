@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Symfony\Component\Security\Core\Security;
+
 class ActividadesController extends AbstractController
 {
     // localhost:8000/actividades
@@ -42,7 +44,6 @@ class ActividadesController extends AbstractController
             'actividades' => $actividades
         ]);
     }
-
 
     // localhost:8000/actividadesDistrito
     #[Route('/actividadesDistrito', name: 'actividadesDistrito')]
@@ -94,7 +95,6 @@ class ActividadesController extends AbstractController
         ]);
     }
 
-
     // localhost:8000/actividadDetalle
     #[Route('/actividadDetalle', name: 'actividadDetalle')]
     public function actividadDetalle(Request $request, EntityManagerInterface $em): Response
@@ -107,6 +107,57 @@ class ActividadesController extends AbstractController
         dump($query);
         $actividad = $query->getResult();
 
+        return $this->render('actividades/actividadDetalle.html.twig', [
+            'cod' => $datoget,
+            'actividad' => $actividad
+        ]);
+    }
+
+    // FALTA ESTO
+    // localhost:8000/inscripcion
+    #[Route('/inscripcion', name: 'inscripcion')]
+    public function inscripcion(Security $security, Request $request, EntityManagerInterface $em): Response
+    {
+        $datoget = intval($request->query->get('cod'));
+        // $actividad = $em->getRepository(Actividades::class)->findByCodActividad($datoget);
+        $query = $em->createQuery('SELECT a AS actividad FROM App\Entity\Actividades a 
+                                   WHERE a.codactividad = :c');
+        $query->setParameter('c', $datoget);
+        dump($query);
+        $actividad = $query->getResult();
+
+        $pupilo = $security->getUser();
+
+        // coger inscritos/cupo, codactividad
+        $query = $em->createQuery('SELECT i AS inscritos FROM App\Entity\Actividades i');
+        dump($query);
+        $inscritos = $query->getResult();
+        $query = $em->createQuery('SELECT c AS cupo FROM App\Entity\Actividades c');
+        $cupo = $query->getResult();
+        $query = $em->createQuery('SELECT c AS codactividad FROM App\Entity\Actividades c');
+        $codactividad = intval($query->getResult());
+
+        // comprobar que no esta en la tabla pupilos_actividades
+        $query = $em->createQuery('SELECT NICK_PA AS PA FROM App\Entity\Pupilos_Actividades PA
+                                   WHERE PA.CODACTIVIDAD_PA = :c');
+        $query->setParameter('c', $codactividad);
+        $nick = $query->getResult();
+
+        // inscripcion
+        if($inscritos >= $cupo){
+            $mensaje = "Lo sentimos, el cupo esta completo";
+        }
+        elseif(isset($nick)){
+            $mensaje = "Ya se encuentra inscrito en esta actividad";
+        }
+        else{
+            $actividad = $em->getRepository(Actividades::class)->find($datoget);
+            $actividad->setInscritos($inscritos+1);
+            
+            $mensaje = "Inscripcion realizada correctamente";
+        }
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('actividades/actividadDetalle.html.twig', [
             'cod' => $datoget,
             'actividad' => $actividad

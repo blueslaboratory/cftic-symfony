@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividades</title>
     <style>
+        /*
         * {
             border: 2px solid blue;
         }
+        */
 
         body {
             margin: 0 10%;
@@ -39,7 +41,7 @@
             box-sizing: border-box;
             justify-content: center;
             background-color: transparent;
-            width: 380px; 
+            width: 333px; 
             /* 600px da a 4 actividades por pagina */
             height: 300px;
             margin: 15px;
@@ -78,6 +80,10 @@
             background-color: orangered;
             color: white;
             transform: rotateY(180deg);
+        }
+
+        .descActividad {
+            padding: 5%;
         }
     </style>
 </head>
@@ -123,8 +129,9 @@
                     <p class="descActividad">
                         {{actividad.DESCRIPCION}}
                         
+                        <br>
                         <div class="button" onclick="location.href='{{ path('actividadDetalle', {cod:actividad.CODACTIVIDAD}) }}';" style="cursor: pointer;">
-                            MÁS INFORMACIÓN
+                            <strong><u><em>MÁS INFORMACIÓN</em></u></strong>
                         </div>
                     </p>
                 </div>

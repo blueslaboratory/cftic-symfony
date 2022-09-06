@@ -15,4 +15,5 @@
 
 [] 4. Si eres sensei te sale la opcion de crear actividades en el home y rellenas un formulario y la puedes crear
 
-[] 5. La posibilidad de inscribirte en una actividad si has hecho el login
+[hacer este] 5. La posibilidad de inscribirte en una actividad si has hecho el login
+ActividadesController
