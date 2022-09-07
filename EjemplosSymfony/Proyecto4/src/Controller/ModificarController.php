@@ -37,8 +37,8 @@ class ModificarController extends AbstractController
         $departamento->setLoc($loc);
 
         $em->persist($departamento);
+        
         // Para ejecutar las queries pendientes, se utiliza flush().
-
         $em->flush();
 
         return $this->redirectToRoute("modDepart");
@@ -55,7 +55,8 @@ class ModificarController extends AbstractController
     #[Route('/modificarH', name: 'ModifyH')]
     public function ModifyHospi(Request $request, EntityManagerInterface $em)
     {
-        // Podemos obtener el EntityManager a través de inyección de dependencias con el argumento EntityManagerInterface $em
+        // Podemos obtener el EntityManager a través de inyección de dependencias 
+        // con el argumento EntityManagerInterface $em
         // 1) recibir datos del formulario
         $identificador = $request->request->get('txtId');
         $nombre = $request->request->get('txtNombre');
@@ -72,8 +73,8 @@ class ModificarController extends AbstractController
 
 
         $em->persist($hospital);
+        
         // Para ejecutar las queries pendientes, se utiliza flush().
-
         $em->flush();
 
         return $this->redirectToRoute("modifiHospi");

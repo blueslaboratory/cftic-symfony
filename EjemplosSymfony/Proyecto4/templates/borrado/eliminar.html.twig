@@ -1,15 +1,14 @@
-{% extends 'borrado/baseEliminar.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %} Eliminar departamentos{% endblock %}
+
 {% block body %}
 <h1>Formulario Baja Departamentos</h1>
 
 <form method="POST" action="{{ path('eliminarDepart') }}">
 
     <div>
-        <label class="form-label">
-            Introduzca Id departamento
-        </label>
+        <label class="form-label">Introduzca Id departamento</label>
         <input type="text" name="txtId" class="form-control" id="txtId">
     </div>
 

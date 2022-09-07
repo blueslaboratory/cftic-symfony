@@ -35,17 +35,16 @@ class AltaController extends AbstractController
         $departamento = new Dept();
         $departamento->setDnombre($nombre);
         $departamento->setLoc($loc);
+        
         // Informamos a Doctrine de que queremos guardar el Grado (todavía no se ejecuta ninguna query)
-
         $em->persist($departamento);
+        
         // Para ejecutar las queries pendientes, se utiliza flush().
-
         $em->flush();
 
         // 3) redirigir al formulario. Coincide con eln nombre de la ruta del método anterior: name: 'nuevoDepart
         return $this->redirectToRoute("nuevoDepart");
     }
-
 
 
     // localhost:8000/altaDoctor
@@ -72,11 +71,11 @@ class AltaController extends AbstractController
         $doctor->setApellido($apellido);
         $doctor->setEspecialidad($especialidad);
         $doctor->setSalario($salario);
+        
         // Informamos a Doctrine de que queremos guardar el Grado (todavía no se ejecuta ninguna query)
-
         $em->persist($doctor);
+        
         // Para ejecutar las queries pendientes, se utiliza flush().
-
         $em->flush();
 
         // 3) redirigir al formulario. Coincide con eln nombre de la ruta del método anterior: name: 'nuevoDepart

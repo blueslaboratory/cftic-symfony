@@ -22,7 +22,6 @@ class MainController extends AbstractController
     // localhost:8000/herencia
     // Anotacion o decoracion, se le suele dar un name para llamarla a traves de otra funcion
     #[Route('/herencia', name: 'vistaH')]
-
     public function vistaH()
     {
         // $this hace referencia a la instancia de mi propia clase, vete a la funcion render de mi clase (heredada de AbstractController)

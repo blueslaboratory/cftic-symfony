@@ -178,7 +178,16 @@ class ActividadesController extends AbstractController
     #[Route('/crearActividad', name: 'crearActividad')]
     public function crearActividad(Request $request, EntityManagerInterface $em)
     {
-        return $this->render('actividades/actividadCrear.html.twig');
+        $municipio = 'MADRID';
+        $query = $em->createQuery('SELECT DISTINCT(l.distrito) AS distrito FROM App\Entity\Localizacion l 
+                                   WHERE l.municipio = :m ORDER BY distrito ASC');
+        $query->setParameter('m', $municipio);
+        $distritos = $query->getResult();
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('actividades/actividadCrear.html.twig', [
+            'distritos' => $distritos,
+        ]);
     }
 
     // localhost:8000/ingresoPaciente
@@ -203,13 +212,24 @@ class ActividadesController extends AbstractController
         }
     }
 
-     // localhost:8000/insertarPaciente
-     #[Route('/insertarPaciente', name: 'insertarPaciente')]
-     public function insertarPaciente(Request $request, EntityManagerInterface $em)
+     // localhost:8000/insertarActividad
+     #[Route('/insertarActividad', name: 'insertarActividad')]
+     public function insertarActividad(Request $request, EntityManagerInterface $em)
      {
         /*
         Procedimiento
-        CREATE procedure InsertarPaciente(IN insc int(11), IN ape varchar(40), IN dir varchar(50), IN fnac date, IN sex varchar(1), IN numSS int(11))
+        CREATE procedure insertarActividad(
+            IN apellido int(11), 
+            IN apellido varchar(40), 
+            IN direccion varchar(50), 
+            IN sensei date, 
+            IN precio varchar(1), 
+            IN inscritos int(11)),
+            
+            IN cupo varchar(50), 
+            IN finicio date, 
+            IN ffin varchar(1), 
+            IN descripcion int(11)),
         INSERT INTO enfermo(inscripcion, apellido, direccion, fecha_nac, sexo, nss) 
         VALUES(insc, ape, dir, fnac, sex, numSS);
         */

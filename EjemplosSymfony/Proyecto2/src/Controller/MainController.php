@@ -21,9 +21,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
+    // C:\Users\W10Alex\Desktop\CFTIC\EjemplosSymfony\Proyecto2> php -S localhost:8000 -t public/
+    // localhost:8000/lenguajes
     // Anotacion o decoracion, se le suele dar un name para llamarla a traves de otra funcion
     #[Route('/lenguajes', name: 'vistaPrincipal')]
-
     public function vistaPrincipal()
     {
         // $this hace referencia a la instancia de mi propia clase, vete a la funcion render de mi clase (heredada de AbstractController)
@@ -122,7 +123,7 @@ class MainController extends AbstractController
         $countImages = count($dirImagenes);
         dump($dirImagenes);
 
-        for ($i=0; $i < $countImages ; $i++) { 
+        for ($i=0; $i < $countImages; $i++) { 
             // offset -1 para que se vaya al final
             if(substr(($titulos[$i]), -1)!= '.'){
                 $titulos[$i] = str_replace('.jpg', '', strtolower($dirImagenes[$i]));
@@ -162,5 +163,3 @@ class MainController extends AbstractController
     }
 
 }
-
-

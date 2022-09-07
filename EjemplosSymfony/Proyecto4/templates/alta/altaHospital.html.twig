@@ -1,6 +1,7 @@
 {% extends 'indexHospi.html.twig' %}
 
 {% block title %} Alta hospital{% endblock %}
+
 {% block aside %}
 <br>
 <h3>Formulario Alta Hospital</h3>
@@ -9,30 +10,23 @@
 <form method="POST" action="{{ path('insertarHospital') }}">
 
     <div>
-        <label class="form-label">
-            Nombre
-        </label>
+        <label class="form-label">Nombre</label>
         <input type="text" name="txtNombre" class="form-control" id="txtNombre">
     </div>
     <div>
-        <label class="form-label">
-            Dirección
-        </label>
+        <label class="form-label">Dirección</label>
         <input type="text" name="txtDireccion" class="form-control" id="txtDireccion">
     </div>
     <div>
-        <label class="form-label">
-            Teléfono
-        </label>
+        <label class="form-label">Teléfono</label>
         <input type="text" name="txtTelefono" class="form-control" id="txtTelefono">
     </div>
     <div>
-        <label class="form-label">
-            Número de camas
-        </label>
+        <label class="form-label">Número de camas</label>
         <input type="number" name="numCama" class="form-control" id="numCama">
     </div>
     <br><br>
+
     <button type="submit" class="btn btn-primary">
         Alta Hospital
     </button>

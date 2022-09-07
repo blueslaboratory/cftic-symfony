@@ -26,8 +26,8 @@ class BorrarController extends AbstractController
     #[Route('/borrar', name: 'eliminarDepart')]
     public function borrarDepart(Request $request, EntityManagerInterface $em)
     {
-
         $identificador = $request->request->get('txtId');
+        dump($identificador);
         $datos = $em->getRepository(Dept::class)->find($identificador);
 
         if (!$datos) {
@@ -41,7 +41,6 @@ class BorrarController extends AbstractController
             'mensaje' => 'Dato eliminado correctamente:' . $identificador
         ]);
     }
-
 
 
     // localhost:8000/borrarHospi

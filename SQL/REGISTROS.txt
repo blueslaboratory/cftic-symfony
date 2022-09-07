@@ -23,7 +23,7 @@ insert into plantilla values(19,6,3106,'hernandez j.','ENFERMERO','T',275500);
 insert into plantilla values(18,4,6357,'karplus w.','INTERINO','T',337900);
 insert into plantilla values(22,6,1009,'higueras d.','ENFERMERA','T',200500);
 insert into plantilla values(22,6,8422,'bocina g.','ENFERMERO','M',163800);
-insert into plantilla values(22,2,9901,'nuñez c.','INTERINO','M',221000);
+insert into plantilla values(22,2,9901,'nuÃ±ez c.','INTERINO','M',221000);
 insert into plantilla values(22,1,6065,'rivera g.','ENFERMERA','N',162600);
 insert into plantilla values(22,1,7379,'carlos r.','ENFERMERA','T',211900);
 insert into plantilla values(45,4,1280,'amigo r.','INTERINO','N',221000);
@@ -49,16 +49,16 @@ INSERT INTO ENFERMO VALUES(18004,'Serrano V.','Alcala 12','1960/05/21','F',28499
 INSERT INTO ENFERMO VALUES(14024,'Fernandez N.','Recoletos','1967/07/23','F',321790059);
 INSERT INTO ENFERMO VALUES(36658,'Domin S.','Mayor 71','1942/01/01','M',160657471);
 INSERT INTO ENFERMO VALUES(38702,'Neal R.','Orense 21','1940/07/18','F',380010217);
-INSERT INTO ENFERMO VALUES(39217,'Cervantes M.','Perón 8','1952/02/19','M',440294390);
+INSERT INTO ENFERMO VALUES(39217,'Cervantes M.','Peron 8','1952/02/19','M',440294390);
 INSERT INTO ENFERMO VALUES(59076,'Miller G.','Lopez de Hoyos 2','1945/10/10','F',311969044);
 INSERT INTO ENFERMO VALUES(63827,'Ruiz P.','Esquerdo 103','1980/12/26','M',200973253);
 INSERT INTO ENFERMO VALUES(64882,'Fraser A.','Soto 3','1980/08/19','F',285201776);
 INSERT INTO ENFERMO VALUES(74835,'Benitez E.','Argentina 5','1956/10/05','M',154811767);
 
 insert into dept values(10,'CONTABILIDAD','SEVILLA');
-insert into dept values(20,'INVESTIGACIÓN','MADRID');
+insert into dept values(20,'INVESTIGACION','MADRID');
 insert into dept values(30,'VENTAS','BARCELONA');
-insert into dept values(40,'PRODUCCIÓN','BILBAO');
+insert into dept values(40,'PRODUCCION','BILBAO');
 
 insert into emp values('7839','rey','PRESIDENTE',null,'1995/11/17',650000,null,10);
 insert into emp values('7698','negro','DIRECTOR',7839,'1995/05/01',370500,0,30);
@@ -73,7 +73,7 @@ insert into emp values('7902','fernandez','ANALISTA',7566,'1995/12/11',390000,0,
 insert into emp values('7788','gil','ANALISTA',7566,'1995/11/09',390000,0,20);
 insert into emp values('7369','sanchez','EMPLEADO',7902,'1994/12/17',104000,0,20);
 insert into emp values('7876','alonso','EMPLEADO',7788,'1995/07/23',143000,0,20);
-insert into emp values('7934','muñoz','EMPLEADO',7782,'1996/01/23',169000,0,10);
+insert into emp values('7934','muÃ±oz','EMPLEADO',7782,'1996/01/23',169000,0,10);
 
 INSERT INTO OCUPACION VALUES(10995,13,3,1);
 INSERT INTO OCUPACION VALUES(18004,13,3,2);
