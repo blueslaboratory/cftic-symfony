@@ -113,11 +113,13 @@ class ActividadesController extends AbstractController
         ]);
     }
 
+
     // FALTA ESTO
     // localhost:8000/inscripcion
     #[Route('/inscripcion', name: 'inscripcion')]
     public function inscripcion(Security $security, Request $request, EntityManagerInterface $em): Response
     {
+
         $datoget = intval($request->query->get('cod'));
         // $actividad = $em->getRepository(Actividades::class)->findByCodActividad($datoget);
         $query = $em->createQuery('SELECT a AS actividad FROM App\Entity\Actividades a 
@@ -125,6 +127,8 @@ class ActividadesController extends AbstractController
         $query->setParameter('c', $datoget);
         dump($query);
         $actividad = $query->getResult();
+        dump($actividad);
+
 
         $pupilo = $security->getUser();
 
@@ -138,10 +142,10 @@ class ActividadesController extends AbstractController
         $codactividad = intval($query->getResult());
 
         // comprobar que no esta en la tabla pupilos_actividades
-        $query = $em->createQuery('SELECT NICK_PA AS PA FROM App\Entity\Pupilos_Actividades PA
-                                   WHERE PA.CODACTIVIDAD_PA = :c');
-        $query->setParameter('c', $codactividad);
-        $nick = $query->getResult();
+        // $query = $em->createQuery('SELECT NICK_PA AS PA FROM App\Entity\Pupilos_Actividades PA
+        //                            WHERE PA.CODACTIVIDAD_PA = :c');
+        // $query->setParameter('c', $codactividad);
+        // $nick = $query->getResult();
 
         // inscripcion
         if($inscritos >= $cupo){
@@ -152,15 +156,97 @@ class ActividadesController extends AbstractController
         }
         else{
             $actividad = $em->getRepository(Actividades::class)->find($datoget);
-            $actividad->setInscritos($inscritos+1);
+            $actividad->setInscritos(intval($inscritos)+1);
             
             $mensaje = "Inscripcion realizada correctamente";
         }
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // return $this->redirectToRoute("actividadDetalle");
+        
         return $this->render('actividades/actividadDetalle.html.twig', [
             'cod' => $datoget,
-            'actividad' => $actividad
+            'actividad' => $actividad,
+            'mensaje' => $mensaje
         ]);
     }
+
+
+    // FALTA ESTO
+    // VER proyect8 -> SesionPacientesController.php
+    // localhost:8000/crearActividad
+    #[Route('/crearActividad', name: 'crearActividad')]
+    public function crearActividad(Request $request, EntityManagerInterface $em)
+    {
+        return $this->render('actividades/actividadCrear.html.twig');
+    }
+
+    // localhost:8000/ingresoPaciente
+    #[Route('/ingresoPaciente', name: 'ingresoPaciente')]
+    public function ingresoPaciente(Request $request, EntityManagerInterface $em)
+    {
+        $numSS = $request->request->get('numSS');
+        $flag = $em->getRepository(Enfermo::class)->find($numSS);
+        
+        $session = $request->getSession();
+        $session->set('numSS', $numSS);
+        $sessionNumSS = $request->getSession()->get('numSS');
+
+        if($flag){
+            return $this->render('pacientes/inicioPacientes.html.twig',[
+                'mensaje' => 'ENFERMO YA INGRESADO',
+            ]);
+        }else{
+            return $this->render('pacientes/ingresoPaciente.html.twig',[
+                'numSS' => $sessionNumSS
+            ]);
+        }
+    }
+
+     // localhost:8000/insertarPaciente
+     #[Route('/insertarPaciente', name: 'insertarPaciente')]
+     public function insertarPaciente(Request $request, EntityManagerInterface $em)
+     {
+        /*
+        Procedimiento
+        CREATE procedure InsertarPaciente(IN insc int(11), IN ape varchar(40), IN dir varchar(50), IN fnac date, IN sex varchar(1), IN numSS int(11))
+        INSERT INTO enfermo(inscripcion, apellido, direccion, fecha_nac, sexo, nss) 
+        VALUES(insc, ape, dir, fnac, sex, numSS);
+        */
+
+        // $numSS = $request->getSession()->get('numSS');
+
+        $inscripcion = $request->request->get('nombre');
+        $apellido = $request->request->get('municipio');
+        $direccion = $request->request->get('distrito');
+        $sensei = $request->request->get('sensei');
+        $precio = $request->request->get('precio');
+        $inscritos = $request->request->get('inscritos');
+        $cupo = $request->request->get('cupo');
+        $finicio = $request->request->get('finicio');
+        $ffin = $request->request->get('ffin');
+        $descripcion = $request->request->get('descripcion');
+        
+
+
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("CALL InsertarPaciente(:inscripcion, :apellido, :direccion, :fecha_nac, :sexo, :nss)");
+        // aqui le puedo meter cualquier instruccion nativa de la base de datos
+
+        // parece que llegan como string pero automáticamente los castea 
+        // dump($numSS, $inscripcion, $apellido, $direccion, $fnac, $sexo);
+
+        $statement->bindValue('nss', $numSS);
+        $statement->bindValue('inscripcion', $inscripcion);
+        $statement->bindValue('apellido', $apellido);
+        $statement->bindValue('direccion', $direccion);
+        $statement->bindValue('fecha_nac', $fnac);
+        $statement->bindValue('sexo', $sexo);
+        
+        $statement->executeStatement();
+
+        return $this->render('pacientes/inicioPacientes.html.twig',[
+            'mensaje' => 'ENFERMO CON NÚMERO DE LA Seguridad Social ' . $numSS . ' INGRESADO CON ÉXITO'
+        ]);
+     }
 }

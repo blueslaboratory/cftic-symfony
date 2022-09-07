@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Actividad</title>
+    <style>
+        body{
+            background-color: lightgreen;
+            margin: 0 auto;
+            padding-left: 35%;
+        }
+        label, input{
+            display: inline-block;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CREAR ACTIVIDAD</h1>
+    <form method="POST" action="{{ path('crearActividad') }}">
+        <label for="nombre">Nombre</label>
+        <input name="nombre" type="text">
+        <br>
+        <label for="municipio">Municipio</label>
+        <input name="municipio" type="text">
+        <br>
+        <label for="distrito">Distrito</label>
+        <input name="distrito" type="text">
+        <br>
+        <label for="sensei">Sensei</label>
+        <input name="sensei" type="text">
+        <br>
+        <label for="precio">Precio</label>
+        <input name="precio" type="number">
+        <br>
+        <label for="inscritos">Inscritos</label>
+        <input name="inscritos" type="number">
+        <br>
+        <label for="cupo">Cupo</label>
+        <input name="cupo" type="number">
+        <br>
+        <label for="finicio">Fecha de inicio</label>
+        <input name="finicio" type="date">
+        <br>
+        <label for="ffin">Fecha de fin</label>
+        <input name="ffin" type="date">
+        <br>
+        <label for="descripcion">Descripcion</label>
+        <input name="descripcion" type="textarea">
+        <br>
+        <br>
+        <label for=""></label>
+        <input name="" type="submit" value="INGRESAR" style="width: auto;">
+        <br>
+    </form>
+</body>
+</html>

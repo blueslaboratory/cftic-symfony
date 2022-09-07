@@ -50,6 +50,7 @@ namespace ProyectoWebApi2.Controllers
         }
 
         // https://localhost:44385/api/Empleados
+        // https://proyectowebapi2.azurewebsites.net/api/Empleados
         // GET: api/Empleados
         [HttpGet]
         public List<Empleado> devolverDatos()
@@ -58,12 +59,25 @@ namespace ProyectoWebApi2.Controllers
         }
 
         // https://localhost:44385/api/Empleados/2
+        // https://proyectowebapi2.azurewebsites.net/api/Empleados/2
         [HttpGet("{id}")]
         public Empleado devolverEmpleado(int id)
         {
             // Esto es lambda, está en C, C++, Java, no se puede programar en prog asincrona sin lambdas
             // dice que va a subir un documento
             Empleado e = listaEmpleados.Find(z => z.id == id);
+            return e;
+        }
+
+
+        // https://localhost:44385/api/Empleados/devolverPorId/2
+        // https://proyectowebapi2.azurewebsites.net/api/Empleados/devolverPorId/2
+        [HttpGet("[action]/{id}")]
+        public List<Empleado> devolverPorId(int id)
+        {
+            List<Empleado> e =
+                listaEmpleados.Where(z => z.id == id).ToList();
+
             return e;
         }
     }

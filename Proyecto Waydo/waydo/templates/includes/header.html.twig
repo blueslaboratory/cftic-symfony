@@ -8,6 +8,7 @@
             <li><a href="{{ path('contacto') }}">Contacto</a></li>|
             
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li><a href="">Crear Actividad</a></li>|
                 <li><a href="{{ path('editarRegistro') }}"><strong class="user">{{app.user.nick}}</strong></a></li>|
                 <li><a href="{{ path('app_logout') }}">Logout</a></li>
             {% else %}

@@ -17,3 +17,5 @@
 
 [hacer este] 5. La posibilidad de inscribirte en una actividad si has hecho el login
 ActividadesController
+
+[] 6. Crear Actividad
