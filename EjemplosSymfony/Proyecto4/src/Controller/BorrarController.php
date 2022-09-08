@@ -54,7 +54,6 @@ class BorrarController extends AbstractController
     #[Route('/borrarH', name: 'eliminarHospi')]
     public function borrarHospi(Request $request, EntityManagerInterface $em)
     {
-
         $id = $request->request->get('txtId');
         $datos = $em->getRepository(Hospital::class)->find($id);
 
@@ -63,8 +62,10 @@ class BorrarController extends AbstractController
                 'mensaje' => 'Hospital no existe'
             ]);
         }
+
         $em->remove($datos);
         $em->flush();
+        
         return $this->render('borrado/ok.html.twig', [
             'mensaje' => 'Hospital ' .$id. ' eliminado correctamente:'
         ]);

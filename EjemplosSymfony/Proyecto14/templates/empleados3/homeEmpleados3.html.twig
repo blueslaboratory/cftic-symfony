@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebApi3Controller</title>
+</head>
+<body>
+    
+    {# WebApi3Controller #}
+    <form method="POST" action="{{ path('buscarId3') }}">
+        <label for="txtId">Id</label>
+        <input type="text" name="txtId" id="txtId">
+
+        <button type="submit">
+            Consultar
+        </button>
+    </form>
+
+    <br>
+
+    <form method="POST" action="{{ path('filtroSalarios') }}">
+        <label for="txtSalario">Salarios superiores a:</label>
+        <input type="text" name="txtSalario" id="txtSalario">
+
+        <button type="submit">
+            Consultar
+        </button>
+    </form>
+
+    <br>
+
+    {# WebApi3Controller #}
+    <a href="{{ path('empleados3') }}">Ver Todos</a>
+
+</body>
+</html>

@@ -75,8 +75,7 @@ namespace ProyectoWebApi2.Controllers
         [HttpGet("[action]/{id}")]
         public List<Empleado> devolverPorId(int id)
         {
-            List<Empleado> e =
-                listaEmpleados.Where(z => z.id == id).ToList();
+            List<Empleado> e = listaEmpleados.Where(z => z.id == id).ToList();
 
             return e;
         }

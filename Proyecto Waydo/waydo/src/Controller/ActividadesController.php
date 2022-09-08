@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Senseis;
+use App\Repository\SenseisRepository;
 use App\Entity\Localizacion;
 use App\Repository\LocalizacionRepository;
 use App\Entity\Actividades;
@@ -15,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Component\Security\Core\Security;
+use DateTime;
 
 class ActividadesController extends AbstractController
 {
@@ -119,7 +122,6 @@ class ActividadesController extends AbstractController
     #[Route('/inscripcion', name: 'inscripcion')]
     public function inscripcion(Security $security, Request $request, EntityManagerInterface $em): Response
     {
-
         $datoget = intval($request->query->get('cod'));
         // $actividad = $em->getRepository(Actividades::class)->findByCodActividad($datoget);
         $query = $em->createQuery('SELECT a AS actividad FROM App\Entity\Actividades a 
@@ -190,83 +192,54 @@ class ActividadesController extends AbstractController
         ]);
     }
 
-    // localhost:8000/ingresoPaciente
-    #[Route('/ingresoPaciente', name: 'ingresoPaciente')]
-    public function ingresoPaciente(Request $request, EntityManagerInterface $em)
-    {
-        $numSS = $request->request->get('numSS');
-        $flag = $em->getRepository(Enfermo::class)->find($numSS);
-        
-        $session = $request->getSession();
-        $session->set('numSS', $numSS);
-        $sessionNumSS = $request->getSession()->get('numSS');
-
-        if($flag){
-            return $this->render('pacientes/inicioPacientes.html.twig',[
-                'mensaje' => 'ENFERMO YA INGRESADO',
-            ]);
-        }else{
-            return $this->render('pacientes/ingresoPaciente.html.twig',[
-                'numSS' => $sessionNumSS
-            ]);
-        }
-    }
 
      // localhost:8000/insertarActividad
      #[Route('/insertarActividad', name: 'insertarActividad')]
      public function insertarActividad(Request $request, EntityManagerInterface $em)
      {
-        /*
-        Procedimiento
-        CREATE procedure insertarActividad(
-            IN apellido int(11), 
-            IN apellido varchar(40), 
-            IN direccion varchar(50), 
-            IN sensei date, 
-            IN precio varchar(1), 
-            IN inscritos int(11)),
-            
-            IN cupo varchar(50), 
-            IN finicio date, 
-            IN ffin varchar(1), 
-            IN descripcion int(11)),
-        INSERT INTO enfermo(inscripcion, apellido, direccion, fecha_nac, sexo, nss) 
-        VALUES(insc, ape, dir, fnac, sex, numSS);
-        */
-
-        // $numSS = $request->getSession()->get('numSS');
-
-        $inscripcion = $request->request->get('nombre');
-        $apellido = $request->request->get('municipio');
-        $direccion = $request->request->get('distrito');
-        $sensei = $request->request->get('sensei');
+        // Podemos obtener el EntityManager a través de inyección de dependencias con el argumento EntityManagerInterface $em
+        // 1) recibir datos del formulario
+        $nombre = $request->request->get('nombre');
+        $municipio = $request->request->get('municipio');
+        $distrito = $request->request->get('distrito');
+        $senseiNick = $request->request->get('sensei');
         $precio = $request->request->get('precio');
         $inscritos = $request->request->get('inscritos');
         $cupo = $request->request->get('cupo');
-        $finicio = $request->request->get('finicio');
-        $ffin = $request->request->get('ffin');
+        $finicio = new DateTime($request->request->get('finicio'));
+        $ffin = new DateTime($request->request->get('ffin'));
         $descripcion = $request->request->get('descripcion');
-        
 
+        // 2) dar de alta en bbdd 
+        $sensei = new Senseis();
+        $sensei->setNick($senseiNick);
+        dump($sensei);
 
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("CALL InsertarPaciente(:inscripcion, :apellido, :direccion, :fecha_nac, :sexo, :nss)");
-        // aqui le puedo meter cualquier instruccion nativa de la base de datos
+        //$localizacion2 = $em->getRepository(Localizacion::class)->find($municipio);
+        //dump($localizacion2);
+        $localizacion = new Localizacion();
+        $localizacion->setMunicipio($municipio);
+        $localizacion->setDistrito($distrito);
+        dump($localizacion);
 
-        // parece que llegan como string pero automáticamente los castea 
-        // dump($numSS, $inscripcion, $apellido, $direccion, $fnac, $sexo);
+        $actividad = new Actividades();
+        $actividad->setNombre($nombre);
+        $actividad->setSensei($sensei);
+        $actividad->setDistrito($localizacion);
+        $actividad->setPrecio($precio);
+        $actividad->setInscritos($inscritos);
+        $actividad->setCupo($cupo);
+        $actividad->setFechaInicio($finicio);
+        $actividad->setFechaFin($ffin);
+        $actividad->setDescripcion($descripcion);
 
-        $statement->bindValue('nss', $numSS);
-        $statement->bindValue('inscripcion', $inscripcion);
-        $statement->bindValue('apellido', $apellido);
-        $statement->bindValue('direccion', $direccion);
-        $statement->bindValue('fecha_nac', $fnac);
-        $statement->bindValue('sexo', $sexo);
-        
-        $statement->executeStatement();
+        // Informamos a Doctrine de que queremos guardar (todavía no se ejecuta ninguna query)
+        $em->persist($actividad);
 
-        return $this->render('pacientes/inicioPacientes.html.twig',[
-            'mensaje' => 'ENFERMO CON NÚMERO DE LA Seguridad Social ' . $numSS . ' INGRESADO CON ÉXITO'
-        ]);
+        // Para ejecutar las queries pendientes, se utiliza flush().
+        $em->flush();
+
+        // 3) redirigir al formulario.
+        return $this->redirectToRoute("actividadesFlipBox");
      }
 }

@@ -7,15 +7,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 // 06/09/2022
-
 // 07/09/2022
+
 // 75 - CREACION DE UN WEB SERVICE  RESTFUL
+
 // ProyectoWebApi2
+
 
 // PS C:\xampp\htdocs\CFTIC\EjemplosSymfony\Proyecto14> php -S localhost:8000 -t public/
 
-class WebApiController extends AbstractController
+class WebApi1Controller extends AbstractController
 {
+    // ProyectoWebApi1
     // http://localhost:8000/apiazure/
     #[Route('/apiazure', name: 'apiazure')]
     public function apiazure(Request $request)
@@ -34,7 +37,7 @@ class WebApiController extends AbstractController
     #[Route('/homeEmpleados', name: 'homeEmpleados')]
     public function homeEmpleados(Request $request)
     {
-        return $this->render('empleados/homeEmpleados.html.twig', [
+        return $this->render('empleados/homeEmpleados1.html.twig', [
         ]);
     }
 
@@ -47,7 +50,7 @@ class WebApiController extends AbstractController
         $datosEmpleados = json_decode($empleados, true);
         dump($datosEmpleados);
 
-        return $this->render('empleados/empleados.html.twig', [
+        return $this->render('empleados/empleados1.html.twig', [
             'empleados' => $datosEmpleados
         ]);
     }
@@ -64,8 +67,10 @@ class WebApiController extends AbstractController
         $datosEmpleados = json_decode($empleados, true);
         dump($datosEmpleados);
 
-        return $this->render('empleados/empleados.html.twig', [
+        return $this->render('empleados/empleados1.html.twig', [
             'empleados' => $datosEmpleados
         ]);
     }
+
+    
 }
