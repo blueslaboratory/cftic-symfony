@@ -103,14 +103,14 @@ class DQLController extends AbstractController
         $datos = $query->getResult();
         $count = $query1->getResult();
 
-        //var_dump($count[0]['c']);
+        //dump($count);
+        //dump($count[0]['c']);
         //echo $count[0];
 
         return $this->render('empleados/buscarEmpleados.html.twig', [
             'datosEmpleados' => $datos,
             'count' => $count[0]['c'], // ['c'] ->nombre donde tienes el atributo que tu quieres
             'parametroBusqueda' => $request->request->get('apellido'),
-            
         ]);
     }
 }

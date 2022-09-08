@@ -35,8 +35,10 @@ class BorrarController extends AbstractController
                 'mensaje' => 'Departamento no existe'
             ]);
         }
+
         $em->remove($datos);
         $em->flush();
+        
         return $this->render('borrado/ok.html.twig', [
             'mensaje' => 'Dato eliminado correctamente:' . $identificador
         ]);

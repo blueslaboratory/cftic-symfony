@@ -25,3 +25,6 @@ netstat -ano | findstr : port 3306
 2. Comprobar que los PID coinciden y ejecutar en el CMD:
 
 taskkill /PID typeyourPIDhere /F
+
+____________
+Altura Repaso: [Proyecto6]

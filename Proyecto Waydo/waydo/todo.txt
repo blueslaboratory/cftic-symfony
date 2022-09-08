@@ -26,3 +26,12 @@ ActividadesController
 Rehacer la DB sin referenciar las otras tablas, parece mas sencillo a la hora de rellenar los campos,
 no entiendo para que se utilizan los references, si solo complican las cosas al meter un objeto dentro 
 de la DB
+
+WORDS:
+a) TODAS LAS RELACIONES EN DOCTRINE.docx
+b) RELACIONES ENTRE ENTIDADES.docx
+
+Al editar el registro, no puedo darle un municipio, distrito porque en el persist de RegistrationController
+no me deja meterlos al ser entidades referenciadas, porque yo no las quiero meter con el flush en sus respectivas
+tablas, solo la quiero meter en la tabla de pupilos
+Pasa lo mismo con ActividadesController y las entidades Localizacion y Senseis

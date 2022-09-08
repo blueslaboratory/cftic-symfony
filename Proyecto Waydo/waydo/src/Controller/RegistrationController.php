@@ -151,7 +151,7 @@ class RegistrationController extends AbstractController
         $pupilo->setDescripcion($descripcion);
 
         
-        // persist lo mete en la DB de localizacion, no se puede hacer un persist de $localizacion 
+        // persist lo mete en la DB de localizacion despues, yo lo que quiero es seleccionarlo de una DB
         //$em->persist($localizacion);
         $em->persist($pupilo);
         

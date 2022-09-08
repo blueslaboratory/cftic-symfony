@@ -42,7 +42,7 @@ class AltaController extends AbstractController
         // Para ejecutar las queries pendientes, se utiliza flush().
         $em->flush();
 
-        // 3) redirigir al formulario. Coincide con eln nombre de la ruta del método anterior: name: 'nuevoDepart
+        // 3) redirigir al formulario. Coincide con el nombre de la ruta del método anterior: name: 'nuevoDepart'
         return $this->redirectToRoute("nuevoDepart");
     }
 

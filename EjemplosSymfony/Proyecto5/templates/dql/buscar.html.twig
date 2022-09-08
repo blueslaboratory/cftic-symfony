@@ -30,11 +30,11 @@
                 </tr>
             </thead>
             <tbody>
+                {% for a in apellidos %}
                 <tr>
-                    {% for a in apellidos %}
-                        <td>{{ a.apellido }}</td>
-                    {% endfor %}
+                    <td>{{ a.apellido }}</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     {% endif %}
