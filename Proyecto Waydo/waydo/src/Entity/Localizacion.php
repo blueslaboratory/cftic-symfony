@@ -74,22 +74,10 @@ class Localizacion
         return $this->municipio;
     }
 
-    public function setMunicipio(?string $municipio): self
-    {
-        $this->municipio = $municipio;
-
-        return $this;
-    }
-
     public function getDistrito(): ?string
     {
         return $this->distrito;
     }
 
-    public function setDistrito(?string $distrito): self
-    {
-        $this->distrito = $distrito;
 
-        return $this;
-    }
 }

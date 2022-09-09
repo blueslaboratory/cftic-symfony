@@ -100,12 +100,13 @@
 
         <!--
         Agregar en un futuro:
-        
+        -->
         <label>Municipio</label>
         {# <input type="text" name="txtMunicipio" id="txtMunicipio" value="{{pupilo.municipio.municipio}}"> #}
         <input type="text" name="txtMunicipio" id="txtMunicipio" value="MADRID" readonly>
         <br>
 
+        {# De proyecto4 templates/mostrar/verDepartamentos #}
         <label>Distrito</label>
         {# <input type="text" name="txtDistrito" id="txtDistrito" value="{{pupilo.distrito.distrito}}"> #}
         <select name="txtDistrito" id="txtDistrito">
@@ -121,7 +122,7 @@
                 {% endif %}
             {% endfor %}
         </select>
-        -->
+        
 
         <label>Descripcion</label>
         <input type="text" name="txtDescripcion" id="txtDescripcion" value="{{pupilo.descripcion}}">

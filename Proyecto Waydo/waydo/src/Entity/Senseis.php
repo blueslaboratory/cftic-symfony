@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use App\Repository\SenseisRepository;
@@ -14,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Senseis
  *
- * @ORM\Table(name="senseis", indexes={@ORM\Index(name="DISTRITO", columns={"DISTRITO", "MUNICIPIO"})})
+ * @ORM\Table(name="senseis")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\SenseisRepository")
  */
@@ -23,29 +21,28 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['nick'], message: 'There is already an account with this nick')]
 class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
 {
-
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="ID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="NICK", type="string", length=20, nullable=false)
+     * @ORM\Column(name="NICK", type="string", length=20, nullable=true, options={"default"="NULL"})
      */
-    private $nick;
+    private $nick = NULL;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="EMAIL", type="string", length=40, nullable=true, options={"default"="NULL"})
      */
-    private $email = 'NULL';
+    private $email = NULL;
 
     /**
      * @var int|null
@@ -57,85 +54,54 @@ class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(name="PASSWORD", type="string", length=20, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="PASSWORD", type="string", length=128, nullable=true, options={"default"="NULL"})
      */
-    private $password = 'NULL';
+    private $password = NULL;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="NOMBRE", type="string", length=20, nullable=true, options={"default"="NULL"})
      */
-    private $nombre = 'NULL';
+    private $nombre = NULL;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="APELLIDOS", type="string", length=20, nullable=true, options={"default"="NULL"})
      */
-    private $apellidos = 'NULL';
+    private $apellidos = NULL;
 
     /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="FNAC", type="date", nullable=true, options={"default"="NULL"})
      */
-    private $fnac = null;
+    private $fnac = NULL;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="MUNICIPIO", type="string", length=50, nullable=true, options={"default"="NULL"})
+     */
+    private $municipio = NULL;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="DISTRITO", type="string", length=50, nullable=true, options={"default"="NULL"})
+     */
+    private $distrito = NULL;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="DESCRIPCION", type="text", length=16777215, nullable=true, options={"default"="NULL"})
      */
-    private $descripcion = 'NULL';
-
-    /**
-     * @var \Localizacion|null
-     *
-     * @ORM\ManyToOne(targetEntity="Localizacion")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="DISTRITO", referencedColumnName="DISTRITO"),
-     *   @ORM\JoinColumn(name="MUNICIPIO", referencedColumnName="MUNICIPIO")
-     * })
-     */
-    private $distrito;
-
-    /**
-     * @var \Localizacion|null
-     *
-     * @ORM\ManyToOne(targetEntity="Localizacion")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="DISTRITO", referencedColumnName="DISTRITO"),
-     *   @ORM\JoinColumn(name="MUNICIPIO", referencedColumnName="MUNICIPIO")
-     * })
-     */
-    private $municipio;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Actividades", inversedBy="nickSa")
-     * @ORM\JoinTable(name="senseis_actividades",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="NICK_SA", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="CODACTIVIDAD_SA", referencedColumnName="CODACTIVIDAD")
-     *   }
-     * )
-     */
-    private $codactividadSa;
+    private $descripcion = NULL;
 
     #[ORM\Column]
     private array $roles = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->codactividadSa = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -188,7 +154,7 @@ class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
+     /**
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): ?string
@@ -239,6 +205,30 @@ class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getMunicipio(): ?string
+    {
+        return $this->municipio;
+    }
+
+    public function setMunicipio(?string $municipio): self
+    {
+        $this->municipio = $municipio;
+
+        return $this;
+    }
+
+    public function getDistrito(): ?string
+    {
+        return $this->distrito;
+    }
+
+    public function setDistrito(?string $distrito): self
+    {
+        $this->distrito = $distrito;
+
+        return $this;
+    }
+
     public function getDescripcion(): ?string
     {
         return $this->descripcion;
@@ -251,29 +241,6 @@ class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getDistrito(): ?Localizacion
-    {
-        return $this->distrito;
-    }
-
-    public function setDistrito(?Localizacion $distrito): self
-    {
-        $this->distrito = $distrito;
-
-        return $this;
-    }
-
-    public function getMunicipio(): ?Localizacion
-    {
-        return $this->municipio;
-    }
-
-    public function setMunicipio(?Localizacion $municipio): self
-    {
-        $this->municipio = $municipio;
-
-        return $this;
-    }
 
     /**
      * @see UserInterface
@@ -303,29 +270,5 @@ class Senseis implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-
-    /**
-     * @return Collection<int, Actividades>
-     */
-    public function getCodactividadSa(): Collection
-    {
-        return $this->codactividadSa;
-    }
-
-    public function addCodactividadSa(Actividades $codactividadSa): self
-    {
-        if (!$this->codactividadSa->contains($codactividadSa)) {
-            $this->codactividadSa[] = $codactividadSa;
-        }
-
-        return $this;
-    }
-
-    public function removeCodactividadSa(Actividades $codactividadSa): self
-    {
-        $this->codactividadSa->removeElement($codactividadSa);
-
-        return $this;
-    }
 
 }

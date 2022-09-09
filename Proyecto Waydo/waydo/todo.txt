@@ -20,9 +20,11 @@ ActividadesController
 
 [] 6. Crear Actividad
 
+[] 7. REHACER EL PROYECTO SIN REFERENCIAR A OTRAS TABLAS (quitar Foreign Keys), ver *Nota1
 
 
-?? 
+
+*Nota1: 
 Rehacer la DB sin referenciar las otras tablas, parece mas sencillo a la hora de rellenar los campos,
 no entiendo para que se utilizan los references, si solo complican las cosas al meter un objeto dentro 
 de la DB

@@ -1,0 +1,7 @@
+Netbeans 8.0.2
+(instalarlo seleccionando todo en el customize)
+
+1. Crear un proyecto Java Web
+2. Hibernate es como la coca-cola, pega con todo
+
+3. Utilizar Netbeans 8.2

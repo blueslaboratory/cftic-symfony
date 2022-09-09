@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use App\Repository\PupilosRepository;
@@ -14,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Pupilos
  *
- * @ORM\Table(name="pupilos", indexes={@ORM\Index(name="DISTRITO", columns={"DISTRITO", "MUNICIPIO"})})
+ * @ORM\Table(name="pupilos")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\PupilosRepository")
  */
@@ -23,22 +21,21 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['nick'], message: 'There is already an account with this nick')]
 class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
 {
-
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="ID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="NICK", type="string", length=20, nullable=false)
+     * @ORM\Column(name="NICK", type="string", length=20, nullable=true, options={"default"="NULL"})
      */
-    private $nick;
+    private $nick = NULL;
 
     /**
      * @var string|null
@@ -57,9 +54,9 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(name="PASSWORD", type="string", length=20, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="PASSWORD", type="string", length=128, nullable=true, options={"default"="NULL"})
      */
-    private $password = 'NULL';
+    private $password = NULL;
 
     /**
      * @var string|null
@@ -80,7 +77,21 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @ORM\Column(name="FNAC", type="date", nullable=true, options={"default"="NULL"})
      */
-    private $fnac = null;
+    private $fnac = NULL;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="MUNICIPIO", type="string", length=50, nullable=true, options={"default"="NULL"})
+     */
+    private $municipio = NULL;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="DISTRITO", type="string", length=50, nullable=true, options={"default"="NULL"})
+     */
+    private $distrito = NULL;
 
     /**
      * @var string|null
@@ -89,54 +100,8 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $descripcion = NULL;
 
-    /**
-     * @var \Localizacion|null
-     *
-     * @ORM\ManyToOne(targetEntity="Localizacion")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="DISTRITO", referencedColumnName="DISTRITO"),
-     *   @ORM\JoinColumn(name="MUNICIPIO", referencedColumnName="MUNICIPIO")
-     * })
-     */
-    private $distrito;
-
-    /**
-     * @var \Localizacion|null
-     *
-     * @ORM\ManyToOne(targetEntity="Localizacion")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="DISTRITO", referencedColumnName="DISTRITO"),
-     *   @ORM\JoinColumn(name="MUNICIPIO", referencedColumnName="MUNICIPIO")
-     * })
-     */
-    private $municipio;
-
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Actividades", inversedBy="nickPa")
-     * @ORM\JoinTable(name="pupilos_actividades",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="NICK_PA", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="CODACTIVIDAD_PA", referencedColumnName="CODACTIVIDAD")
-     *   }
-     * )
-     */
-    private $codactividadPa;
-
     #[ORM\Column]
     private array $roles = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->codactividadPa = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -228,14 +193,38 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFnac(): ?\DateTime
+    public function getFnac(): ?\DateTimeInterface
     {
         return $this->fnac;
     }
 
-    public function setFnac(?\DateTime $fnac): self
+    public function setFnac(?\DateTimeInterface $fnac): self
     {
         $this->fnac = $fnac;
+
+        return $this;
+    }
+
+    public function getMunicipio(): ?string
+    {
+        return $this->municipio;
+    }
+
+    public function setMunicipio(?string $municipio): self
+    {
+        $this->municipio = $municipio;
+
+        return $this;
+    }
+
+    public function getDistrito(): ?string
+    {
+        return $this->distrito;
+    }
+
+    public function setDistrito(?string $distrito): self
+    {
+        $this->distrito = $distrito;
 
         return $this;
     }
@@ -248,30 +237,6 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDescripcion(?string $descripcion): self
     {
         $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    public function getDistrito(): ?Localizacion
-    {
-        return $this->distrito;
-    }
-
-    public function setDistrito(?Localizacion $distrito): self
-    {
-        $this->distrito = $distrito;
-
-        return $this;
-    }
-
-    public function getMunicipio(): ?Localizacion
-    {
-        return $this->municipio;
-    }
-
-    public function setMunicipio(?Localizacion $municipio): self
-    {
-        $this->municipio = $municipio;
 
         return $this;
     }
@@ -303,30 +268,4 @@ class Pupilos implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
-
-    /**
-     * @return Collection<int, Actividades>
-     */
-    public function getCodactividadPa(): Collection
-    {
-        return $this->codactividadPa;
-    }
-
-    public function addCodactividadPa(Actividades $codactividadPa): self
-    {
-        if (!$this->codactividadPa->contains($codactividadPa)) {
-            $this->codactividadPa[] = $codactividadPa;
-        }
-
-        return $this;
-    }
-
-    public function removeCodactividadPa(Actividades $codactividadPa): self
-    {
-        $this->codactividadPa->removeElement($codactividadPa);
-
-        return $this;
-    }
-
 }

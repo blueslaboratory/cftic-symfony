@@ -28,10 +28,9 @@ namespace ProyectoWebApi3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // 76 - WEB API EMPLEADOS CORE pg 5
             String cadenaconexion = Configuration.GetConnectionString("cadenahospitalazure");
-
             services.AddTransient<RepositoryEmpleados>();
-
             services.AddDbContext<EmpleadosContext>(options => options.UseSqlServer(cadenaconexion));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

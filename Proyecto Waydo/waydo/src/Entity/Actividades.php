@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Actividades
  *
- * @ORM\Table(name="actividades", indexes={@ORM\Index(name="DISTRITO", columns={"DISTRITO", "MUNICIPIO"}), @ORM\Index(name="SENSEI", columns={"SENSEI"})})
+ * @ORM\Table(name="actividades")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\ActividadesRepository")
  */
@@ -34,7 +33,28 @@ class Actividades
     /**
      * @var string|null
      *
-     * @ORM\Column(name="PRECIO", type="decimal", precision=5, scale=2, nullable=true, options={"default"=0})
+     * @ORM\Column(name="MUNICIPIO", type="string", length=50, nullable=true, options={"default"="NULL"})
+     */
+    private $municipio = 'NULL';
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="DISTRITO", type="string", length=50, nullable=true, options={"default"="NULL"})
+     */
+    private $distrito = 'NULL';
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="SENSEI", type="integer", nullable=true, options={"default"="NULL"})
+     */
+    private $sensei = NULL;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="PRECIO", type="decimal", precision=5, scale=2, nullable=true, options={"default"="NULL"})
      */
     private $precio = 'NULL';
 
@@ -55,14 +75,14 @@ class Actividades
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="FECHA_INICIO", type="datetime", nullable=true, options={"default"="0001-01-01 00:00:00"})
+     * @ORM\Column(name="FECHA_INICIO", type="datetime", nullable=true, options={"default"="NULL"})
      */
     private $fechaInicio = 'NULL';
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="FECHA_FIN", type="datetime", nullable=true, options={"default"="0001-01-01 00:00:00"})
+     * @ORM\Column(name="FECHA_FIN", type="datetime", nullable=true, options={"default"="NULL"})
      */
     private $fechaFin = 'NULL';
 
@@ -80,50 +100,6 @@ class Actividades
      */
     private $descripcion = 'NULL';
 
-    /**
-     * @var \Localizacion|null
-     *
-     * @ORM\ManyToOne(targetEntity="Localizacion")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="DISTRITO", referencedColumnName="DISTRITO"),
-     *   @ORM\JoinColumn(name="MUNICIPIO", referencedColumnName="MUNICIPIO")
-     * })
-     */
-    private $distrito;
-
-    /**
-     * @var \Senseis|null
-     *
-     * @ORM\ManyToOne(targetEntity="Senseis")
-     * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="SENSEI", referencedColumnName="id")
-     * })
-     */
-    private $sensei;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Pupilos", mappedBy="codactividadPa")
-     */
-    private $nickPa;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Senseis", mappedBy="codactividadSa")
-     */
-    private $nickSa;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->nickPa = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->nickSa = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     public function getCodactividad(): ?int
     {
         return $this->codactividad;
@@ -137,6 +113,42 @@ class Actividades
     public function setNombre(?string $nombre): self
     {
         $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    public function getMunicipio(): ?string
+    {
+        return $this->municipio;
+    }
+
+    public function setMunicipio(?string $municipio): self
+    {
+        $this->municipio = $municipio;
+
+        return $this;
+    }
+
+    public function getDistrito(): ?string
+    {
+        return $this->distrito;
+    }
+
+    public function setDistrito(?string $distrito): self
+    {
+        $this->distrito = $distrito;
+
+        return $this;
+    }
+
+    public function getSensei(): ?int
+    {
+        return $this->sensei;
+    }
+
+    public function setSensei(?int $sensei): self
+    {
+        $this->sensei = $sensei;
 
         return $this;
     }
@@ -225,82 +237,5 @@ class Actividades
         return $this;
     }
 
-    public function getDistrito(): ?Localizacion
-    {
-        return $this->distrito;
-    }
-
-    public function setDistrito(?Localizacion $distrito): self
-    {
-        $this->distrito = $distrito;
-
-        return $this;
-    }
-
-    public function getSensei(): ?Senseis
-    {
-        return $this->sensei;
-    }
-
-    public function setSensei(?Senseis $sensei): self
-    {
-        $this->sensei = $sensei;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Pupilos>
-     */
-    public function getNickPa(): Collection
-    {
-        return $this->nickPa;
-    }
-
-    public function addNickPa(Pupilos $nickPa): self
-    {
-        if (!$this->nickPa->contains($nickPa)) {
-            $this->nickPa[] = $nickPa;
-            $nickPa->addCodactividadPa($this);
-        }
-
-        return $this;
-    }
-
-    public function removeNickPa(Pupilos $nickPa): self
-    {
-        if ($this->nickPa->removeElement($nickPa)) {
-            $nickPa->removeCodactividadPa($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Senseis>
-     */
-    public function getNickSa(): Collection
-    {
-        return $this->nickSa;
-    }
-
-    public function addNickSa(Senseis $nickSa): self
-    {
-        if (!$this->nickSa->contains($nickSa)) {
-            $this->nickSa[] = $nickSa;
-            $nickSa->addCodactividadSa($this);
-        }
-
-        return $this;
-    }
-
-    public function removeNickSa(Senseis $nickSa): self
-    {
-        if ($this->nickSa->removeElement($nickSa)) {
-            $nickSa->removeCodactividadSa($this);
-        }
-
-        return $this;
-    }
 
 }

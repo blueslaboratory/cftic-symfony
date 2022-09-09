@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Transacciones
  *
- * @ORM\Table(name="transacciones", indexes={@ORM\Index(name="CODACTIVIDAD", columns={"CODACTIVIDAD"}), @ORM\Index(name="EMISOR", columns={"EMISOR"}), @ORM\Index(name="RECEPTOR", columns={"RECEPTOR"})})
+ * @ORM\Table(name="transacciones")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\TransaccionesRepository")
  */
@@ -23,6 +24,27 @@ class Transacciones
     private $codtransaccion;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(name="CODACTIVIDAD", type="integer", nullable=true, options={"default"="NULL"})
+     */
+    private $codactividad = NULL;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="EMISOR", type="integer", nullable=true, options={"default"="NULL"})
+     */
+    private $emisor = NULL;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="RECEPTOR", type="integer", nullable=true, options={"default"="NULL"})
+     */
+    private $receptor = NULL;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="CANTIDAD", type="decimal", precision=5, scale=2, nullable=true, options={"default"="NULL"})
@@ -36,39 +58,45 @@ class Transacciones
      */
     private $estado = 'NULL';
 
-    /**
-     * @var \Pupilos|null
-     *
-     * @ORM\ManyToOne(targetEntity="Pupilos")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="EMISOR", referencedColumnName="NICK")
-     * })
-     */
-    private $emisor;
-
-    /**
-     * @var \Actividades|null
-     *
-     * @ORM\ManyToOne(targetEntity="Actividades")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CODACTIVIDAD", referencedColumnName="CODACTIVIDAD")
-     * })
-     */
-    private $codactividad;
-
-    /**
-     * @var \Senseis|null
-     *
-     * @ORM\ManyToOne(targetEntity="Senseis")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="RECEPTOR", referencedColumnName="NICK")
-     * })
-     */
-    private $receptor;
-
     public function getCodtransaccion(): ?int
     {
         return $this->codtransaccion;
+    }
+
+    public function getCodactividad(): ?int
+    {
+        return $this->codactividad;
+    }
+
+    public function setCodactividad(?int $codactividad): self
+    {
+        $this->codactividad = $codactividad;
+
+        return $this;
+    }
+
+    public function getEmisor(): ?int
+    {
+        return $this->emisor;
+    }
+
+    public function setEmisor(?int $emisor): self
+    {
+        $this->emisor = $emisor;
+
+        return $this;
+    }
+
+    public function getReceptor(): ?int
+    {
+        return $this->receptor;
+    }
+
+    public function setReceptor(?int $receptor): self
+    {
+        $this->receptor = $receptor;
+
+        return $this;
     }
 
     public function getCantidad(): ?string
@@ -91,42 +119,6 @@ class Transacciones
     public function setEstado(?string $estado): self
     {
         $this->estado = $estado;
-
-        return $this;
-    }
-
-    public function getEmisor(): ?Pupilos
-    {
-        return $this->emisor;
-    }
-
-    public function setEmisor(?Pupilos $emisor): self
-    {
-        $this->emisor = $emisor;
-
-        return $this;
-    }
-
-    public function getCodactividad(): ?Actividades
-    {
-        return $this->codactividad;
-    }
-
-    public function setCodactividad(?Actividades $codactividad): self
-    {
-        $this->codactividad = $codactividad;
-
-        return $this;
-    }
-
-    public function getReceptor(): ?Senseis
-    {
-        return $this->receptor;
-    }
-
-    public function setReceptor(?Senseis $receptor): self
-    {
-        $this->receptor = $receptor;
 
         return $this;
     }

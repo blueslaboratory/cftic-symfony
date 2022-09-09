@@ -82,10 +82,23 @@ class RegistrationController extends AbstractController
         $distritos = $query->getResult();
         // var_dump($distritos);
 
+
+        // add select para coger el distrito de pupilos
+        // [] falta por hacer
+        $query = $em->createQuery('SELECT DISTINCT(p.distrito) AS distrito FROM App\Entity\Pupilos p 
+                                   WHERE p.nick = :n');
+        $query->setParameter('n', $pupilo);
+        dump($pupilo);
+        dump($query);
+        $distrito = $query->getResult();
+        dump($distrito);
+
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('registration/editarRegistro.html.twig', [
             'mensaje' => null,
             'distritos' => $distritos,
+            'distrito' => $distrito,
             'pupilo' => $pupilo
         ]);
     }
@@ -110,11 +123,20 @@ class RegistrationController extends AbstractController
         //dump($nombre);
         $apellidos = $request->request->get('txtApellidos');
         //dump($apellidos);
-
         $fnac = $request->request->get('txtFnac');
         //dump($fnac);
         $date = new DateTime($fnac);
         //dump($date);
+        $municipio = $request->request->get('txtMunicipio');
+        //dump($municipio);
+        $distrito = $request->request->get('txtDistrito');
+        //dump($distrito);
+        $descripcion = $request->request->get('txtDescripcion');
+        //dump($descripcion);
+        
+
+        /*
+        Con foreign keys, seria algo asi pero no funciona
 
         $localizacion = new Localizacion();
 
@@ -125,10 +147,9 @@ class RegistrationController extends AbstractController
         $distrito_string = $request->request->get('txtDistrito');
         $localizacion->setDistrito($distrito_string);
         dump($localizacion);
+        */
 
-        $descripcion = $request->request->get('txtDescripcion');
-        dump($descripcion);
-
+        
         $pupilo = $em->getRepository(Pupilos::class)->find($id);
 
         $pupilo->setNick($nick);
@@ -143,16 +164,16 @@ class RegistrationController extends AbstractController
         $pupilo->setNombre($nombre);
         $pupilo->setApellidos($apellidos);
         $pupilo->setFnac($date);
+        $pupilo->setMunicipio($municipio);
+        $pupilo->setDistrito($distrito);
+        $pupilo->setDescripcion($descripcion);
         
-        
+        // Con FKs (pero no funciona)
         //$pupilo->setMunicipio($localizacion);
         //$pupilo->setDistrito($localizacion);
         
-        $pupilo->setDescripcion($descripcion);
-
-        
-        // persist lo mete en la DB de localizacion despues, yo lo que quiero es seleccionarlo de una DB
-        //$em->persist($localizacion);
+        // Con FKs persist lo mete en la DB de localizacion despues, yo lo que quiero es seleccionarlo de una DB
+        // $em->persist($localizacion);
         $em->persist($pupilo);
         
         
