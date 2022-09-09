@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,77 +12,114 @@
             border: 2px solid orangered;
         } 
         */
-        h1, label{
+        h1,
+        label {
             color: rgb(7, 7, 69);
         }
-        body{
-            background-color: rgb(255, 108, 17);
+
+        body {
+            /* background-color: rgb(255, 124, 43); */
             margin: 0 auto;
-            padding-left: 35%;
+            padding-left: 30%;
+            padding-right: 30%;
         }
-        label, input, select{
+
+        form {
+            /* margin-left: 4%; */
+        }
+
+        .orangeBorder {
+            margin-top: 4%;
+            border: 4px solid orange;
+            padding: 1%;
+        }
+
+        .crearActividadBox {
+            border: 4px solid orangered;
+            /* text-align: center; */
+            padding: 5%;
+        }
+
+        label,
+        input,
+        select {
             display: inline-block;
             width: 200px;
         }
-        label{
+
+        label {
             font-weight: bold;
         }
-
     </style>
 </head>
-<body>
-    <h1>CREAR ACTIVIDAD</h1>
-    <form method="POST" action="{{ path('insertarActividad') }}">
-        <label for="nombre">Nombre</label>
-        <input name="nombre" type="text">
-        <br>
-        
-        <label for="municipio">Municipio</label>
-        <input name="municipio" type="text" value="MADRID" readonly>
-        <br>
 
-        <label for="distrito">Distrito</label>
-        {# con el onchange manda el formulario automaticamente, es javascript #}
-        <select name="distrito" id="distrito" type="text">
-            {% for d in distritos %}
-                <option value="{{d.distrito}}">{{d.distrito}}</option>
-            {% endfor %}
-        </select>
-        <br>
-        
-        <label for="sensei">Sensei</label>
-        <input name="sensei" type="text" value="{{app.user.nick}}" readonly>
-        <br>
-        
-        <label for="precio">Precio (satoshis)</label>
-        <input name="precio" type="number">
-        <br>
-        
-        <label for="inscritos">Inscritos</label>
-        <input name="inscritos" type="number" value="0" readonly>
-        <br>
-        
-        <label for="cupo">Cupo</label>
-        <input name="cupo" type="number">
-        <br>
-        
-        <label for="finicio">Fecha de inicio</label>
-        <input name="finicio" type="date">
-        <br>
-        
-        <label for="ffin">Fecha de fin</label>
-        <input name="ffin" type="date">
-        <br><br>
-        
-        <label for="descripcion">Descripcion</label>
-        <br>
-        <textarea name="descripcion" id="" cols="52" rows="10"></textarea>
-        <br>
-        <br>
-        
-        <label for="submit"></label>
-        <input name="submit" type="submit" value="INGRESAR" style="width: auto;">
-        <br>
-    </form>
+<body>
+    <div class="orangeBorder">
+        <div class="crearActividadBox">
+
+            <div class="logo">
+                <img src="images/waydo-banner.jpg" alt="logo waydo">
+            </div>
+            <br>
+
+            <form method="POST" action="{{ path('insertarActividad') }}"></form>
+                <h1>CREAR ACTIVIDAD</h1>
+
+                <label for="nombre">Nombre</label>
+                <input name="nombre" type="text">
+                <br>
+
+                <label for="municipio">Municipio</label>
+                <input name="municipio" type="text" value="MADRID" readonly>
+                <br>
+
+                <label for="distrito">Distrito</label>
+                {# con el onchange manda el formulario automaticamente, es javascript #}
+                <select name="distrito" id="distrito" type="text">
+                    {% for d in distritos %}
+                    <option value="{{d.distrito}}">{{d.distrito}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+
+                <label for="sensei">Sensei</label>
+                <input name="sensei" type="text" value="{{app.user.nick}}" readonly>
+                <br>
+
+                <label for="precio">Precio (satoshis)</label>
+                <input name="precio" type="number">
+                <br>
+
+                <label for="inscritos">Inscritos</label>
+                <input name="inscritos" type="number" value="0" readonly>
+                <br>
+
+                <label for="cupo">Cupo</label>
+                <input name="cupo" type="number">
+                <br>
+
+                <label for="finicio">Fecha de inicio</label>
+                <input name="finicio" type="date">
+                <br>
+
+                <label for="ffin">Fecha de fin</label>
+                <input name="ffin" type="date">
+                <br><br>
+
+                <label for="descripcion">Descripcion</label>
+                <br>
+                <textarea name="descripcion" id="" cols="52" rows="10"></textarea>
+                <br>
+                <br>
+
+                <label for="submit"></label>
+                <input name="submit" type="submit" value="INGRESAR" style="width: 210px;">
+                <br>
+            </form>
+
+        </div>
+    </div>
+
 </body>
+
 </html>

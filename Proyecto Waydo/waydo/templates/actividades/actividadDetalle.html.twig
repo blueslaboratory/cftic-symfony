@@ -105,7 +105,6 @@
             background-color: black;
         }
 
-
         /* FOOTER */
         
     </style>
@@ -114,13 +113,14 @@
 
 <body>
     
-    <!--
+    {# 
     <p>{{cod}}</p>
     <p>{{dump(actividad)}}</p>
     <p>{{dump(actividad[0])}}</p>
     <p>{{dump(actividad[0].actividad.distrito)}}</p>
-    {{actividad[0].actividad.distrito.distrito}}
-    -->
+    {{actividad[0].actividad.distrito.distrito}} 
+    #}
+    
 
 
     {% include 'includes/header.html.twig' %}
@@ -140,7 +140,7 @@
 
         </div>
         <div class="right">
-            <h1>DISTRITO: {{actividad[0].actividad.distrito.distrito}}</h1>
+            <h1>DISTRITO: {{actividad[0].actividad.distrito}}</h1>
             <img src="images/localizacion.jpg" alt="localizacion">
             
             <br><br>

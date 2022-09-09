@@ -75,6 +75,11 @@ class RegistrationController extends AbstractController
         $pupilo = $security->getUser();
         dump($pupilo);
 
+        //$pupilo = $em->getRepository(Pupilos::class)->find($id);
+        //$pupilo1 = new Pupilos();
+        //$pupilo1 = $pupilo;
+        //dump($pupilo1->getDistrito());
+
         $municipio = 'MADRID';
         $query = $em->createQuery('SELECT DISTINCT(l.distrito) AS distrito FROM App\Entity\Localizacion l 
                                    WHERE l.municipio = :m ORDER BY distrito ASC');
@@ -83,22 +88,21 @@ class RegistrationController extends AbstractController
         // var_dump($distritos);
 
 
-        // add select para coger el distrito de pupilos
-        // [] falta por hacer
-        $query = $em->createQuery('SELECT DISTINCT(p.distrito) AS distrito FROM App\Entity\Pupilos p 
-                                   WHERE p.nick = :n');
-        $query->setParameter('n', $pupilo);
-        dump($pupilo);
-        dump($query);
-        $distrito = $query->getResult();
-        dump($distrito);
+        // add select para coger el distrito del pupilo
+        // $query = $em->createQuery('SELECT DISTINCT(p.distrito) AS distrito FROM App\Entity\Pupilos p 
+        //                            WHERE p.nick = :n');
+        // $query->setParameter('n', $pupilo);
+        // dump($pupilo);
+        // dump($query);
+        // $distrito = $query->getResult();
+        // dump($distrito);
 
+        
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('registration/editarRegistro.html.twig', [
             'mensaje' => null,
             'distritos' => $distritos,
-            'distrito' => $distrito,
             'pupilo' => $pupilo
         ]);
     }

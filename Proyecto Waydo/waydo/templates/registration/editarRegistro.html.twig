@@ -9,7 +9,7 @@
     }
 
     form {
-        margin-top: 15%;
+        margin-top: 9%;
         border: 4px solid orange;
         padding: 1%;
     }
@@ -36,7 +36,7 @@
         margin-left: 10px;
         display: inline-block;
         text-align: left;
-        width: 90px;
+        width: 100px;
     }
 
     input, select {
@@ -98,34 +98,31 @@
         <label>Nacimiento</label>
         <input type="date" name="txtFnac" id="txtFnac" value="{{pupilo.fnac|date('Y-m-d')}}">
 
-        <!--
-        Agregar en un futuro:
-        -->
         <label>Municipio</label>
         {# <input type="text" name="txtMunicipio" id="txtMunicipio" value="{{pupilo.municipio.municipio}}"> #}
         <input type="text" name="txtMunicipio" id="txtMunicipio" value="MADRID" readonly>
         <br>
 
-        {# De proyecto4 templates/mostrar/verDepartamentos #}
         <label>Distrito</label>
+        <input type="text" name="txtDistrito" id="txtDistrito" value="{{app.user.distrito}}" readonly>
+
+        <!-- Agregar en un futuro: el desplegable muestra por defecto el distrito seleccionado-->
+        {# De proyecto4 templates/mostrar/verDepartamentos #}
+        <label>Distrito nuevo</label>
         {# <input type="text" name="txtDistrito" id="txtDistrito" value="{{pupilo.distrito.distrito}}"> #}
         <select name="txtDistrito" id="txtDistrito">
             {% for d in distritos %}
-                {% if seleccionado is defined and d.distrito == seleccionado %}
-                    <option value="{{d.distrito}}" selected>{{d.distrito}}</option>
-                    {# en estos framework la forma de acceder a la propiedad es
-                    poniendo el nombre de la propiedad, en realidad estas accediendo
-                    a través de un get.
-                    Si la varible es $num_cama y el get es getNumCama se pone numCama #}
-                {% else %}
-                    <option value="{{d.distrito}}">{{d.distrito}}</option>
-                {% endif %}
+                <option value="{{d.distrito}}">{{d.distrito}}</option>
             {% endfor %}
         </select>
-        
+        <br>
 
-        <label>Descripcion</label>
-        <input type="text" name="txtDescripcion" id="txtDescripcion" value="{{pupilo.descripcion}}">
+        <!--
+        Implementar en un futuro?
+        <br>
+        <label for="txtdescripcion">Estado</label>
+        <input type="text" name="txtDescripcion" id="txtDescripcion" value="{{pupilo.descripcion}}"> 
+        -->
         
 
         <br><br>

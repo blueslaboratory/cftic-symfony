@@ -109,6 +109,7 @@ class ActividadesController extends AbstractController
         $query->setParameter('c', $datoget);
         dump($query);
         $actividad = $query->getResult();
+        dump($actividad);
 
         return $this->render('actividades/actividadDetalle.html.twig', [
             'cod' => $datoget,
@@ -123,31 +124,40 @@ class ActividadesController extends AbstractController
     public function inscripcion(Security $security, Request $request, EntityManagerInterface $em): Response
     {
         $datoget = intval($request->query->get('cod'));
-        // $actividad = $em->getRepository(Actividades::class)->findByCodActividad($datoget);
-        $query = $em->createQuery('SELECT a AS actividad FROM App\Entity\Actividades a 
-                                   WHERE a.codactividad = :c');
-        $query->setParameter('c', $datoget);
-        dump($query);
-        $actividad = $query->getResult();
+        $actividad = $em->getRepository(Actividades::class)->findBycodactividad($datoget);
         dump($actividad);
 
+        // Haciendolo con DQL seria asi:
+        // $query = $em->createQuery('SELECT a AS actividad FROM App\Entity\Actividades a 
+        //                            WHERE a.codactividad = :c');
+        // $query->setParameter('c', $datoget);
+        // dump($query);
+        // $actividad = $query->getResult();
+        // dump($actividad);
 
+        // NO FUNSIONA
+        // ?? Como accedo al id de pupilo, o al resto de campos ??
         $pupilo = $security->getUser();
+        dump($pupilo->getId());
 
         // coger inscritos/cupo, codactividad
-        $query = $em->createQuery('SELECT i AS inscritos FROM App\Entity\Actividades i');
-        dump($query);
-        $inscritos = $query->getResult();
-        $query = $em->createQuery('SELECT c AS cupo FROM App\Entity\Actividades c');
-        $cupo = $query->getResult();
-        $query = $em->createQuery('SELECT c AS codactividad FROM App\Entity\Actividades c');
-        $codactividad = intval($query->getResult());
+        $inscritos = $actividad[0]->getInscritos();
+        dump($inscritos);
 
+        $cupo = $actividad[0]->getCupo();
+        dump($cupo);
+
+        $codactividad = $actividad[0]->getCodActividad();
+        dump($codactividad);
+
+
+        // NO FUNSIONA
         // comprobar que no esta en la tabla pupilos_actividades
-        // $query = $em->createQuery('SELECT NICK_PA AS PA FROM App\Entity\Pupilos_Actividades PA
-        //                            WHERE PA.CODACTIVIDAD_PA = :c');
-        // $query->setParameter('c', $codactividad);
-        // $nick = $query->getResult();
+        $query = $em->createQuery('SELECT NICK_PA AS NPA FROM App\Entity\PupilosActividades PA
+                                   WHERE PA.CODACTIVIDAD_PA = :c');
+        $query->setParameter('c', $codactividad);
+        $nick = $query->getResult();
+        dump($nick);
 
         // inscripcion
         if($inscritos >= $cupo){
@@ -202,7 +212,7 @@ class ActividadesController extends AbstractController
         $nombre = $request->request->get('nombre');
         $municipio = $request->request->get('municipio');
         $distrito = $request->request->get('distrito');
-        $senseiNick = $request->request->get('sensei');
+        $sensei = $request->request->get('sensei');
         $precio = $request->request->get('precio');
         $inscritos = $request->request->get('inscritos');
         $cupo = $request->request->get('cupo');
@@ -210,22 +220,26 @@ class ActividadesController extends AbstractController
         $ffin = new DateTime($request->request->get('ffin'));
         $descripcion = $request->request->get('descripcion');
 
+
+        // Al quitar las foreign keys esto no hay que hacerlo:
+
         // 2) dar de alta en bbdd 
-        $sensei = new Senseis();
-        $sensei->setNick($senseiNick);
-        dump($sensei);
+        // $sensei = new Senseis();
+        // $sensei->setNick($senseiNick);
+        // dump($sensei);
 
         //$localizacion2 = $em->getRepository(Localizacion::class)->find($municipio);
         //dump($localizacion2);
-        $localizacion = new Localizacion();
-        $localizacion->setMunicipio($municipio);
-        $localizacion->setDistrito($distrito);
-        dump($localizacion);
+        // $localizacion = new Localizacion();
+        // $localizacion->setMunicipio($municipio);
+        // $localizacion->setDistrito($distrito);
+        // dump($localizacion);
 
         $actividad = new Actividades();
         $actividad->setNombre($nombre);
         $actividad->setSensei($sensei);
-        $actividad->setDistrito($localizacion);
+        $actividad->setMunicipio($municipio);
+        $actividad->setDistrito($distrito);
         $actividad->setPrecio($precio);
         $actividad->setInscritos($inscritos);
         $actividad->setCupo($cupo);
