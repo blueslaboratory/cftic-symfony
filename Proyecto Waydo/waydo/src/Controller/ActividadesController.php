@@ -246,6 +246,7 @@ class ActividadesController extends AbstractController
         $actividad->setFechaInicio($finicio);
         $actividad->setFechaFin($ffin);
         $actividad->setDescripcion($descripcion);
+        dump($actividad);
 
         // Informamos a Doctrine de que queremos guardar (todavía no se ejecuta ninguna query)
         $em->persist($actividad);

@@ -24,8 +24,8 @@
             padding-right: 30%;
         }
 
-        form {
-            /* margin-left: 4%; */
+        .content {
+            margin-left: 12%;
         }
 
         .orangeBorder {
@@ -50,6 +50,14 @@
         label {
             font-weight: bold;
         }
+
+        button {
+            width: 210px;
+            /* padding: 1% 20%; */
+            border: 2px solid orange;
+            background-color: orangered;
+            color: whitesmoke;
+        }
     </style>
 </head>
 
@@ -62,7 +70,8 @@
             </div>
             <br>
 
-            <form method="POST" action="{{ path('insertarActividad') }}"></form>
+            <div class="content">
+                <form method="POST" action="{{ path('insertarActividad') }}"></form>
                 <h1>CREAR ACTIVIDAD</h1>
 
                 <label for="nombre">Nombre</label>
@@ -113,9 +122,12 @@
                 <br>
 
                 <label for="submit"></label>
-                <input name="submit" type="submit" value="INGRESAR" style="width: 210px;">
-                <br>
-            </form>
+                <button class="btn btn-lg btn-primary" type="submit" value="crear">
+                    Crear
+                </button>
+
+                </form>
+            </div>
 
         </div>
     </div>
