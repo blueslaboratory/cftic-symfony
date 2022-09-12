@@ -1,0 +1,49 @@
+*{
+    /* border: 2px solid blue; */
+}
+
+body{
+    margin: 0 40%;
+}
+
+form{
+    margin-top: 50%;
+    border: 4px solid orange;
+    padding: 1%;
+}
+
+.mb-3{
+    text-align: right;
+}
+
+.loginBox{
+    border: 4px solid orangered;
+    text-align: center;
+    padding: 10%;
+}
+
+.logo img{
+    object-fit: contain;
+    height: auto;
+    max-width: 100%;
+}
+
+/* 
+label{
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+} 
+*/
+
+input{
+    width: 180px;
+}
+
+button{
+    width: 188px;
+    /* padding: 1% 20%; */
+    border: 2px solid orange;
+    background-color: orangered;
+    color: whitesmoke;
+}

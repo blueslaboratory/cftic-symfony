@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/includes/header.css">
+    <link rel="stylesheet" href="css/includes/footer.css">
+    <link rel="stylesheet" href="css/actividades/actividadDetalle.css">
+    <title>Actividad</title>
+</head>
+
+<body>
+    
+    {#     
+    <p>{{cod}}</p>
+    <p>{{dump(actividad)}}</p>
+    <p>{{dump(actividad[0].distrito)}}</p>
+    #}    
+
+
+    {% include 'includes/header.html.twig' %} 
+
+    <div class="content">
+        <div class="left">
+            <p class="mensaje"><em>{{mensaje}}</em></p>
+            
+            <h1>ACTIVIDAD: {{actividad[0].nombre}}</h1>
+            <img src="images/banner-detalle-actividad.jpg" alt="banner">
+            <br><br><br>
+            <p>
+                {{actividad[0].descripcion}}
+            </p>
+            <br>
+
+        </div>
+        <div class="right">
+            <h1>DISTRITO: {{actividad[0].distrito}}</h1>
+            <img src="images/localizacion.jpg" alt="localizacion">
+            
+            <br><br>
+            {% if inscrito == false %}
+                <div class="button" "inscripcion"
+                    onclick="location.href='{{ path('inscripcion', {cod:actividad[0].codactividad}) }}';"
+                    style="cursor: pointer;">
+                    i n s c r i b i r m e
+                </div>
+            {% else %}
+                <div class="button" "inscripcion"
+                    onclick="location.href='{{ path('baja', {cod:actividad[0].codactividad}) }}';"
+                    style="cursor: pointer;">
+                    b a j a
+                </div>
+            {% endif %}
+            
+
+            <p class="inscripcion">(Inscritos: {{actividad[0].inscritos}}/{{actividad[0].cupo}})</p>
+        </div>
+    </div>
+
+    {% include 'includes/footer.html.twig' %}
+
+
+</body>
+
+</html>

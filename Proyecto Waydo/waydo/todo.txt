@@ -2,28 +2,30 @@
 
 [X] 0. Añadir opcion de logout para cuando inicia sesion el usuario
 
-[] 1. Añadir una home page URL para despues del logout
+[X] 1. Añadir una home page URL para despues del logout
 
-[] 2. En registro:
+[Cancel] 2. En registro:
     [] 2.1 Que se pueda poner municipio (Madrid) y distrito en un select (display)
 
 [] 3. En editar registro:
     [] Mostrar la password sin hashear en el recuadro
-    [] Que funcione el select de distrito
-    [] el desplegable muestra por defecto el distrito seleccionado en editarRegistro.html.twig
+    [X] Que funcione el select de distrito
+    [X] el desplegable muestra por defecto el distrito seleccionado en editarRegistro.html.twig
     [X] Como hacer para que no haya un persist porque no lo quiero meter en la tabla de localizacion
     [] La posibilidad de ser/no ser un sensei con un checkbox o con una select (yes/no)
 
 [] 4. Si eres sensei te sale la opcion de crear actividades en el home y rellenas un formulario y la puedes crear
 
-[] 5. La posibilidad de inscribirte en una actividad si has hecho el login
+[X] 5. La posibilidad de inscribirte en una actividad si has hecho el login
 ActividadesController
 
-[] 6. Crear Actividad
+[X] 6. Crear Actividad
 
 [X] 7. REHACER EL PROYECTO SIN REFERENCIAR A OTRAS TABLAS (quitar Foreign Keys), ver *Nota1
 
-[] Cargar la actividad en la DB desde crearActividad
+[X] Cargar la actividad en la DB desde crearActividad
+
+[] Borrar registro de la tabla pupilos_actividades
 
 
 

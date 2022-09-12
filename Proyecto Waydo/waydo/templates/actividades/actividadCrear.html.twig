@@ -6,59 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Actividad</title>
-    <style>
-        /*
-        *{
-            border: 2px solid orangered;
-        } 
-        */
-        h1,
-        label {
-            color: rgb(7, 7, 69);
-        }
-
-        body {
-            /* background-color: rgb(255, 124, 43); */
-            margin: 0 auto;
-            padding-left: 30%;
-            padding-right: 30%;
-        }
-
-        .content {
-            margin-left: 12%;
-        }
-
-        .orangeBorder {
-            margin-top: 4%;
-            border: 4px solid orange;
-            padding: 1%;
-        }
-
-        .crearActividadBox {
-            border: 4px solid orangered;
-            /* text-align: center; */
-            padding: 5%;
-        }
-
-        label,
-        input,
-        select {
-            display: inline-block;
-            width: 200px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        button {
-            width: 210px;
-            /* padding: 1% 20%; */
-            border: 2px solid orange;
-            background-color: orangered;
-            color: whitesmoke;
-        }
-    </style>
+    <link rel="stylesheet" href="css/actividades/actividadCrear.css">
 </head>
 
 <body>
@@ -71,11 +19,11 @@
             <br>
 
             <div class="content">
-                <form method="POST" action="{{ path('insertarActividad') }}"></form>
+                <form method="POST" action="{{ path('insertarActividad') }}">
                 <h1>CREAR ACTIVIDAD</h1>
 
                 <label for="nombre">Nombre</label>
-                <input name="nombre" type="text">
+                <input name="nombre" type="text" required>
                 <br>
 
                 <label for="municipio">Municipio</label>
@@ -92,11 +40,12 @@
                 <br>
 
                 <label for="sensei">Sensei</label>
-                <input name="sensei" type="text" value="{{app.user.nick}}" readonly>
+                <input name="senseiNick" type="text" value="{{app.user.nick}}" readonly/>
+                <input name="sensei" type="hidden" type="number" value="{{app.user.id}}"/>
                 <br>
 
                 <label for="precio">Precio (satoshis)</label>
-                <input name="precio" type="number">
+                <input name="precio" type="number" value="0">
                 <br>
 
                 <label for="inscritos">Inscritos</label>
@@ -104,15 +53,15 @@
                 <br>
 
                 <label for="cupo">Cupo</label>
-                <input name="cupo" type="number">
+                <input name="cupo" type="number" value="0">
                 <br>
 
                 <label for="finicio">Fecha de inicio</label>
-                <input name="finicio" type="date">
+                <input name="finicio" type="date" required>
                 <br>
 
                 <label for="ffin">Fecha de fin</label>
-                <input name="ffin" type="date">
+                <input name="ffin" type="date" required>
                 <br><br>
 
                 <label for="descripcion">Descripcion</label>
@@ -125,7 +74,6 @@
                 <button class="btn btn-lg btn-primary" type="submit" value="crear">
                     Crear
                 </button>
-
                 </form>
             </div>
 

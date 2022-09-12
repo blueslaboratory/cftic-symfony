@@ -3,57 +3,7 @@
 {% block title %}Editar Registro{% endblock %}
 
 {% block stylesheets %}
-<style>
-    body {
-        margin: 0 25%;
-    }
-
-    form {
-        margin-top: 9%;
-        border: 4px solid orange;
-        padding: 1%;
-    }
-
-    .registerBox {
-        border: 4px solid orangered;
-        text-align: center;
-        padding: 10%;
-    }
-
-    .logo img {
-        object-fit: contain;
-        height: auto;
-        max-width: 100%;
-    }
-
-    h3 {
-        margin-left: 3%;
-        text-align: left;
-        text-decoration: underline;
-    }
-
-    label {
-        margin-left: 10px;
-        display: inline-block;
-        text-align: left;
-        width: 100px;
-    }
-
-    input, select {
-        width: 120px;
-        margin-bottom: 1%;
-    }
-
-    button {
-        width: 188px;
-        /* padding: 1% 20%; */
-        border: 2px solid orange;
-        background-color: orangered;
-        color: whitesmoke;
-    }
-</style>
-
-
+    <link rel="stylesheet" href="css/registration/editarRegistro.css">
 {% endblock %}
 
 {% block body %}
@@ -84,8 +34,9 @@
         <label>Telefono</label>
         <input type="tel" name="txtPhone" id="txtPhone" value="{{pupilo.telefono}}">
 
+        {# esto para deshashearlo seria conveniente hacerlo con tu propio hash #}
         <label>Contraseña</label>
-        <input type="text" name="txtPassword" id="txtPassword" value="1234">
+        <input type="text" name="txtPassword" id="txtPassword" value="{{1234}}" style="color: red;">
         <br>
 
         <label>Nombre</label>
@@ -108,13 +59,23 @@
 
         <!-- Agregar en un futuro: el desplegable muestra por defecto el distrito seleccionado-->
         {# De proyecto4 templates/mostrar/verDepartamentos #}
-        <label>Distrito nuevo</label>
+        <label>Distrito</label>
         {# <input type="text" name="txtDistrito" id="txtDistrito" value="{{pupilo.distrito.distrito}}"> #}
+        
         <select name="txtDistrito" id="txtDistrito">
             {% for d in distritos %}
-                <option value="{{d.distrito}}">{{d.distrito}}</option>
+                {% if d.distrito == app.user.distrito %}
+                    <option value="{{d.distrito}}" selected>{{d.distrito}}</option>
+                    {# en estos framework la forma de acceder a la propiedad es
+                    poniendo el nombre de la propiedad, en realidad estas accediendo
+                    a través de un get.
+                    Si la varible es $num_cama y el get es getNumCama se pone numCama #}
+                {% else %}
+                    <option value="{{d.distrito}}">{{d.distrito}}</option>
+                {% endif %}
             {% endfor %}
         </select>
+        
         <br>
 
         <!--

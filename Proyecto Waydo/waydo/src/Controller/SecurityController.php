@@ -30,6 +30,6 @@ class SecurityController extends AbstractController
     {
         // aqui no funciona, va en el security.yml config file
         // return $this->redirectToRoute("home");
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }

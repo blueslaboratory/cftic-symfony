@@ -64,9 +64,8 @@ class ActividadesController extends AbstractController
         $distrito = $request->request->get('distrito');
         dump($distrito);
 
-
-        //$actividades = $em->getRepository(Actividades::class)->findAll();
-        //dump($actividades);
+        // $actividades = $em->getRepository(Actividades::class)->findAll();
+        // dump($actividades);
 
         // TODO esto me da error y no sé por qué aún:
         // $actividades = $em->getRepository(Actividades::class)->findByDistrito($distrito);
@@ -118,7 +117,6 @@ class ActividadesController extends AbstractController
     }
 
 
-    // FALTA ESTO
     // localhost:8000/inscripcion
     #[Route('/inscripcion', name: 'inscripcion')]
     public function inscripcion(Security $security, Request $request, EntityManagerInterface $em): Response
@@ -138,7 +136,11 @@ class ActividadesController extends AbstractController
         // NO FUNSIONA
         // ?? Como accedo al id de pupilo, o al resto de campos ??
         $pupilo = $security->getUser();
-        dump($pupilo->getId());
+        dump($pupilo);
+
+        // dump($pupilo->nick);
+        $id = $pupilo->getId();
+        dump($id);
 
         // coger inscritos/cupo, codactividad
         $inscritos = $actividad[0]->getInscritos();
@@ -151,40 +153,158 @@ class ActividadesController extends AbstractController
         dump($codactividad);
 
 
-        // NO FUNSIONA
+        // YA FUNSIONA
         // comprobar que no esta en la tabla pupilos_actividades
-        $query = $em->createQuery('SELECT NICK_PA AS NPA FROM App\Entity\PupilosActividades PA
-                                   WHERE PA.CODACTIVIDAD_PA = :c');
+        $query = $em->createQuery('SELECT PA.nickPa AS NPA FROM App\Entity\PupilosActividades PA
+                                   WHERE PA.codactividadPa = :c AND PA.nickPa = :n');
         $query->setParameter('c', $codactividad);
+        $query->setParameter('n', $id);
         $nick = $query->getResult();
-        dump($nick);
+
+        // Contar los elementos del array
+        // False cuando se encuentra inscrito
+        dump(count($nick) != 0);
+
+        $inscrito = false;
 
         // inscripcion
-        if($inscritos >= $cupo){
+        if ($inscritos >= $cupo) {
             $mensaje = "Lo sentimos, el cupo esta completo";
-        }
-        elseif(isset($nick)){
+        } elseif (count($nick) != 0) {
             $mensaje = "Ya se encuentra inscrito en esta actividad";
-        }
-        else{
+            $inscrito = true;
+        } else {
+            // Aumentar en 1 los inscritos
             $actividad = $em->getRepository(Actividades::class)->find($datoget);
-            $actividad->setInscritos(intval($inscritos)+1);
-            
+            $actividad->setInscritos(intval($inscritos) + 1);
+
+            // Insertar en la tabla pupilos_actividades
+            $connection = $em->getConnection();
+            $statement = $connection->prepare("INSERT INTO PUPILOS_ACTIVIDADES VALUES (:id, :cod)");
+            $statement->bindValue('id', $id);
+            $statement->bindValue('cod', $codactividad);
+            $resultado = $statement->executeQuery();
+            dump($resultado->fetchAllAssociative());
+
+            // Informamos a Doctrine de que queremos guardar (todavía no se ejecuta ninguna query)
+            $em->persist($actividad);
+
+            // Para ejecutar las queries pendientes, se utiliza flush().
+            $em->flush();
+
             $mensaje = "Inscripcion realizada correctamente";
         }
 
+        dump($mensaje);
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // return $this->redirectToRoute("actividadDetalle");
-        
-        return $this->render('actividades/actividadDetalle.html.twig', [
+
+        return $this->render('actividades/actividadDetalleInscripcion.html.twig', [
             'cod' => $datoget,
             'actividad' => $actividad,
-            'mensaje' => $mensaje
+            'mensaje' => $mensaje,
+            'inscrito' => $inscrito
         ]);
     }
 
 
-    // FALTA ESTO
+    // localhost:8000/baja
+    #[Route('/baja', name: 'baja')]
+    public function baja(Security $security, Request $request, EntityManagerInterface $em): Response
+    {
+        $datoget = intval($request->query->get('cod'));
+        $actividad = $em->getRepository(Actividades::class)->findBycodactividad($datoget);
+        dump($actividad);
+
+        // NO FUNSIONA
+        // ?? Como accedo al id de pupilo, o al resto de campos ??
+        $pupilo = $security->getUser();
+        dump($pupilo);
+
+        // dump($pupilo->nick);
+        $id = $pupilo->getId();
+        dump($id);
+
+        // coger inscritos/cupo, codactividad
+        $inscritos = $actividad[0]->getInscritos();
+        dump($inscritos);
+
+        $cupo = $actividad[0]->getCupo();
+        dump($cupo);
+
+        $codactividad = $actividad[0]->getCodActividad();
+        dump($codactividad);
+
+
+        // YA FUNSIONA
+        // comprobar esta en la tabla pupilos_actividades
+        $query = $em->createQuery('SELECT PA.nickPa AS NPA FROM App\Entity\PupilosActividades PA
+                                   WHERE PA.codactividadPa = :c AND PA.nickPa = :n');
+        $query->setParameter('c', $codactividad);
+        $query->setParameter('n', $id);
+        $nick = $query->getResult();
+
+        // Contar los elementos del array
+        // False cuando se encuentra inscrito
+        dump(count($nick) != 0);
+
+        $inscrito = true;
+        $mensaje = "Ya se encuentra inscrito en esta actividad";
+
+        // inscripcion
+        if (count($nick) != 0) {
+            // Aumentar en 1 los inscritos
+            $actividad = $em->getRepository(Actividades::class)->find($datoget);
+            $actividad->setInscritos(intval($inscritos) - 1);
+
+            // Borrar registro de la tabla pupilos_actividades
+            $connection = $em->getConnection();
+            $statement = $connection->prepare("DELETE FROM PUPILOS_ACTIVIDADES WHERE NICK_PA = :id AND CODACTIVIDAD_PA = :cod");
+            $statement->bindValue('id', $id);
+            $statement->bindValue('cod', $codactividad);
+            $resultado = $statement->executeQuery();
+            dump($resultado->fetchAllAssociative());
+
+            // Informamos a Doctrine de que queremos guardar (todavía no se ejecuta ninguna query)
+            $em->persist($actividad);
+
+            // Para ejecutar las queries pendientes, se utiliza flush().
+            $em->flush();
+
+            $mensaje = "Baja realizada correctamente";
+            $inscrito = false;
+        }
+
+        dump($mensaje);
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // return $this->redirectToRoute("actividadDetalle");
+
+        return $this->render('actividades/actividadDetalleInscripcion.html.twig', [
+            'cod' => $datoget,
+            'actividad' => $actividad,
+            'mensaje' => $mensaje,
+            'inscrito' => $inscrito
+        ]);
+    }
+
+    /*
+    Intentando hacer una funcion:
+
+    public function todasLasActividades(EntityManagerInterface $em)
+    {
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT * FROM ACTIVIDADES WHERE DISTRITO=:dato");
+        $statement->bindValue('dato', $distrito);
+        $resultado = $statement->executeQuery();
+        $actividades = $resultado->fetchAllAssociative();
+
+        dump($actividades);
+    }
+    */
+
+
     // VER proyect8 -> SesionPacientesController.php
     // localhost:8000/crearActividad
     #[Route('/crearActividad', name: 'crearActividad')]
@@ -203,10 +323,10 @@ class ActividadesController extends AbstractController
     }
 
 
-     // localhost:8000/insertarActividad
-     #[Route('/insertarActividad', name: 'insertarActividad')]
-     public function insertarActividad(Request $request, EntityManagerInterface $em)
-     {
+    // localhost:8000/insertarActividad
+    #[Route('/insertarActividad', name: 'insertarActividad')]
+    public function insertarActividad(Request $request, EntityManagerInterface $em)
+    {
         // Podemos obtener el EntityManager a través de inyección de dependencias con el argumento EntityManagerInterface $em
         // 1) recibir datos del formulario
         $nombre = $request->request->get('nombre');
@@ -228,8 +348,8 @@ class ActividadesController extends AbstractController
         // $sensei->setNick($senseiNick);
         // dump($sensei);
 
-        //$localizacion2 = $em->getRepository(Localizacion::class)->find($municipio);
-        //dump($localizacion2);
+        // $localizacion2 = $em->getRepository(Localizacion::class)->find($municipio);
+        // dump($localizacion2);
         // $localizacion = new Localizacion();
         // $localizacion->setMunicipio($municipio);
         // $localizacion->setDistrito($distrito);
@@ -256,5 +376,5 @@ class ActividadesController extends AbstractController
 
         // 3) redirigir al formulario.
         return $this->redirectToRoute("actividadesFlipBox");
-     }
+    }
 }

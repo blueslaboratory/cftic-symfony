@@ -1,0 +1,47 @@
+body {
+    margin: 0 25%;
+}
+
+form {
+    margin-top: 9%;
+    border: 4px solid orange;
+    padding: 1%;
+}
+
+.registerBox {
+    border: 4px solid orangered;
+    text-align: center;
+    padding: 10%;
+}
+
+.logo img {
+    object-fit: contain;
+    height: auto;
+    max-width: 100%;
+}
+
+h3 {
+    margin-left: 3%;
+    text-align: left;
+    text-decoration: underline;
+}
+
+label {
+    margin-left: 10px;
+    display: inline-block;
+    text-align: left;
+    width: 100px;
+}
+
+input, select {
+    width: 120px;
+    margin-bottom: 1%;
+}
+
+button {
+    width: 188px;
+    /* padding: 1% 20%; */
+    border: 2px solid orange;
+    background-color: orangered;
+    color: whitesmoke;
+}
