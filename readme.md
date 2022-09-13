@@ -75,11 +75,11 @@ $ git clone ...@....git nombre_del_proyecto_creado
 
 También hay que añadir 3 ficheros de configuración para el despliegue:
 
-- **[.platform.app.yaml](https://github.com/blueslaboratory/cftic-symfony/blob/master/Proyecto%20Waydo/waydo/.platform.app.yaml)**
+- **[.platform.app.yaml](https://github.com/blueslaboratory/cftic-symfony/blob/master/ProyectoWaydo/waydo/.platform.app.yaml)**
     - Documentación: **[https://docs.platform.sh/create-apps.html](https://docs.platform.sh/create-apps.html)**
-- **[~/.platform/routes.yaml](https://github.com/blueslaboratory/cftic-symfony/blob/master/Proyecto%20Waydo/waydo/.platform/routes.yaml)**
+- **[~/.platform/routes.yaml](https://github.com/blueslaboratory/cftic-symfony/blob/master/ProyectoWaydo/waydo/.platform/routes.yaml)**
     - Documentación: **[https://docs.platform.sh/define-routes.html](https://docs.platform.sh/define-routes.html)**	
-- **[~/.platform/services.yaml](https://github.com/blueslaboratory/cftic-symfony/blob/master/Proyecto%20Waydo/waydo/.platform/services.yaml)**
+- **[~/.platform/services.yaml](https://github.com/blueslaboratory/cftic-symfony/blob/master/ProyectoWaydo/waydo/.platform/services.yaml)**
     - Documentación: **[https://docs.platform.sh/add-services.html](https://docs.platform.sh/add-services.html)**
 
 4. **[Añadir la primera página con su vista y controlador](https://symfony.com/doc/current/page_creation.html#creating-a-page-route-and-controller)**
