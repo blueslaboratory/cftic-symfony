@@ -123,6 +123,7 @@ class ActividadesController extends AbstractController
     {
         $datoget = intval($request->query->get('cod'));
         $actividad = $em->getRepository(Actividades::class)->findBycodactividad($datoget);
+        // $actividad = $em->getRepository(Actividades::class)->find($datoget);
         dump($actividad);
 
         // Haciendolo con DQL seria asi:
@@ -133,8 +134,6 @@ class ActividadesController extends AbstractController
         // $actividad = $query->getResult();
         // dump($actividad);
 
-        // NO FUNSIONA
-        // ?? Como accedo al id de pupilo, o al resto de campos ??
         $pupilo = $security->getUser();
         dump($pupilo);
 
@@ -176,6 +175,7 @@ class ActividadesController extends AbstractController
         } else {
             // Aumentar en 1 los inscritos
             $actividad = $em->getRepository(Actividades::class)->find($datoget);
+            dump($actividad);
             $actividad->setInscritos(intval($inscritos) + 1);
 
             // Insertar en la tabla pupilos_actividades
@@ -197,6 +197,9 @@ class ActividadesController extends AbstractController
 
         dump($mensaje);
 
+        $actividad = $em->getRepository(Actividades::class)->findBycodactividad($datoget);
+        dump($actividad);
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // return $this->redirectToRoute("actividadDetalle");
 
@@ -215,10 +218,9 @@ class ActividadesController extends AbstractController
     {
         $datoget = intval($request->query->get('cod'));
         $actividad = $em->getRepository(Actividades::class)->findBycodactividad($datoget);
+        // $actividad = $em->getRepository(Actividades::class)->find($datoget);
         dump($actividad);
-
-        // NO FUNSIONA
-        // ?? Como accedo al id de pupilo, o al resto de campos ??
+        
         $pupilo = $security->getUser();
         dump($pupilo);
 
@@ -249,8 +251,6 @@ class ActividadesController extends AbstractController
         // False cuando se encuentra inscrito
         dump(count($nick) != 0);
 
-        $inscrito = true;
-        $mensaje = "Ya se encuentra inscrito en esta actividad";
 
         // inscripcion
         if (count($nick) != 0) {
@@ -272,11 +272,18 @@ class ActividadesController extends AbstractController
             // Para ejecutar las queries pendientes, se utiliza flush().
             $em->flush();
 
-            $mensaje = "Baja realizada correctamente";
             $inscrito = false;
+            $mensaje = "Baja realizada correctamente";
+        }
+        else{
+            $inscrito = false;
+            $mensaje = "No esta inscrito en esta actividad";
         }
 
         dump($mensaje);
+
+        $actividad = $em->getRepository(Actividades::class)->findBycodactividad($datoget);
+        dump($actividad);
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // return $this->redirectToRoute("actividadDetalle");
