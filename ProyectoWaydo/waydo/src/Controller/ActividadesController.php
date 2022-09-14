@@ -193,6 +193,7 @@ class ActividadesController extends AbstractController
             $em->flush();
 
             $mensaje = "Inscripcion realizada correctamente";
+            $inscrito = true;
         }
 
         dump($mensaje);

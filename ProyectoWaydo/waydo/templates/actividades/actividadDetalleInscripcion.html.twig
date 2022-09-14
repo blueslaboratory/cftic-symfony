@@ -39,6 +39,12 @@
             <img src="images/localizacion.jpg" alt="localizacion">
             
             <br><br>
+            {# 
+            <pre>
+                {{ dump(inscrito) }}
+            </pre> 
+            #}
+
             {% if inscrito == false %}
                 <div class="button" "inscripcion"
                     onclick="location.href='{{ path('inscripcion', {cod:actividad[0].codactividad}) }}';"
