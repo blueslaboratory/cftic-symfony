@@ -25,7 +25,9 @@ ActividadesController
 
 [X] Cargar la actividad en la DB desde crearActividad
 
-[] Borrar registro de la tabla pupilos_actividades
+[X] Borrar registro de la tabla pupilos_actividades
+
+[] falta dejarlo bonito, dividir y encapsular pero asi me entero mejor
 
 
 
