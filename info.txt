@@ -11,6 +11,13 @@ Tener en el .env del proyecto la DB correcta seleccionada
 Y después:
 C:\xampp\htdocs\CFTIC\EjemplosSymfony\Proyecto5> php -S localhost:8000 -t public/
 
+Waydo:
+http://localhost:8000/home
+
+phpMyAdmin (xampp):
+http://localhost/phpmyadmin/
+user: root
+pw: 
 
 ____________
 Parche:
