@@ -27,8 +27,6 @@ ActividadesController
 
 [X] Borrar registro de la tabla pupilos_actividades
 
-[] Formulario de contacto: https://diego.com.es/crear-un-formulario-de-contacto-en-symfony
-
 [] falta dejarlo bonito, dividir y encapsular pero asi me entero mejor
 
 
